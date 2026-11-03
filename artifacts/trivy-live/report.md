@@ -110,7 +110,7 @@ CVSS 7.7，归一化 0.77；不在 CISA KEV；EPSS 0.5346，贡献 0.0802；暴�
 org.apache.logging.log4j:log4j-core 当前版本 2.14.1，所在位置 demo/lab/app/pom.xml，暴露面为互联网。本组最高等级为严重。CISA KEV 截止日期 2021-12-24 已过，建议 24 小时内处理。
 
 ### 优先原因
-CVSS 10.0，归一化 1.00；在 CISA KEV 中，贡献 0.25；EPSS 1.0000，贡献 0.1500；暴露面为互联网，系数 1.00；综合分 1.0000，等级为严重。 触发规则：KEV 且 CVSS 不低于 7，等级至少为严重。
+CVSS 10.0，归一化 1.00；在 CISA KEV 中，贡献 0.25；EPSS 1.0000，贡献 0.1500；暴露面为互联网，系数 1.00；综合分 1.0000，等级为严重。触发规则：KEV 且 CVSS 不低于 7，等级至少为严重。
 log4j-api 单独存在时不受 Log4Shell 影响，需要确认依赖树里是 log4j-core。
 
 ### 涉及条目
@@ -158,7 +158,7 @@ log4j-api 单独存在时不受 Log4Shell 影响，需要确认依赖树里是 l
 redis 当前版本 5:5.0.7-2+deb10u1，所在位置 demo/lab/dpkg.tsv，暴露面为内网。本组最高等级为严重。CISA KEV 截止日期 2022-04-18 已过，建议 24 小时内处理。
 
 ### 优先原因
-CVSS 10.0，归一化 1.00；在 CISA KEV 中，贡献 0.25；EPSS 0.9935，贡献 0.1490；暴露面为内网，系数 0.85；综合分 0.8500，等级为严重。 触发规则：KEV 且 CVSS 不低于 7，等级至少为严重。
+CVSS 10.0，归一化 1.00；在 CISA KEV 中，贡献 0.25；EPSS 0.9935，贡献 0.1490；暴露面为内网，系数 0.85；综合分 0.8500，等级为严重。触发规则：KEV 且 CVSS 不低于 7，等级至少为严重。
 只适用于 Debian 打包的 redis。请用 dpkg 版本确认，不要把官方二进制或官方镜像算进来。
 
 ### 涉及条目
@@ -449,7 +449,7 @@ pyyaml 当前版本 5.3.1，所在位置 demo/lab/app/requirements.txt，暴露�
 
 ### 优先原因
 CVSS 9.8，归一化 0.98；不在 CISA KEV；EPSS 0.0598，贡献 0.0090；暴露面为内网，系数 0.85；综合分 0.8406，等级为高危。
-需要应用使用 full_load 或 FullLoader 处理不可信输入。
+需要确认应用是否使用 full_load 或 FullLoader 处理不可信输入。
 
 ### 涉及条目
 - CVE-2020-14343：PyYAML 在 5.4 之前通过 FullLoader 解析不可信 YAML 时可执行任意代码（CVSS 9.8）
@@ -480,7 +480,7 @@ CVSS 9.8，归一化 0.98；不在 CISA KEV；EPSS 0.0598，贡献 0.0090；暴�
 
 ## 采集提示
 
-- 未检测到 grype、syft、osv-scanner。这些工具的仓库链接写在 docs/设计文档.md，当前不解析它们的输出。
+- 未检测到 grype、syft、osv-scanner。仓库链接见 ai-process/第三方开源仓库.md，当前不解析它们的输出。
 - Trivy 第二意见来自本机 trivy 与目标目录的 trivy.json，OSV 主路径保持不变。
 
 ## 说明

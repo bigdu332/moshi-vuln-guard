@@ -52,7 +52,7 @@ def prioritize(
         f"综合分 {score:.4f}，等级为{BAND_LABEL[band]}。"
     )
     if forced:
-        rationale += " 触发规则：KEV 且 CVSS 不低于 7，等级至少为严重。"
+        rationale += "触发规则：KEV 且 CVSS 不低于 7，等级至少为严重。"
     return score, band, rationale
 
 

@@ -115,7 +115,7 @@ def execute(plan: Plan, *, approved: bool, allow_apply: bool, runner) -> str:
 
 def _require_hash(plan: Plan) -> None:
     if command_hash(plan.steps) != plan.command_hash:
-        raise PermissionError("方案命令已被改动，与批准时的摘要不一致。")
+        raise PermissionError("方案命令已被改动，与生成时的摘要不一致。")
 
 
 def _plan_for(asset: Asset, findings: list[Finding]) -> Plan:

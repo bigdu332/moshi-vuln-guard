@@ -176,6 +176,7 @@ class ScanResult:
     plans: list[Plan]
     warnings: list[str] = field(default_factory=list)
     feeds: dict[str, str] = field(default_factory=dict)
+    trivy: list[dict[str, Any]] = field(default_factory=list)
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -186,6 +187,7 @@ class ScanResult:
             "host": self.host,
             "warnings": self.warnings,
             "feeds": self.feeds,
+            "trivy": self.trivy,
             "assets": [asset.to_dict() for asset in self.assets],
             "findings": [finding.to_dict() for finding in self.findings],
             "plans": [plan.to_dict() for plan in self.plans],

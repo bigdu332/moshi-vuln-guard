@@ -1,0 +1,4 @@
+# apk info -v 的节选
+nginx-1.18.0-r1
+redis-5.0.7-r0
+busybox-1.36.1-r15

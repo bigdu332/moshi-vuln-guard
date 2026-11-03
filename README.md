@@ -2,9 +2,16 @@
 
 对照已经公开的漏洞清单，检查一套正在运行的系统，定期给出更新建议，并在人工确认后辅助走更新流程。这是上海魔拾科技笔试的可演示成品。界面、报告和设计文档都是中文。
 
+## 已知局限
+
+- 操作系统清单以 Debian/dpkg 为主。rpm 与 apk 已能只读采集；匹配仍把 nginx、Redis、MySQL 当作中间件，其余系统包不逐包请求 OSV。
+- Trivy 的 JSON 只作为第二意见附在报告里，不替换 OSV 主路径。Grype、Syft、osv-scanner 仍只检测是否安装，不解析输出。
+- 默认可复现路径是 `demo/lab`。`docker compose` 需要本机有 Docker；官方 Redis 镜像不会套用 Debian 特有的 CVE-2022-0543。
+- Web 界面没有登录和鉴权，只适合本机演示。
+
 ## 它做什么
 
-1. 采集资产：本机软件包与中间件版本、应用清单（`requirements.txt`、`package.json`、`pom.xml`、`go.mod`），也可以从 SSH 或 Docker 容器读取。
+1. 采集资产：本机 dpkg，以及存在时的 rpm、apk；中间件版本；应用清单（`requirements.txt`、`package.json`、`pom.xml`、`go.mod`）。也可以从 SSH 或 Docker 容器读取。
 2. 对照公开数据：OSV.dev、随包策展公告、CISA KEV、EPSS。网络不可用时使用 2026-11-03 的快照。
 3. 排出优先级：CVSS、是否在 KEV、EPSS、暴露面，并写出计算过程。
 4. 生成更新方案：变更前检查、步骤、回滚和验证。说明可以由兼容 OpenAI 的接口生成；没有密钥时使用固定模板，演示不受影响。
@@ -25,6 +32,17 @@ python3 -m vulnguard serve
 `--online` 会访问 OSV、CISA KEV 和 FIRST EPSS。访问失败时自动改用 `vulnguard/data/` 里的快照，命令仍然成功。只想离线复现时去掉 `--online`。
 
 样例报告已经放在 `artifacts/demo-run/`，界面截图在 `artifacts/screenshots/`。
+
+看 rpm/apk 夹具和 Trivy 第二意见：
+
+```bash
+python3 -m vulnguard scan --source fixture --path demo/samples/rpm-apk --out artifacts/rpm-apk
+python3 -m vulnguard scan --source fixture --path demo/lab --out artifacts/trivy-opinion
+```
+
+第二条会读 `demo/lab/trivy.json`（与 `demo/trivy/sample.json` 相同）。PATH 里有 `trivy` 时，还会再跑一次 `trivy fs`，两份结果去重后附在报告的「Trivy 第二意见」一节。没有 `trivy` 时这一节仍然有夹具内容。
+
+已提交的两份报告：`artifacts/trivy-opinion/` 是没有 trivy 二进制时的结果；`artifacts/trivy-live/` 是本环境安装 Trivy 0.76.1 后、与夹具合并的结果。原始 JSON 在 `demo/trivy/live-fs.json`。`artifacts/rpm-apk/` 是 rpm/apk 夹具的离线报告。
 
 ## 测试
 

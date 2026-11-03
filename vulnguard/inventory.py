@@ -38,6 +38,10 @@ def collect_fixture(path: Path) -> tuple[list[Asset], list[str], str]:
     assets: list[Asset] = []
     if (root / "dpkg.tsv").exists():
         assets.extend(_from_dpkg((root / "dpkg.tsv").read_text(encoding="utf-8"), f"fixture:{hostname}", str(root / "dpkg.tsv")))
+    if (root / "rpm.tsv").exists():
+        assets.extend(parse_rpm((root / "rpm.tsv").read_text(encoding="utf-8"), f"fixture:{hostname}", str(root / "rpm.tsv")))
+    if (root / "apk.txt").exists():
+        assets.extend(parse_apk((root / "apk.txt").read_text(encoding="utf-8"), f"fixture:{hostname}", str(root / "apk.txt")))
     if (root / "middleware.txt").exists():
         assets.extend(parse_banners((root / "middleware.txt").read_text(encoding="utf-8"), f"fixture:{hostname}"))
     app = root / "app"
@@ -61,6 +65,8 @@ def collect_local(manifest_root: Path, runner: Runner | None = None) -> tuple[li
         assets.extend(_from_dpkg(out, "local", "dpkg-query"))
     else:
         warnings.append("本机没有 dpkg，或 dpkg-query 执行失败，已跳过 Debian 软件包。")
+    assets.extend(_collect_rpm(run, "local", "rpm -qa", warnings))
+    assets.extend(_collect_apk(run, "local", "apk info -v", warnings))
     for argv in (["nginx", "-v"], ["redis-server", "--version"], ["mysql", "--version"], ["mysqld", "--version"]):
         code, out, err = run(argv)
         text = f"{out}\n{err}"
@@ -109,9 +115,15 @@ def collect_docker(runner: Runner | None = None) -> tuple[list[Asset], list[str]
                 assets.append(asset)
         code, stdout, stderr = run(["docker", "exec", cid, "dpkg-query", "-W", "-f", "${Package}\t${Version}\n"])
         if code == 0:
-            for asset in _from_dpkg(stdout, source, location):
-                if asset.product in {"redis", "nginx", "mysql"}:
-                    assets.append(asset)
+            assets.extend(_middleware_only(_from_dpkg(stdout, source, location)))
+        code, stdout, stderr = run(
+            ["docker", "exec", cid, "rpm", "-qa", "--queryformat", "%{NAME}\t%{VERSION}-%{RELEASE}\n"]
+        )
+        if code == 0 and stdout.strip():
+            assets.extend(_middleware_only(parse_rpm(stdout, source, location)))
+        code, stdout, stderr = run(["docker", "exec", cid, "apk", "info", "-v"])
+        if code == 0 and stdout.strip():
+            assets.extend(_middleware_only(parse_apk(stdout, source, location)))
         for manifest in ("/opt/app/requirements.txt", "/opt/app/package.json", "/opt/app/pom.xml", "/opt/app/go.mod"):
             code, stdout, stderr = run(["docker", "exec", cid, "cat", manifest])
             if code == 0 and stdout.strip():
@@ -151,6 +163,10 @@ REMOTE_SCRIPT = r"""
 set +e
 echo '===DPKG==='
 dpkg-query -W -f '${Package}\t${Version}\n' 2>/dev/null
+echo '===RPM==='
+rpm -qa --queryformat '%{NAME}\t%{VERSION}-%{RELEASE}\n' 2>/dev/null
+echo '===APK==='
+apk info -v 2>/dev/null
 echo '===NGINX==='
 nginx -v 2>&1
 echo '===REDIS==='
@@ -166,6 +182,8 @@ def parse_remote_inventory(text: str, source: str) -> list[Asset]:
     sections = _sections(text)
     assets: list[Asset] = []
     assets.extend(_from_dpkg(sections.get("DPKG", ""), source, "remote dpkg"))
+    assets.extend(parse_rpm(sections.get("RPM", ""), source, "remote rpm"))
+    assets.extend(parse_apk(sections.get("APK", ""), source, "remote apk"))
     banner = "\n".join(sections.get(name, "") for name in ("NGINX", "REDIS", "MYSQL"))
     assets.extend(parse_banners(banner, source))
     return _merge_products(assets)
@@ -335,6 +353,82 @@ def _parse_manifest_text(name: str, text: str, source: str, location: str) -> li
     if name == "go.mod":
         return parse_go_mod(text, source, location)
     return []
+
+
+def parse_rpm(text: str, source: str, location: str) -> list[Asset]:
+    return _from_package_table(text, source, location, ecosystem="rpm")
+
+
+def parse_apk(text: str, source: str, location: str) -> list[Asset]:
+    assets: list[Asset] = []
+    for raw in text.splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#") or line.startswith("WARNING"):
+            continue
+        match = re.match(r"^(.*)-([0-9][^-]*)(-r\d+)?$", line)
+        if not match:
+            continue
+        name = match.group(1)
+        version = match.group(2) + (match.group(3) or "")
+        assets.append(_os_asset(name, version, "Alpine", source, location, line))
+    return assets
+
+
+def _collect_rpm(run: Runner, source: str, location: str, warnings: list[str]) -> list[Asset]:
+    code, out, _err = run(["rpm", "-qa", "--queryformat", "%{NAME}\t%{VERSION}-%{RELEASE}\n"])
+    if code == 0 and out.strip():
+        return parse_rpm(out, source, location)
+    if code != 0:
+        warnings.append("未找到 rpm，或 rpm 查询失败，已跳过 RPM 软件包。")
+    return []
+
+
+def _collect_apk(run: Runner, source: str, location: str, warnings: list[str]) -> list[Asset]:
+    code, out, _err = run(["apk", "info", "-v"])
+    if code == 0 and out.strip():
+        return parse_apk(out, source, location)
+    if code != 0:
+        warnings.append("未找到 apk，或 apk 查询失败，已跳过 Alpine 软件包。")
+    return []
+
+
+def _from_package_table(text: str, source: str, location: str, ecosystem: str) -> list[Asset]:
+    assets: list[Asset] = []
+    for raw in text.splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        if "\t" in line:
+            name, version = line.split("\t", 1)
+        else:
+            parts = line.split()
+            if len(parts) < 2:
+                continue
+            name, version = parts[0], parts[1]
+        version = version.strip()
+        if version.startswith("(none):"):
+            version = version[len("(none):") :]
+        assets.append(_os_asset(name.strip(), version, ecosystem, source, location, f"{name.strip()} {version}"))
+    return assets
+
+
+def _os_asset(name: str, version: str, ecosystem: str, source: str, location: str, evidence: str) -> Asset:
+    product = PRODUCT_NAMES.get(name, name)
+    canonical = product if product in {"nginx", "redis", "mysql"} else name
+    return Asset(
+        name=canonical,
+        version=version,
+        ecosystem=ecosystem,
+        kind="middleware" if canonical in {"nginx", "redis", "mysql"} else "os_package",
+        location=location,
+        source=source,
+        evidence=evidence,
+        product=product,
+    )
+
+
+def _middleware_only(assets: list[Asset]) -> list[Asset]:
+    return [asset for asset in assets if asset.product in {"redis", "nginx", "mysql"}]
 
 
 def _from_dpkg(text: str, source: str, location: str) -> list[Asset]:

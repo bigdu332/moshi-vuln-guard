@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>VulnGuard 报告 scan-20261103T095713Z</title>
+<style>
+body { margin: 0; background: #f3f0e8; color: #1a2332; font: 15px/1.6 "WenQuanYi Micro Hei", "Droid Sans Fallback", sans-serif; }
+main { width: min(1080px, calc(100% - 32px)); margin: 24px auto 48px; }
+h1 { font-size: 28px; margin-bottom: 4px; }
+.meta { color: #526072; }
+.cards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 18px 0; }
+.card { background: white; border-radius: 12px; padding: 12px 14px; }
+.card b { display: block; font-size: 24px; }
+table { width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #ece7dc; vertical-align: top; }
+td span { color: #526072; font-size: 12px; }
+.band { font-weight: 700; }
+.critical { color: #9b1c31; } .high { color: #c2410c; } .medium { color: #a16207; } .low { color: #3f6212; }
+article { background: white; border-radius: 12px; padding: 8px 16px 16px; margin-top: 12px; }
+pre { white-space: pre-wrap; font: inherit; }
+</style>
+</head>
+<body>
+<main>
+<h1>VulnGuard 巡检报告</h1>
+<p class="meta">rpm-apk-lab · 2026-11-03 09:57 UTC · fixture</p>
+<section class="cards">
+<div class="card"><b>6</b>资产</div>
+<div class="card"><b>2</b>严重</div>
+<div class="card"><b>0</b>高危</div>
+<div class="card"><b>2</b>中危</div>
+<div class="card"><b>0</b>KEV</div>
+</section>
+<table>
+<thead><tr><th>等级</th><th>资产</th><th>条目</th><th>CVSS</th><th>KEV</th><th>EPSS</th><th>暴露面</th><th>综合分</th></tr></thead>
+<tbody>
+<tr><td class='band critical'>严重</td><td>nginx<br><span>1.18.0-1.el7</span></td><td>CVE-2021-23017<br><span>nginx resolver 存在越界写，伪造 DNS 应答可能导致 worker 崩溃或其他影响</span></td><td>7.7</td><td></td><td>0.5346</td><td>互联网</td><td>0.8502</td></tr><tr><td class='band critical'>严重</td><td>nginx<br><span>1.18.0-r1</span></td><td>CVE-2021-23017<br><span>nginx resolver 存在越界写，伪造 DNS 应答可能导致 worker 崩溃或其他影响</span></td><td>7.7</td><td></td><td>0.5346</td><td>互联网</td><td>0.8502</td></tr><tr><td class='band medium'>中危</td><td>redis<br><span>5.0.7-1.el7</span></td><td>EOL-REDIS-5.0<br><span>Redis 5.0 已退出上游维护，5.0.14 之后没有新的安全发布</span></td><td>6.5</td><td></td><td>—</td><td>内网</td><td>0.5525</td></tr><tr><td class='band medium'>中危</td><td>redis<br><span>5.0.7-r0</span></td><td>EOL-REDIS-5.0<br><span>Redis 5.0 已退出上游维护，5.0.14 之后没有新的安全发布</span></td><td>6.5</td><td></td><td>—</td><td>内网</td><td>0.5525</td></tr>
+</tbody>
+</table>
+<h2>Trivy 第二意见</h2>
+<p>这次没有附上 Trivy 结果。OSV 主路径不受影响。</p>
+<h2>更新方案</h2>
+<article><h3>更新 nginx 1.18.0-1.el7</h3><p>建议 24 小时内处理。目标 不低于 1.20.1 的现行 stable。</p><pre>### 结论
+nginx 当前版本 1.18.0-1.el7，所在位置 demo/samples/rpm-apk/rpm.tsv，暴露面为互联网。本组最高等级为严重。建议 24 小时内处理。
+
+### 优先原因
+CVSS 7.7，归一化 0.77；不在 CISA KEV；EPSS 0.5346，贡献 0.0802；暴露面为互联网，系数 1.00；综合分 0.8502，等级为严重。
+仅在配置了 resolver 时受影响。修复前可先确认配置里是否出现 resolver 指令。
+
+### 涉及条目
+- CVE-2021-23017：nginx resolver 存在越界写，伪造 DNS 应答可能导致 worker 崩溃或其他影响（CVSS 7.7）
+
+### 建议动作
+目标：不低于 1.20.1 的现行 stable。
+这组变更包含迁移或构建清单修改，工具只给出步骤，不代为执行。
+
+### 变更前
+- 确认处于维护窗口，并通知依赖该服务的应用负责人。
+- 记录当前版本、配置路径和最近一次备份位置。
+- 在预发或快照上先走一遍同样的步骤。
+- 阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。
+
+### 步骤
+1. （人工）升级到现行 stable：将 nginx 升到仍在接收安全修复的 stable，且不低于 1.20.1。先备份 nginx.conf、证书和站点配置。
+2. （人工）核对 resolver：若配置里没有 resolver，CVE-2021-23017 的可利用性会低很多，但仍应离开 1.18。
+
+### 回滚
+- 用备份的配置和原版本软件包重新拉起 nginx
+
+### 验证
+- 版本应变为 不低于 1.20.1 的现行 stable 或更新。
+- 进程能够启动，健康检查和错误日志没有新增异常。
+- 抽查核心业务读写，确认回滚材料仍可使用。
+
+说明由固定模板生成，命令不来自语言模型。</pre><ol><li>将 nginx 升到仍在接收安全修复的 stable，且不低于 1.20.1。先备份 nginx.conf、证书和站点配置。</li><li>若配置里没有 resolver，CVE-2021-23017 的可利用性会低很多，但仍应离开 1.18。</li></ol></article><article><h3>更新 nginx 1.18.0-r1</h3><p>建议 24 小时内处理。目标 不低于 1.20.1 的现行 stable。</p><pre>### 结论
+nginx 当前版本 1.18.0-r1，所在位置 demo/samples/rpm-apk/apk.txt，暴露面为互联网。本组最高等级为严重。建议 24 小时内处理。
+
+### 优先原因
+CVSS 7.7，归一化 0.77；不在 CISA KEV；EPSS 0.5346，贡献 0.0802；暴露面为互联网，系数 1.00；综合分 0.8502，等级为严重。
+仅在配置了 resolver 时受影响。修复前可先确认配置里是否出现 resolver 指令。
+
+### 涉及条目
+- CVE-2021-23017：nginx resolver 存在越界写，伪造 DNS 应答可能导致 worker 崩溃或其他影响（CVSS 7.7）
+
+### 建议动作
+目标：不低于 1.20.1 的现行 stable。
+这组变更包含迁移或构建清单修改，工具只给出步骤，不代为执行。
+
+### 变更前
+- 确认处于维护窗口，并通知依赖该服务的应用负责人。
+- 记录当前版本、配置路径和最近一次备份位置。
+- 在预发或快照上先走一遍同样的步骤。
+- 阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。
+
+### 步骤
+1. （人工）升级到现行 stable：将 nginx 升到仍在接收安全修复的 stable，且不低于 1.20.1。先备份 nginx.conf、证书和站点配置。
+2. （人工）核对 resolver：若配置里没有 resolver，CVE-2021-23017 的可利用性会低很多，但仍应离开 1.18。
+
+### 回滚
+- 用备份的配置和原版本软件包重新拉起 nginx
+
+### 验证
+- 版本应变为 不低于 1.20.1 的现行 stable 或更新。
+- 进程能够启动，健康检查和错误日志没有新增异常。
+- 抽查核心业务读写，确认回滚材料仍可使用。
+
+说明由固定模板生成，命令不来自语言模型。</pre><ol><li>将 nginx 升到仍在接收安全修复的 stable，且不低于 1.20.1。先备份 nginx.conf、证书和站点配置。</li><li>若配置里没有 resolver，CVE-2021-23017 的可利用性会低很多，但仍应离开 1.18。</li></ol></article><article><h3>更新 redis 5.0.7-1.el7</h3><p>建议 30 天内处理。目标 仍在维护的上游版本（短期不低于 5.0.14）。</p><pre>### 结论
+redis 当前版本 5.0.7-1.el7，所在位置 demo/samples/rpm-apk/rpm.tsv，暴露面为内网。本组最高等级为中危。建议 30 天内处理。
+
+### 优先原因
+生命周期项，使用维护风险分代替 CVSS。CVSS 6.5，归一化 0.65；不在 CISA KEV；EPSS 未取得，这项暂不加减分；暴露面为内网，系数 0.85；综合分 0.5525，等级为中危。
+短期至少升到 5.0.14；变更窗口内规划迁到仍在维护的主版本。
+
+### 涉及条目
+- 生命周期：Redis 5.0 已退出上游维护，5.0.14 之后没有新的安全发布（CVSS 6.5）
+
+### 建议动作
+目标：仍在维护的上游版本（短期不低于 5.0.14）。
+这组变更包含迁移或构建清单修改，工具只给出步骤，不代为执行。
+
+### 变更前
+- 确认处于维护窗口，并通知依赖该服务的应用负责人。
+- 记录当前版本、配置路径和最近一次备份位置。
+- 在预发或快照上先走一遍同样的步骤。
+- 阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。
+
+### 步骤
+1. （人工）按发行版或供应商流程升级：将 redis 从 5.0.7-1.el7 升级到 仍在维护的上游版本（短期不低于 5.0.14）。先备份配置和数据。
+2. （人工）核对适用条件：短期至少升到 5.0.14；变更窗口内规划迁到仍在维护的主版本。
+
+### 回滚
+- 保留升级前的软件包版本、配置和数据快照，确认可以按原版本拉起
+
+### 验证
+- 版本应变为 仍在维护的上游版本（短期不低于 5.0.14） 或更新。
+- 进程能够启动，健康检查和错误日志没有新增异常。
+- 抽查核心业务读写，确认回滚材料仍可使用。
+
+说明由固定模板生成，命令不来自语言模型。</pre><ol><li>将 redis 从 5.0.7-1.el7 升级到 仍在维护的上游版本（短期不低于 5.0.14）。先备份配置和数据。</li><li>短期至少升到 5.0.14；变更窗口内规划迁到仍在维护的主版本。</li></ol></article><article><h3>更新 redis 5.0.7-r0</h3><p>建议 30 天内处理。目标 仍在维护的上游版本（短期不低于 5.0.14）。</p><pre>### 结论
+redis 当前版本 5.0.7-r0，所在位置 demo/samples/rpm-apk/apk.txt，暴露面为内网。本组最高等级为中危。建议 30 天内处理。
+
+### 优先原因
+生命周期项，使用维护风险分代替 CVSS。CVSS 6.5，归一化 0.65；不在 CISA KEV；EPSS 未取得，这项暂不加减分；暴露面为内网，系数 0.85；综合分 0.5525，等级为中危。
+短期至少升到 5.0.14；变更窗口内规划迁到仍在维护的主版本。
+
+### 涉及条目
+- 生命周期：Redis 5.0 已退出上游维护，5.0.14 之后没有新的安全发布（CVSS 6.5）
+
+### 建议动作
+目标：仍在维护的上游版本（短期不低于 5.0.14）。
+这组变更包含迁移或构建清单修改，工具只给出步骤，不代为执行。
+
+### 变更前
+- 确认处于维护窗口，并通知依赖该服务的应用负责人。
+- 记录当前版本、配置路径和最近一次备份位置。
+- 在预发或快照上先走一遍同样的步骤。
+- 阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。
+
+### 步骤
+1. （人工）按发行版或供应商流程升级：将 redis 从 5.0.7-r0 升级到 仍在维护的上游版本（短期不低于 5.0.14）。先备份配置和数据。
+2. （人工）核对适用条件：短期至少升到 5.0.14；变更窗口内规划迁到仍在维护的主版本。
+
+### 回滚
+- 保留升级前的软件包版本、配置和数据快照，确认可以按原版本拉起
+
+### 验证
+- 版本应变为 仍在维护的上游版本（短期不低于 5.0.14） 或更新。
+- 进程能够启动，健康检查和错误日志没有新增异常。
+- 抽查核心业务读写，确认回滚材料仍可使用。
+
+说明由固定模板生成，命令不来自语言模型。</pre><ol><li>将 redis 从 5.0.7-r0 升级到 仍在维护的上游版本（短期不低于 5.0.14）。先备份配置和数据。</li><li>短期至少升到 5.0.14；变更窗口内规划迁到仍在维护的主版本。</li></ol></article>
+</main>
+</body>
+</html>

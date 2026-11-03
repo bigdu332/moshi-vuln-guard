@@ -14,6 +14,7 @@ from vulnguard.models import ScanResult
 from vulnguard.paths import repo_root
 from vulnguard.remediate import build_plans
 from vulnguard.report import write_reports
+from vulnguard.trivy import collect_trivy
 
 
 def run_scan(
@@ -49,17 +50,22 @@ def run_scan(
         assets, warnings, host = collect_ssh(target, user=ssh_user, port=ssh_port)
     else:
         raise ValueError(f"不支持的来源：{source}")
-    missing = [name for name in ("trivy", "grype", "syft", "osv-scanner") if shutil.which(name) is None]
+    missing = [name for name in ("grype", "syft", "osv-scanner") if shutil.which(name) is None]
     if missing:
         warnings.append(
             "未检测到 "
             + "、".join(missing)
-            + "。本次使用内置匹配。这些项目的仓库链接写在 docs/设计文档.md。"
+            + "。这些工具的仓库链接写在 docs/设计文档.md，当前不解析它们的输出。"
         )
     feedset = feeds if feeds is not None else load_feeds(online=online)
     findings = match_assets(assets, feedset)
+    trivy_target = Path(target) if chosen in {"fixture", "local", "docker"} else None
+    trivy_hits, trivy_warnings, trivy_status = collect_trivy(trivy_target, findings)
+    warnings.extend(trivy_warnings)
     plans = build_plans(findings)
     render_narratives(plans, findings)
+    feed_status = dict(feedset.status)
+    feed_status["trivy"] = trivy_status
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     return ScanResult(
         id=f"scan-{stamp}",
@@ -71,7 +77,8 @@ def run_scan(
         findings=findings,
         plans=plans,
         warnings=warnings,
-        feeds=dict(feedset.status),
+        feeds=feed_status,
+        trivy=trivy_hits,
     )
 
 

@@ -7,6 +7,7 @@ from pathlib import Path
 
 from vulnguard.models import ScanResult
 from vulnguard.priority import band_label, exposure_label
+from vulnguard.trivy import relation_label
 
 BAND_ORDER = {"critical": 0, "high": 1, "medium": 2, "low": 3}
 
@@ -35,7 +36,7 @@ def render_markdown(scan: ScanResult) -> str:
         f"- 资产 {len(scan.assets)}，发现 {len(scan.findings)}，"
         f"严重 {counts['critical']}，高危 {counts['high']}，中危 {counts['medium']}，低危 {counts['low']}",
         f"- 数据源：OSV {scan.feeds.get('osv', 'off')}，KEV {scan.feeds.get('kev', 'off')}，"
-        f"EPSS {scan.feeds.get('epss', 'off')}",
+        f"EPSS {scan.feeds.get('epss', 'off')}，Trivy {scan.feeds.get('trivy', 'off')}",
         "",
         "## 优先处理",
         "",
@@ -49,6 +50,8 @@ def render_markdown(scan: ScanResult) -> str:
             f"| {band_label(finding.band)} | {finding.asset.name} | {finding.asset.version} | "
             f"{finding.vuln_id} | {cvss} | {'是' if finding.kev else ''} | {epss} | {finding.score:.4f} |"
         )
+    lines.extend(["", "## Trivy 第二意见", ""])
+    lines.extend(_trivy_markdown(scan))
     lines.extend(["", "## 更新方案", ""])
     for plan in scan.plans:
         lines.append(f"### {plan.title}")
@@ -72,6 +75,7 @@ def render_markdown(scan: ScanResult) -> str:
             "暴露面系数：互联网 1.00，内网 0.85，仅本机 0.70。",
             "KEV 且 CVSS 不低于 7 时，等级至少为严重。",
             "默认只生成建议和预演记录。执行白名单命令还需要人工批准，以及环境变量 VULNGUARD_ALLOW_APPLY=1。",
+            "Trivy 一节是第二意见，不参与方案里的命令，也不替换上面的 OSV 发现。",
             "",
         ]
     )
@@ -143,12 +147,55 @@ pre {{ white-space: pre-wrap; font: inherit; }}
 {''.join(rows)}
 </tbody>
 </table>
+<h2>Trivy 第二意见</h2>
+{''.join(_trivy_html(scan))}
 <h2>更新方案</h2>
 {''.join(plans)}
 </main>
 </body>
 </html>
 """
+
+
+def _trivy_markdown(scan: ScanResult) -> list[str]:
+    if not scan.trivy:
+        return ["这次没有附上 Trivy 结果。OSV 主路径不受影响。", ""]
+    lines = [
+        "下表来自 Trivy JSON 或本机 `trivy fs`。它不进入更新方案，也不改写上面的发现。",
+        "",
+        "| 编号 | 包 | 已安装 | 修复版本 | 严重性 | 对照 |",
+        "| --- | --- | --- | --- | --- | --- |",
+    ]
+    for hit in scan.trivy:
+        lines.append(
+            f"| {hit['vuln_id']} | {hit['pkg_name']} | {hit['installed']} | {hit['fixed']} | "
+            f"{hit['severity']} | {relation_label(hit)} |"
+        )
+    lines.append("")
+    return lines
+
+
+def _trivy_html(scan: ScanResult) -> list[str]:
+    if not scan.trivy:
+        return ["<p>这次没有附上 Trivy 结果。OSV 主路径不受影响。</p>"]
+    rows = []
+    for hit in scan.trivy:
+        rows.append(
+            "<tr>"
+            f"<td>{escape(hit['vuln_id'])}</td>"
+            f"<td>{escape(hit['pkg_name'])} {escape(hit['installed'])}</td>"
+            f"<td>{escape(hit['fixed'])}</td>"
+            f"<td>{escape(hit['severity'])}</td>"
+            f"<td>{escape(relation_label(hit))}</td>"
+            "</tr>"
+        )
+    return [
+        "<p>下表是第二意见，不进入更新方案。</p>",
+        "<table><thead><tr><th>编号</th><th>包</th><th>修复版本</th><th>严重性</th><th>对照</th></tr></thead>",
+        "<tbody>",
+        *rows,
+        "</tbody></table>",
+    ]
 
 
 def _counts(scan: ScanResult) -> dict[str, int]:

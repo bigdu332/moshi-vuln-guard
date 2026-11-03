@@ -1,0 +1,22 @@
+{
+  "fetched_at": "2026-11-03T09:25:29Z",
+  "source": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+  "catalog_size": 1766,
+  "items": {
+    "CVE-2021-44228": {
+      "name": "Apache Log4j2 Remote Code Execution Vulnerability",
+      "due": "2021-12-24",
+      "description": "Apache Log4j2 contains a vulnerability where JNDI features do not protect against attacker-controlled JNDI-related endpoints, allowing for remote code execution."
+    },
+    "CVE-2021-45046": {
+      "name": "Apache Log4j2 Deserialization of Untrusted Data Vulnerability",
+      "due": "2023-05-22",
+      "description": "Apache Log4j2 contains a deserialization of untrusted data vulnerability due to the incomplete fix of CVE-2021-44228, where the Thread Context Lookup Pattern is vulnerable to remote code execution in certain non-default configurations."
+    },
+    "CVE-2022-0543": {
+      "name": "Debian-specific Redis Server Lua Sandbox Escape Vulnerability",
+      "due": "2022-04-18",
+      "description": "Redis is prone to a (Debian-specific) Lua sandbox escape, which could result in remote code execution."
+    }
+  }
+}

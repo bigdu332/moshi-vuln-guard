@@ -1,0 +1,166 @@
+{
+  "fetched_at": "2026-11-03",
+  "note": "策展条目只收录本次对照过公开公告的漏洞。语言依赖的其余条目来自 OSV 快照或在线查询。",
+  "vulns": [
+    {
+      "id": "CVE-2021-23017",
+      "summary": "nginx resolver 存在越界写，伪造 DNS 应答可能导致 worker 崩溃或其他影响",
+      "details": "影响 nginx 0.6.18 至 1.20.0。修复版本为稳定分支 1.20.1 与主线 1.21.0。NVD 给出 CVSS 7.7（AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:L）。F5 公告给出的分数是 3.7。只有配置了 resolver 指令时才会走到这段代码，默认配置没有 resolver。",
+      "cvss": 7.7,
+      "severity": "HIGH",
+      "aliases": ["GHSA-83p9-mcpm-374v"],
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-23017",
+        "https://blog.nginx.org/blog/updating-nginx-dns-resolver-vulnerability-cve-2021-23017"
+      ],
+      "condition": "仅在配置了 resolver 时受影响。修复前可先确认配置里是否出现 resolver 指令。",
+      "packages": [
+        {
+          "ecosystem": "generic",
+          "name": "nginx",
+          "ranges": [{"introduced": "0.6.18", "fixed": "1.20.1"}],
+          "fixed_versions": ["1.20.1", "1.21.0"]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2022-0543",
+      "summary": "Debian 打包的 Redis 因 Lua 库包装问题可逃出沙箱，造成远程代码执行",
+      "details": "这是 Debian 特有的打包问题，不是上游 Redis 所有构建的通病。Debian 安全追踪显示：buster 修复版本为 5:5.0.14-1+deb10u2，bullseye 修复版本为 5:6.0.16-1+deb11u2，stretch 不受影响。CVSS 3.1 为 10.0（AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H）。该编号在 CISA KEV 中。官方 Docker Hub 的 redis 镜像从源码构建，不套用这条 Debian 范围。",
+      "cvss": 10.0,
+      "severity": "CRITICAL",
+      "aliases": ["GHSA-9wpj-h5jq-88p9"],
+      "kev": true,
+      "references": [
+        "https://security-tracker.debian.org/tracker/CVE-2022-0543",
+        "https://github.com/advisories/GHSA-9wpj-h5jq-88p9",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-0543"
+      ],
+      "condition": "只适用于 Debian 打包的 redis。请用 dpkg 版本确认，不要把官方二进制或官方镜像算进来。",
+      "packages": [
+        {
+          "ecosystem": "Debian",
+          "name": "redis",
+          "ranges": [
+            {"introduced": "5:5.0.0", "fixed": "5:5.0.14-1+deb10u2"},
+            {"introduced": "5:6.0.0", "fixed": "5:6.0.16-1+deb11u2"}
+          ],
+          "fixed_versions": ["5:5.0.14-1+deb10u2", "5:6.0.16-1+deb11u2"]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2023-21980",
+      "summary": "MySQL Server 客户端组件漏洞，成功利用可能导致服务器被接管",
+      "details": "Oracle 公告：受影响的受支持版本为 5.7.41 及更早的 5.7，以及 8.0.32 及更早的 8.0。攻击复杂度高，需要用户交互和低权限网络访问。CVSS 3.1 为 7.1（AV:N/AC:H/PR:L/UI:R/S:U/C:H/I:H/A:H）。5.7.42 修复了 5.7 分支上的这一条，但 5.7 已于 2023-10-25 结束扩展支持。",
+      "cvss": 7.1,
+      "severity": "HIGH",
+      "aliases": ["GHSA-3x7j-9p25-v8r6"],
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-21980",
+        "https://github.com/advisories/GHSA-3x7j-9p25-v8r6"
+      ],
+      "condition": "利用条件较高。5.7 分支即使打到 5.7.42，也不再获得新的安全修复。",
+      "packages": [
+        {
+          "ecosystem": "generic",
+          "name": "mysql",
+          "ranges": [
+            {"introduced": "5.7.0", "fixed": "5.7.42"},
+            {"introduced": "8.0.0", "fixed": "8.0.33"}
+          ],
+          "fixed_versions": ["5.7.42", "8.0.33"]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2020-14343",
+      "summary": "PyYAML 在 5.4 之前通过 FullLoader 解析不可信 YAML 时可执行任意代码",
+      "details": "完整修复见 5.4。这是 CVE-2020-1747 的不完整修复之后的后续问题。CVSS 3.1 向量 AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H，基础分 9.8。应用若只解析可信配置，实际暴露面会小一些，需要人工确认调用点。",
+      "cvss": 9.8,
+      "severity": "CRITICAL",
+      "aliases": ["GHSA-8q59-q68h-6hv4", "PYSEC-2021-142"],
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2020-14343",
+        "https://github.com/advisories/GHSA-8q59-q68h-6hv4"
+      ],
+      "condition": "需要应用使用 full_load 或 FullLoader 处理不可信输入。",
+      "packages": [
+        {
+          "ecosystem": "PyPI",
+          "name": "pyyaml",
+          "ranges": [{"introduced": "0", "fixed": "5.4"}],
+          "fixed_versions": ["5.4"]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2021-44228",
+      "summary": "Apache Log4j2 JNDI 查找导致远程代码执行（Log4Shell）",
+      "details": "影响 log4j-core 2.0-beta9 至 2.14.1。2.15.0 关闭了默认行为，但仍需继续升级。CVSS 10.0。该编号在 CISA KEV 中，公开利用广泛。Java 8 及更新版本的建议下限是 2.17.1，以便同时覆盖同系列的后续修复。",
+      "cvss": 10.0,
+      "severity": "CRITICAL",
+      "aliases": ["GHSA-jfh8-c2jp-5v3q"],
+      "kev": true,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-44228",
+        "https://logging.apache.org/log4j/2.x/security.html"
+      ],
+      "condition": "log4j-api 单独存在时不受 Log4Shell 影响，需要确认依赖树里是 log4j-core。",
+      "packages": [
+        {
+          "ecosystem": "Maven",
+          "name": "org.apache.logging.log4j:log4j-core",
+          "ranges": [{"introduced": "2.0-beta9", "fixed": "2.15.0"}],
+          "fixed_versions": ["2.15.0"]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2021-45046",
+      "summary": "Log4j2 在非默认布局下仍可通过 JNDI 造成远程代码执行或拒绝服务",
+      "details": "影响 2.0-beta9 至 2.15.0 的主线。Apache 将评分上调到 9.0。2.16.0 删除了消息查找，Java 8 上仍建议继续升到 2.17.1。该编号在 CISA KEV 中。2.12 维护线有单独修复，本范围对那条老维护线偏宽。",
+      "cvss": 9.0,
+      "severity": "CRITICAL",
+      "aliases": ["GHSA-7rjr-3q55-vv33"],
+      "kev": true,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-45046",
+        "https://logging.apache.org/log4j/2.x/security.html"
+      ],
+      "condition": "2.12 维护线的修复版本与 2.16/2.17 不同。演示环境使用 2.14.1，落在主线受影响范围内。",
+      "packages": [
+        {
+          "ecosystem": "Maven",
+          "name": "org.apache.logging.log4j:log4j-core",
+          "ranges": [{"introduced": "2.0-beta9", "fixed": "2.16.0"}],
+          "fixed_versions": ["2.16.0"]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2021-44906",
+      "summary": "minimist 1.2.5 及更早版本存在原型污染",
+      "details": "修复版本为 1.2.6，0.x 分支的修复版本为 0.2.4。NVD CVSS 9.8。原型污染的实际危害取决于应用是否把解析结果用于权限或路径判断。",
+      "cvss": 9.8,
+      "severity": "CRITICAL",
+      "aliases": ["GHSA-xvch-5gv4-984h"],
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-44906",
+        "https://github.com/advisories/GHSA-xvch-5gv4-984h"
+      ],
+      "condition": "需要确认业务代码或传递依赖是否调用 minimist 解析不可信参数。",
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "minimist",
+          "ranges": [
+            {"introduced": "0", "fixed": "0.2.4"},
+            {"introduced": "1.0.0", "fixed": "1.2.6"}
+          ],
+          "fixed_versions": ["0.2.4", "1.2.6"]
+        }
+      ]
+    }
+  ]
+}

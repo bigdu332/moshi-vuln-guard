@@ -1,0 +1,45 @@
+services:
+  nginx:
+    image: nginx:1.18.0
+    ports:
+      - "127.0.0.1:8080:80"
+
+  redis:
+    image: redis:5.0.7
+    ports:
+      - "127.0.0.1:6379:6379"
+
+  mysql:
+    image: mysql:5.7.44
+    environment:
+      MYSQL_ROOT_PASSWORD: demo-only
+      MYSQL_DATABASE: demo
+    ports:
+      - "127.0.0.1:3306:3306"
+
+  legacy-app:
+    build: ./demo/target
+    ports:
+      - "127.0.0.1:8081:8081"
+
+  vulnguard:
+    build: .
+    depends_on:
+      - nginx
+      - redis
+      - mysql
+      - legacy-app
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./demo/lab:/scan/lab:ro
+      - vulnguard-runtime:/app/runtime
+    environment:
+      VULNGUARD_LLM_BASE_URL: ${VULNGUARD_LLM_BASE_URL:-}
+      VULNGUARD_LLM_API_KEY: ${VULNGUARD_LLM_API_KEY:-}
+      VULNGUARD_LLM_MODEL: ${VULNGUARD_LLM_MODEL:-gpt-4o-mini}
+      VULNGUARD_ALLOW_APPLY: ${VULNGUARD_ALLOW_APPLY:-0}
+
+volumes:
+  vulnguard-runtime:

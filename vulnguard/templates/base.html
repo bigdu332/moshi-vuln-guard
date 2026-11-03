@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}VulnGuard 漏洞守卫{% endblock %}</title>
+  <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+<header class="top">
+  <div class="row">
+    <div>
+      <h1>VulnGuard 漏洞守卫</h1>
+      <p>对照公开漏洞清单，给正在运行的系统一份可复核的更新建议</p>
+    </div>
+    <nav>
+      <a href="/">发现</a>
+      <a href="/assets">资产</a>
+      <a href="/report.html">报告</a>
+    </nav>
+  </div>
+</header>
+<main>
+{% block body %}{% endblock %}
+</main>
+<footer>
+综合分 = min(1, CVSS/10 + KEV×0.25 + EPSS×0.15) × 暴露面系数。KEV 且 CVSS ≥ 7 时等级至少为严重。默认只预演，不改系统。
+</footer>
+</body>
+</html>

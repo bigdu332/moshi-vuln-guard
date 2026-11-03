@@ -1,9 +1,9 @@
-# VulnGuard 巡检报告 scan-20261103T092758Z
+# VulnGuard 巡检报告 scan-20261103T130827Z
 
-- 时间：2026-11-03 09:27 UTC
+- 时间：2026-11-03 13:08 UTC
 - 目标：moshi-lab-01（来源 fixture，路径 demo/lab）
 - 资产 13，发现 29，严重 5，高危 12，中危 12，低危 0
-- 数据源：OSV live，KEV live，EPSS live
+- 数据源：OSV live，KEV live，EPSS live，Trivy fixture
 
 ## 优先处理
 
@@ -29,6 +29,16 @@
 | 中危 | redis | 5:5.0.7-2+deb10u1 | EOL-REDIS-5.0 | 6.5 |  |  | 0.5525 |
 | 中危 | org.apache.logging.log4j:log4j-core | 2.14.1 | CVE-2026-34480 | 5.5 |  | 0.0105 | 0.5516 |
 | 中危 | org.apache.logging.log4j:log4j-core | 2.14.1 | CVE-2025-68161 | 5.5 |  | 0.0077 | 0.5512 |
+
+## Trivy 第二意见
+
+下表来自 Trivy JSON 或本机 `trivy fs`。它不进入更新方案，也不改写上面的发现。
+
+| 编号 | 包 | 已安装 | 修复版本 | 严重性 | 对照 |
+| --- | --- | --- | --- | --- | --- |
+| CVE-2020-14343 | pyyaml | 5.3.1 | 5.4 | CRITICAL | 与 OSV 主路径重合 |
+| TRIVY-SAMPLE-ONLY | demo-only-package | 1.0.0 | 1.0.1 | LOW | 仅第二意见 |
+
 
 ## 更新方案
 
@@ -455,7 +465,8 @@ CVSS 9.8，归一化 0.98；不在 CISA KEV；EPSS 0.0598，贡献 0.0090；暴�
 
 ## 采集提示
 
-- 未检测到 trivy、grype、syft、osv-scanner。本次使用内置匹配。这些项目的仓库链接写在 docs/设计文档.md。
+- 未检测到 grype、syft、osv-scanner。这些工具的仓库链接写在 docs/设计文档.md，当前不解析它们的输出。
+- PATH 中没有 trivy。已读入目标目录的 trivy.json 作为第二意见，OSV 主路径保持不变。
 
 ## 说明
 
@@ -463,3 +474,4 @@ CVSS 9.8，归一化 0.98；不在 CISA KEV；EPSS 0.0598，贡献 0.0090；暴�
 暴露面系数：互联网 1.00，内网 0.85，仅本机 0.70。
 KEV 且 CVSS 不低于 7 时，等级至少为严重。
 默认只生成建议和预演记录。执行白名单命令还需要人工批准，以及环境变量 VULNGUARD_ALLOW_APPLY=1。
+Trivy 一节是第二意见，不参与方案里的命令，也不替换上面的 OSV 发现。

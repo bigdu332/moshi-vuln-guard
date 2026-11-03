@@ -45,7 +45,7 @@ def run_scan(
     elif source == "local":
         assets, warnings, host = collect_local(path)
     elif source == "docker":
-        assets, warnings, host = collect_docker()
+        assets, warnings, host = collect_docker(attempts=8, pause=2)
     elif source == "ssh":
         assets, warnings, host = collect_ssh(target, user=ssh_user, port=ssh_port)
     else:
@@ -67,6 +67,12 @@ def run_scan(
     feed_status = dict(feedset.status)
     feed_status["trivy"] = trivy_status
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    names = ", ".join(sorted({asset.host for asset in assets if asset.host})) or host
+    print(
+        f"巡检来源={chosen} 目标={target} 主机或容器={names} "
+        f"资产={len(assets)} 发现={len(findings)} Trivy={feed_status.get('trivy', 'off')}",
+        flush=True,
+    )
     return ScanResult(
         id=f"scan-{stamp}",
         created_at=datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),

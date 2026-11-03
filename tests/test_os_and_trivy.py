@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from vulnguard.inventory import collect_fixture, collect_local, parse_apk, parse_remote_inventory, parse_rpm
+from vulnguard.inventory import collect_docker, collect_fixture, collect_local, parse_apk, parse_remote_inventory, parse_rpm
 from vulnguard.paths import repo_root
 from vulnguard.pipeline import run_scan
 from vulnguard.trivy import annotate_overlap, parse_trivy_json, relation_label
@@ -40,6 +40,34 @@ nginx-1.18.0-r1
 """
     assets = parse_remote_inventory(text, "ssh:demo")
     assert {asset.ecosystem for asset in assets} == {"rpm", "Alpine"}
+
+
+def test_docker_filter_and_retry(monkeypatch):
+    monkeypatch.setenv("VULNGUARD_DOCKER_PS_FILTER", "label=vulnguard.scan=true")
+    calls = {"ps": 0}
+
+    def runner(argv):
+        if argv[:2] == ["docker", "ps"]:
+            calls["ps"] += 1
+            assert argv[2:4] == ["--filter", "label=vulnguard.scan=true"]
+            if calls["ps"] == 1:
+                return 1, "", "Cannot connect to the Docker daemon"
+            return 0, "abc\tedge-nginx\tnginx:1.18.0\n", ""
+        if argv[:4] == ["docker", "exec", "abc", "nginx"]:
+            return 0, "nginx version: nginx/1.18.0\n", ""
+        return 1, "", "missing"
+
+    assets, warnings, _host = collect_docker(runner, attempts=3, pause=0)
+    assert calls["ps"] == 2
+    assert any(asset.name == "nginx" and asset.source == "docker:edge-nginx" for asset in assets)
+    assert any("第 2 次" in item for item in warnings)
+
+
+def test_scan_prints_source(capsys):
+    from vulnguard.pipeline import run_scan
+
+    run_scan("fixture", "demo/samples/rpm-apk", online=False)
+    assert "巡检来源=fixture" in capsys.readouterr().out
 
 
 def test_local_skips_missing_package_managers():

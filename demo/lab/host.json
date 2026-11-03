@@ -1,0 +1,18 @@
+{
+  "hostname": "moshi-lab-01",
+  "os": "Debian 10 (buster)",
+  "description": "演示用业务机：对外 nginx、内网 Redis 与 MySQL，以及一个遗留应用。",
+  "exposure": {
+    "nginx": "internet",
+    "redis": "internal",
+    "mysql": "internal",
+    "pyyaml": "internal",
+    "jinja2": "internet",
+    "itsdangerous": "internal",
+    "lodash": "internet",
+    "minimist": "internal",
+    "express": "internet",
+    "org.apache.logging.log4j:log4j-core": "internet",
+    "gopkg.in/yaml.v3": "internal"
+  }
+}

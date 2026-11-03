@@ -1,0 +1,2160 @@
+{
+  "id": "scan-20261103T092758Z",
+  "created_at": "2026-11-03 09:27 UTC",
+  "source": "fixture",
+  "target": "demo/lab",
+  "host": "moshi-lab-01",
+  "warnings": [
+    "未检测到 trivy、grype、syft、osv-scanner。本次使用内置匹配。这些项目的仓库链接写在 docs/设计文档.md。"
+  ],
+  "feeds": {
+    "osv": "live",
+    "kev": "live",
+    "epss": "live",
+    "curated": "snapshot"
+  },
+  "assets": [
+    {
+      "name": "redis",
+      "version": "5:5.0.7-2+deb10u1",
+      "ecosystem": "Debian",
+      "kind": "middleware",
+      "location": "demo/lab/dpkg.tsv",
+      "exposure": "internal",
+      "host": "moshi-lab-01",
+      "source": "fixture:moshi-lab-01",
+      "evidence": "redis-server 5:5.0.7-2+deb10u1；v=5.0.7",
+      "product": "redis",
+      "key": "Debian:redis@5:5.0.7-2+deb10u1"
+    },
+    {
+      "name": "bash",
+      "version": "5.0-4",
+      "ecosystem": "Debian",
+      "kind": "os_package",
+      "location": "demo/lab/dpkg.tsv",
+      "exposure": "internal",
+      "host": "moshi-lab-01",
+      "source": "fixture:moshi-lab-01",
+      "evidence": "bash 5.0-4",
+      "product": "bash",
+      "key": "Debian:bash@5.0-4"
+    },
+    {
+      "name": "coreutils",
+      "version": "8.30-3",
+      "ecosystem": "Debian",
+      "kind": "os_package",
+      "location": "demo/lab/dpkg.tsv",
+      "exposure": "internal",
+      "host": "moshi-lab-01",
+      "source": "fixture:moshi-lab-01",
+      "evidence": "coreutils 8.30-3",
+      "product": "coreutils",
+      "key": "Debian:coreutils@8.30-3"
+    },
+    {
+      "name": "nginx",
+      "version": "1.18.0",
+      "ecosystem": "generic",
+      "kind": "middleware",
+      "location": "nginx/1.18.0",
+      "exposure": "internet",
+      "host": "moshi-lab-01",
+      "source": "fixture:moshi-lab-01",
+      "evidence": "nginx/1.18.0",
+      "product": "nginx",
+      "key": "generic:nginx@1.18.0"
+    },
+    {
+      "name": "mysql",
+      "version": "5.7.41",
+      "ecosystem": "generic",
+      "kind": "middleware",
+      "location": "Distrib 5.7.41",
+      "exposure": "internal",
+      "host": "moshi-lab-01",
+      "source": "fixture:moshi-lab-01",
+      "evidence": "Distrib 5.7.41",
+      "product": "mysql",
+      "key": "generic:mysql@5.7.41"
+    },
+    {
+      "name": "express",
+      "version": "4.17.1",
+      "ecosystem": "npm",
+      "kind": "app_dependency",
+      "location": "demo/lab/app/package.json",
+      "exposure": "internet",
+      "host": "moshi-lab-01",
+      "source": "fixture:moshi-lab-01",
+      "evidence": "dependencies:express@4.17.1",
+      "product": "express",
+      "key": "npm:express@4.17.1"
+    },
+    {
+      "name": "lodash",
+      "version": "4.17.20",
+      "ecosystem": "npm",
+      "kind": "app_dependency",
+      "location": "demo/lab/app/package.json",
+      "exposure": "internet",
+      "host": "moshi-lab-01",
+      "source": "fixture:moshi-lab-01",
+      "evidence": "dependencies:lodash@4.17.20",
+      "product": "lodash",
+      "key": "npm:lodash@4.17.20"
+    },
+    {
+      "name": "minimist",
+      "version": "1.2.5",
+      "ecosystem": "npm",
+      "kind": "app_dependency",
+      "location": "demo/lab/app/package.json",
+      "exposure": "internal",
+      "host": "moshi-lab-01",
+      "source": "fixture:moshi-lab-01",
+      "evidence": "dependencies:minimist@1.2.5",
+      "product": "minimist",
+      "key": "npm:minimist@1.2.5"
+    },
+    {
+      "name": "org.apache.logging.log4j:log4j-core",
+      "version": "2.14.1",
+      "ecosystem": "Maven",
+      "kind": "app_dependency",
+      "location": "demo/lab/app/pom.xml",
+      "exposure": "internet",
+      "host": "moshi-lab-01",
+      "source": "fixture:moshi-lab-01",
+      "evidence": "org.apache.logging.log4j:log4j-core",
+      "product": "org.apache.logging.log4j:log4j-core",
+      "key": "Maven:org.apache.logging.log4j:log4j-core@2.14.1"
+    },
+    {
+      "name": "gopkg.in/yaml.v3",
+      "version": "v3.0.0-20210107192922-496545a6307b",
+      "ecosystem": "Go",
+      "kind": "app_dependency",
+      "location": "demo/lab/app/go.mod",
+      "exposure": "internal",
+      "host": "moshi-lab-01",
+      "source": "fixture:moshi-lab-01",
+      "evidence": "gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b",
+      "product": "gopkg.in/yaml.v3",
+      "key": "Go:gopkg.in/yaml.v3@v3.0.0-20210107192922-496545a6307b"
+    },
+    {
+      "name": "pyyaml",
+      "version": "5.3.1",
+      "ecosystem": "PyPI",
+      "kind": "app_dependency",
+      "location": "demo/lab/app/requirements.txt",
+      "exposure": "internal",
+      "host": "moshi-lab-01",
+      "source": "fixture:moshi-lab-01",
+      "evidence": "PyYAML==5.3.1",
+      "product": "pyyaml",
+      "key": "PyPI:pyyaml@5.3.1"
+    },
+    {
+      "name": "jinja2",
+      "version": "2.11.2",
+      "ecosystem": "PyPI",
+      "kind": "app_dependency",
+      "location": "demo/lab/app/requirements.txt",
+      "exposure": "internet",
+      "host": "moshi-lab-01",
+      "source": "fixture:moshi-lab-01",
+      "evidence": "Jinja2==2.11.2",
+      "product": "jinja2",
+      "key": "PyPI:jinja2@2.11.2"
+    },
+    {
+      "name": "itsdangerous",
+      "version": "2.2.0",
+      "ecosystem": "PyPI",
+      "kind": "app_dependency",
+      "location": "demo/lab/app/requirements.txt",
+      "exposure": "internal",
+      "host": "moshi-lab-01",
+      "source": "fixture:moshi-lab-01",
+      "evidence": "itsdangerous==2.2.0",
+      "product": "itsdangerous",
+      "key": "PyPI:itsdangerous@2.2.0"
+    }
+  ],
+  "findings": [
+    {
+      "id": "maven-org-apache-logging-log4j-log4j-core-2-14-1-cve-2021-44228",
+      "vuln_id": "CVE-2021-44228",
+      "aliases": [
+        "GHSA-jfh8-c2jp-5v3q",
+        "CVE-2021-44228"
+      ],
+      "summary": "Apache Log4j2 JNDI 查找导致远程代码执行（Log4Shell）",
+      "details": "影响 log4j-core 2.0-beta9 至 2.14.1。2.15.0 关闭了默认行为，但仍需继续升级。CVSS 10.0。该编号在 CISA KEV 中，公开利用广泛。Java 8 及更新版本的建议下限是 2.17.1，以便同时覆盖同系列的后续修复。",
+      "cvss": 10.0,
+      "cvss_estimated": false,
+      "severity": "CRITICAL",
+      "condition": "log4j-api 单独存在时不受 Log4Shell 影响，需要确认依赖树里是 log4j-core。",
+      "kind": "vulnerability",
+      "source": "osv",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-44228",
+        "https://github.com/apache/logging-log4j2/pull/608",
+        "https://github.com/github/advisory-database/pull/5501",
+        "https://cert-portal.siemens.com/productcert/pdf/ssa-397453.pdf",
+        "https://packetstormsecurity.com/files/165673/UniFi-Network-Application-Unauthenticated-Log4Shell-Remote-Code-Execution.html",
+        "https://packetstormsecurity.com/files/167794/Open-Xchange-App-Suite-7.10.x-Cross-Site-Scripting-Command-Injection.html"
+      ],
+      "kev": true,
+      "kev_due": "2021-12-24",
+      "kev_name": "Apache Log4j2 Remote Code Execution Vulnerability",
+      "epss": 0.99999,
+      "epss_percentile": 1.0,
+      "score": 1.0,
+      "band": "critical",
+      "rationale": "CVSS 10.0，归一化 1.00；在 CISA KEV 中，贡献 0.25；EPSS 1.0000，贡献 0.1500；暴露面为互联网，系数 1.00；综合分 1.0000，等级为严重。 触发规则：KEV 且 CVSS 不低于 7，等级至少为严重。",
+      "fixed_versions": [
+        "2.15.0",
+        "2.3.1",
+        "2.12.2"
+      ],
+      "asset": {
+        "name": "org.apache.logging.log4j:log4j-core",
+        "version": "2.14.1",
+        "ecosystem": "Maven",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/pom.xml",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "org.apache.logging.log4j:log4j-core",
+        "product": "org.apache.logging.log4j:log4j-core",
+        "key": "Maven:org.apache.logging.log4j:log4j-core@2.14.1"
+      }
+    },
+    {
+      "id": "maven-org-apache-logging-log4j-log4j-core-2-14-1-cve-2021-45046",
+      "vuln_id": "CVE-2021-45046",
+      "aliases": [
+        "GHSA-7rjr-3q55-vv33",
+        "CVE-2021-45046"
+      ],
+      "summary": "Log4j2 在非默认布局下仍可通过 JNDI 造成远程代码执行或拒绝服务",
+      "details": "影响 2.0-beta9 至 2.15.0 的主线。Apache 将评分上调到 9.0。2.16.0 删除了消息查找，Java 8 上仍建议继续升到 2.17.1。该编号在 CISA KEV 中。2.12 维护线有单独修复，本范围对那条老维护线偏宽。",
+      "cvss": 9.0,
+      "cvss_estimated": false,
+      "severity": "CRITICAL",
+      "condition": "2.12 维护线的修复版本与 2.16/2.17 不同。演示环境使用 2.14.1，落在主线受影响范围内。",
+      "kind": "vulnerability",
+      "source": "osv",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-45046",
+        "https://www.oracle.com/security-alerts/cpujul2022.html",
+        "https://www.oracle.com/security-alerts/cpujan2022.html",
+        "https://www.oracle.com/security-alerts/cpuapr2022.html",
+        "https://www.oracle.com/security-alerts/alert-cve-2021-44228.html",
+        "https://www.openwall.com/lists/oss-security/2021/12/18/1"
+      ],
+      "kev": true,
+      "kev_due": "2023-05-22",
+      "kev_name": "Apache Log4j2 Deserialization of Untrusted Data Vulnerability",
+      "epss": 0.99977,
+      "epss_percentile": 0.9998,
+      "score": 1.0,
+      "band": "critical",
+      "rationale": "CVSS 9.0，归一化 0.90；在 CISA KEV 中，贡献 0.25；EPSS 0.9998，贡献 0.1500；暴露面为互联网，系数 1.00；综合分 1.0000，等级为严重。 触发规则：KEV 且 CVSS 不低于 7，等级至少为严重。",
+      "fixed_versions": [
+        "2.16.0",
+        "2.12.2",
+        "2.3.1"
+      ],
+      "asset": {
+        "name": "org.apache.logging.log4j:log4j-core",
+        "version": "2.14.1",
+        "ecosystem": "Maven",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/pom.xml",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "org.apache.logging.log4j:log4j-core",
+        "product": "org.apache.logging.log4j:log4j-core",
+        "key": "Maven:org.apache.logging.log4j:log4j-core@2.14.1"
+      }
+    },
+    {
+      "id": "maven-org-apache-logging-log4j-log4j-core-2-14-1-cve-2021-45105",
+      "vuln_id": "CVE-2021-45105",
+      "aliases": [
+        "GHSA-p6xc-xr62-6r2g",
+        "CVE-2021-45105"
+      ],
+      "summary": "Apache Log4j2 vulnerable to Improper Input Validation and Uncontrolled Recursion",
+      "details": "Apache Log4j2 versions 2.0-alpha1 through 2.16.0 (excluding 2.12.3) did not protect from uncontrolled recursion from self-referential lookups. This allows an attacker with control over Thread Context Map data to cause a denial of service when a crafted string is interpreted. This issue was fixed in Log4j 2.17.0 and 2.12.3.\n\n\n# Affected packages\nOnly the `org.apache.logging.log4j:log4j-core` package is directly affected by this vulnerability. The `org.apache.logging.log4j:log4j-api` should be kept at the same version as the `org.apache.logging.log4j:log4j-core` package to ensure compatability if in use.",
+      "cvss": 8.6,
+      "cvss_estimated": false,
+      "severity": "HIGH",
+      "condition": "",
+      "kind": "vulnerability",
+      "source": "osv",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-45105",
+        "https://www.zerodayinitiative.com/advisories/ZDI-21-1541",
+        "https://www.oracle.com/security-alerts/cpujul2022.html",
+        "https://www.oracle.com/security-alerts/cpujan2022.html",
+        "https://www.oracle.com/security-alerts/cpuapr2022.html",
+        "https://www.kb.cert.org/vuls/id/930724"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": 0.99999,
+      "epss_percentile": 0.9999,
+      "score": 1.0,
+      "band": "critical",
+      "rationale": "CVSS 8.6，归一化 0.86；不在 CISA KEV；EPSS 1.0000，贡献 0.1500；暴露面为互联网，系数 1.00；综合分 1.0000，等级为严重。",
+      "fixed_versions": [
+        "2.12.3",
+        "2.17.0",
+        "2.3.1"
+      ],
+      "asset": {
+        "name": "org.apache.logging.log4j:log4j-core",
+        "version": "2.14.1",
+        "ecosystem": "Maven",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/pom.xml",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "org.apache.logging.log4j:log4j-core",
+        "product": "org.apache.logging.log4j:log4j-core",
+        "key": "Maven:org.apache.logging.log4j:log4j-core@2.14.1"
+      }
+    },
+    {
+      "id": "generic-nginx-1-18-0-cve-2021-23017",
+      "vuln_id": "CVE-2021-23017",
+      "aliases": [
+        "CVE-2021-23017",
+        "GHSA-83p9-mcpm-374v"
+      ],
+      "summary": "nginx resolver 存在越界写，伪造 DNS 应答可能导致 worker 崩溃或其他影响",
+      "details": "影响 nginx 0.6.18 至 1.20.0。修复版本为稳定分支 1.20.1 与主线 1.21.0。NVD 给出 CVSS 7.7（AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:L）。F5 公告给出的分数是 3.7。只有配置了 resolver 指令时才会走到这段代码，默认配置没有 resolver。",
+      "cvss": 7.7,
+      "cvss_estimated": false,
+      "severity": "HIGH",
+      "condition": "仅在配置了 resolver 时受影响。修复前可先确认配置里是否出现 resolver 指令。",
+      "kind": "vulnerability",
+      "source": "curated",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-23017",
+        "https://blog.nginx.org/blog/updating-nginx-dns-resolver-vulnerability-cve-2021-23017"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": 0.53461,
+      "epss_percentile": 0.98991,
+      "score": 0.8502,
+      "band": "critical",
+      "rationale": "CVSS 7.7，归一化 0.77；不在 CISA KEV；EPSS 0.5346，贡献 0.0802；暴露面为互联网，系数 1.00；综合分 0.8502，等级为严重。",
+      "fixed_versions": [
+        "1.20.1",
+        "1.21.0"
+      ],
+      "asset": {
+        "name": "nginx",
+        "version": "1.18.0",
+        "ecosystem": "generic",
+        "kind": "middleware",
+        "location": "nginx/1.18.0",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "nginx/1.18.0",
+        "product": "nginx",
+        "key": "generic:nginx@1.18.0"
+      }
+    },
+    {
+      "id": "debian-redis-5-5-0-7-2deb10u1-cve-2022-0543",
+      "vuln_id": "CVE-2022-0543",
+      "aliases": [
+        "CVE-2022-0543",
+        "GHSA-9wpj-h5jq-88p9"
+      ],
+      "summary": "Debian 打包的 Redis 因 Lua 库包装问题可逃出沙箱，造成远程代码执行",
+      "details": "这是 Debian 特有的打包问题，不是上游 Redis 所有构建的通病。Debian 安全追踪显示：buster 修复版本为 5:5.0.14-1+deb10u2，bullseye 修复版本为 5:6.0.16-1+deb11u2，stretch 不受影响。CVSS 3.1 为 10.0（AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H）。该编号在 CISA KEV 中。官方 Docker Hub 的 redis 镜像从源码构建，不套用这条 Debian 范围。",
+      "cvss": 10.0,
+      "cvss_estimated": false,
+      "severity": "CRITICAL",
+      "condition": "只适用于 Debian 打包的 redis。请用 dpkg 版本确认，不要把官方二进制或官方镜像算进来。",
+      "kind": "vulnerability",
+      "source": "curated",
+      "references": [
+        "https://security-tracker.debian.org/tracker/CVE-2022-0543",
+        "https://github.com/advisories/GHSA-9wpj-h5jq-88p9",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-0543"
+      ],
+      "kev": true,
+      "kev_due": "2022-04-18",
+      "kev_name": "Debian-specific Redis Server Lua Sandbox Escape Vulnerability",
+      "epss": 0.99351,
+      "epss_percentile": 0.99939,
+      "score": 0.85,
+      "band": "critical",
+      "rationale": "CVSS 10.0，归一化 1.00；在 CISA KEV 中，贡献 0.25；EPSS 0.9935，贡献 0.1490；暴露面为内网，系数 0.85；综合分 0.8500，等级为严重。 触发规则：KEV 且 CVSS 不低于 7，等级至少为严重。",
+      "fixed_versions": [
+        "5:5.0.14-1+deb10u2",
+        "5:6.0.16-1+deb11u2"
+      ],
+      "asset": {
+        "name": "redis",
+        "version": "5:5.0.7-2+deb10u1",
+        "ecosystem": "Debian",
+        "kind": "middleware",
+        "location": "demo/lab/dpkg.tsv",
+        "exposure": "internal",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "redis-server 5:5.0.7-2+deb10u1；v=5.0.7",
+        "product": "redis",
+        "key": "Debian:redis@5:5.0.7-2+deb10u1"
+      }
+    },
+    {
+      "id": "pypi-pyyaml-5-3-1-cve-2020-14343",
+      "vuln_id": "CVE-2020-14343",
+      "aliases": [
+        "GHSA-8q59-q68h-6hv4",
+        "CVE-2020-14343",
+        "PYSEC-2021-142"
+      ],
+      "summary": "PyYAML 在 5.4 之前通过 FullLoader 解析不可信 YAML 时可执行任意代码",
+      "details": "完整修复见 5.4。这是 CVE-2020-1747 的不完整修复之后的后续问题。CVSS 3.1 向量 AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H，基础分 9.8。应用若只解析可信配置，实际暴露面会小一些，需要人工确认调用点。",
+      "cvss": 9.8,
+      "cvss_estimated": false,
+      "severity": "CRITICAL",
+      "condition": "需要应用使用 full_load 或 FullLoader 处理不可信输入。",
+      "kind": "vulnerability",
+      "source": "osv",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2020-14343",
+        "https://github.com/SeldonIO/seldon-core/issues/2252",
+        "https://github.com/yaml/pyyaml/issues/420",
+        "https://github.com/yaml/pyyaml/issues/420#issuecomment-663673966",
+        "https://github.com/yaml/pyyaml/commit/a001f2782501ad2d24986959f0239a354675f9dc",
+        "https://bugzilla.redhat.com/show_bug.cgi?id=1860466",
+        "https://github.com/advisories/GHSA-8q59-q68h-6hv4"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": 0.05984,
+      "epss_percentile": 0.93312,
+      "score": 0.8406,
+      "band": "high",
+      "rationale": "CVSS 9.8，归一化 0.98；不在 CISA KEV；EPSS 0.0598，贡献 0.0090；暴露面为内网，系数 0.85；综合分 0.8406，等级为高危。",
+      "fixed_versions": [
+        "5.4"
+      ],
+      "asset": {
+        "name": "pyyaml",
+        "version": "5.3.1",
+        "ecosystem": "PyPI",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/requirements.txt",
+        "exposure": "internal",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "PyYAML==5.3.1",
+        "product": "pyyaml",
+        "key": "PyPI:pyyaml@5.3.1"
+      }
+    },
+    {
+      "id": "npm-minimist-1-2-5-cve-2021-44906",
+      "vuln_id": "CVE-2021-44906",
+      "aliases": [
+        "GHSA-xvch-5gv4-984h",
+        "CVE-2021-44906"
+      ],
+      "summary": "minimist 1.2.5 及更早版本存在原型污染",
+      "details": "修复版本为 1.2.6，0.x 分支的修复版本为 0.2.4。NVD CVSS 9.8。原型污染的实际危害取决于应用是否把解析结果用于权限或路径判断。",
+      "cvss": 9.8,
+      "cvss_estimated": false,
+      "severity": "CRITICAL",
+      "condition": "需要确认业务代码或传递依赖是否调用 minimist 解析不可信参数。",
+      "kind": "vulnerability",
+      "source": "osv",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-44906",
+        "https://github.com/minimistjs/minimist/issues/11",
+        "https://github.com/substack/minimist/issues/164",
+        "https://github.com/minimistjs/minimist/pull/24",
+        "https://github.com/minimistjs/minimist/commit/34e20b8461118608703d6485326abbb8e35e1703",
+        "https://github.com/minimistjs/minimist/commit/bc8ecee43875261f4f17eb20b1243d3ed15e70eb"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": 0.04581,
+      "epss_percentile": 0.91634,
+      "score": 0.8388,
+      "band": "high",
+      "rationale": "CVSS 9.8，归一化 0.98；不在 CISA KEV；EPSS 0.0458，贡献 0.0069；暴露面为内网，系数 0.85；综合分 0.8388，等级为高危。",
+      "fixed_versions": [
+        "1.2.6",
+        "0.2.4"
+      ],
+      "asset": {
+        "name": "minimist",
+        "version": "1.2.5",
+        "ecosystem": "npm",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/package.json",
+        "exposure": "internal",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "dependencies:minimist@1.2.5",
+        "product": "minimist",
+        "key": "npm:minimist@1.2.5"
+      }
+    },
+    {
+      "id": "npm-lodash-4-17-20-cve-2026-4800",
+      "vuln_id": "CVE-2026-4800",
+      "aliases": [
+        "GHSA-r5fr-rjxr-66jc",
+        "CVE-2026-4800"
+      ],
+      "summary": "lodash vulnerable to Code Injection via `_.template` imports key names",
+      "details": "### Impact\n\nThe fix for [CVE-2021-23337](https://github.com/advisories/GHSA-35jh-r3h4-6jhm) added validation for the `variable` option in `_.template` but did not apply the same validation to `options.imports` key names. Both paths flow into the same `Function()` constructor sink.\n\nWhen an application passes untrusted input as `options.imports` key names, an attacker can inject default-parameter expressions that execute arbitrary code at template compilation time.\n\nAdditionally, `_.template` uses `assignInWith` to merge imports, which enumerates inherited properties via `for..in`. If `Object.prototype` has been polluted by any other vector, the polluted keys are copied into the imports object and passed to `Function()`.\n\n### Patches\n\nUsers should upgrade to version 4.18.0.\n\nThe fix applies two changes:\n1. Validate `importsKeys` against the existing `reForbiddenIdentifierChars` regex (same check already used for the `variable` option)\n2. Replace `assignInWith` with `assignWith` when merging imports, so only own properties are enumerated\n\n### Workarounds\n\nDo not pass untrusted input as key names in `options.imports`. Only use developer-controlled, static key names.",
+      "cvss": 8.1,
+      "cvss_estimated": false,
+      "severity": "HIGH",
+      "condition": "",
+      "kind": "vulnerability",
+      "source": "osv",
+      "references": [
+        "https://github.com/lodash/lodash/security/advisories/GHSA-r5fr-rjxr-66jc",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-4800",
+        "https://github.com/lodash/lodash/commit/3469357cff396a26c363f8c1b5a91dde28ba4b1c",
+        "https://cna.openjsf.org/security-advisories.html",
+        "https://github.com/advisories/GHSA-35jh-r3h4-6jhm",
+        "https://github.com/lodash/lodash"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": 0.02808,
+      "epss_percentile": 0.86505,
+      "score": 0.8142,
+      "band": "high",
+      "rationale": "CVSS 8.1，归一化 0.81；不在 CISA KEV；EPSS 0.0281，贡献 0.0042；暴露面为互联网，系数 1.00；综合分 0.8142，等级为高危。",
+      "fixed_versions": [
+        "4.18.0"
+      ],
+      "asset": {
+        "name": "lodash",
+        "version": "4.17.20",
+        "ecosystem": "npm",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/package.json",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "dependencies:lodash@4.17.20",
+        "product": "lodash",
+        "key": "npm:lodash@4.17.20"
+      }
+    },
+    {
+      "id": "maven-org-apache-logging-log4j-log4j-core-2-14-1-cve-2021-44832",
+      "vuln_id": "CVE-2021-44832",
+      "aliases": [
+        "GHSA-8489-44mv-ggj8",
+        "CVE-2021-44832"
+      ],
+      "summary": "Improper Input Validation and Injection in Apache Log4j2",
+      "details": "Apache Log4j2 versions 2.0-beta7 through 2.17.0 (excluding security fix releases 2.3.2 and 2.12.4) are vulnerable to an attack where an attacker with permission to modify the logging configuration file can construct a malicious configuration using a JDBC Appender with a data source referencing a JNDI URI which can execute remote code. This issue is fixed by limiting JNDI data source names to the java protocol in Log4j2 versions 2.17.1, 2.12.4, and 2.3.2.\n\n\n# Affected packages\nOnly the `org.apache.logging.log4j:log4j-core` package is directly affected by this vulnerability. The `org.apache.logging.log4j:log4j-api` should be kept at the same version as the `org.apache.logging.log4j:log4j-core` package to ensure compatability if in use.\n\nThis issue does not impact default configurations of Log4j2 and requires an attacker to have control over the Log4j2 configuration, which reduces the likelihood of being exploited.",
+      "cvss": 6.6,
+      "cvss_estimated": false,
+      "severity": "MEDIUM",
+      "condition": "",
+      "kind": "vulnerability",
+      "source": "osv",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-44832",
+        "https://cert-portal.siemens.com/productcert/pdf/ssa-784507.pdf",
+        "https://github.com/apache/logging-log4j2",
+        "https://issues.apache.org/jira/browse/LOG4J2-3293",
+        "https://lists.apache.org/thread/s1o5vlo78ypqxnzn6p8zf6t9shtq5143",
+        "https://lists.debian.org/debian-lts-announce/2021/12/msg00036.html"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": 0.97906,
+      "epss_percentile": 0.99908,
+      "score": 0.8069,
+      "band": "high",
+      "rationale": "CVSS 6.6，归一化 0.66；不在 CISA KEV；EPSS 0.9791，贡献 0.1469；暴露面为互联网，系数 1.00；综合分 0.8069，等级为高危。",
+      "fixed_versions": [
+        "2.3.2",
+        "2.12.4",
+        "2.17.1"
+      ],
+      "asset": {
+        "name": "org.apache.logging.log4j:log4j-core",
+        "version": "2.14.1",
+        "ecosystem": "Maven",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/pom.xml",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "org.apache.logging.log4j:log4j-core",
+        "product": "org.apache.logging.log4j:log4j-core",
+        "key": "Maven:org.apache.logging.log4j:log4j-core@2.14.1"
+      }
+    },
+    {
+      "id": "pypi-jinja2-2-11-2-cve-2024-56326",
+      "vuln_id": "CVE-2024-56326",
+      "aliases": [
+        "GHSA-q2x7-8rv6-6q7h",
+        "CVE-2024-56326",
+        "PYSEC-2026-1475"
+      ],
+      "summary": "Jinja has a sandbox breakout through indirect reference to format method",
+      "details": "An oversight in how the Jinja sandboxed environment detects calls to `str.format` allows an attacker that controls the content of a template to execute arbitrary Python code.\n\nTo exploit the vulnerability, an attacker needs to control the content of a template. Whether that is the case depends on the type of application using Jinja. This vulnerability impacts users of applications which execute untrusted templates.\n\nJinja's sandbox does catch calls to `str.format` and ensures they don't escape the sandbox. However, it's possible to store a reference to a malicious string's `format` method, then pass that to a filter that calls it. No such filters are built-in to Jinja, but could be present through custom filters in an application. After the fix, such indirect calls are also handled by the sandbox.",
+      "cvss": 7.8,
+      "cvss_estimated": false,
+      "severity": "HIGH",
+      "condition": "",
+      "kind": "vulnerability",
+      "source": "osv",
+      "references": [
+        "https://github.com/pallets/jinja/security/advisories/GHSA-q2x7-8rv6-6q7h",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-56326",
+        "https://github.com/pallets/jinja/commit/48b0687e05a5466a91cd5812d604fa37ad0943b4",
+        "https://github.com/pallets/jinja",
+        "https://github.com/pallets/jinja/releases/tag/3.1.5",
+        "https://lists.debian.org/debian-lts-announce/2025/04/msg00022.html"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": 0.00522,
+      "epss_percentile": 0.44279,
+      "score": 0.7808,
+      "band": "high",
+      "rationale": "CVSS 7.8，归一化 0.78；不在 CISA KEV；EPSS 0.0052，贡献 0.0008；暴露面为互联网，系数 1.00；综合分 0.7808，等级为高危。",
+      "fixed_versions": [
+        "3.1.5"
+      ],
+      "asset": {
+        "name": "jinja2",
+        "version": "2.11.2",
+        "ecosystem": "PyPI",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/requirements.txt",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "Jinja2==2.11.2",
+        "product": "jinja2",
+        "key": "PyPI:jinja2@2.11.2"
+      }
+    },
+    {
+      "id": "npm-lodash-4-17-20-cve-2021-23337",
+      "vuln_id": "CVE-2021-23337",
+      "aliases": [
+        "GHSA-35jh-r3h4-6jhm",
+        "CVE-2021-23337"
+      ],
+      "summary": "Command Injection in lodash",
+      "details": "`lodash` versions prior to 4.17.21 are vulnerable to Command Injection via the template function.",
+      "cvss": 7.2,
+      "cvss_estimated": false,
+      "severity": "HIGH",
+      "condition": "",
+      "kind": "vulnerability",
+      "source": "osv",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-23337",
+        "https://github.com/lodash/lodash/commit/3469357cff396a26c363f8c1b5a91dde28ba4b1c",
+        "https://www.oracle.com/security-alerts/cpuoct2021.html",
+        "https://www.oracle.com/security-alerts/cpujul2022.html",
+        "https://www.oracle.com/security-alerts/cpujan2022.html",
+        "https://www.oracle.com//security-alerts/cpujul2021.html"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": 0.21333,
+      "epss_percentile": 0.97602,
+      "score": 0.752,
+      "band": "high",
+      "rationale": "CVSS 7.2，归一化 0.72；不在 CISA KEV；EPSS 0.2133，贡献 0.0320；暴露面为互联网，系数 1.00；综合分 0.7520，等级为高危。",
+      "fixed_versions": [
+        "4.17.21"
+      ],
+      "asset": {
+        "name": "lodash",
+        "version": "4.17.20",
+        "ecosystem": "npm",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/package.json",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "dependencies:lodash@4.17.20",
+        "product": "lodash",
+        "key": "npm:lodash@4.17.20"
+      }
+    },
+    {
+      "id": "npm-lodash-4-17-20-cve-2025-13465",
+      "vuln_id": "CVE-2025-13465",
+      "aliases": [
+        "GHSA-xxjr-mmjv-4gpg",
+        "CVE-2025-13465"
+      ],
+      "summary": "Lodash has Prototype Pollution Vulnerability in `_.unset` and `_.omit` functions",
+      "details": "### Impact\n\nLodash versions 4.0.0 through 4.17.22 are vulnerable to prototype pollution in the `_.unset` and `_.omit` functions. An attacker can pass crafted paths which cause Lodash to delete methods from global prototypes. \n\nThe issue permits deletion of properties but does not allow overwriting their original behavior.  \n\n### Patches\n\nThis issue is patched on 4.17.23.",
+      "cvss": 6.5,
+      "cvss_estimated": false,
+      "severity": "MEDIUM",
+      "condition": "",
+      "kind": "vulnerability",
+      "source": "osv",
+      "references": [
+        "https://github.com/lodash/lodash/security/advisories/GHSA-xxjr-mmjv-4gpg",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-13465",
+        "https://github.com/lodash/lodash/commit/edadd452146f7e4bad4ea684e955708931d84d81",
+        "https://cert-portal.siemens.com/productcert/html/ssa-253495.html",
+        "https://github.com/lodash/lodash"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": 0.01823,
+      "epss_percentile": 0.78784,
+      "score": 0.6527,
+      "band": "high",
+      "rationale": "CVSS 6.5，归一化 0.65；不在 CISA KEV；EPSS 0.0182，贡献 0.0027；暴露面为互联网，系数 1.00；综合分 0.6527，等级为高危。",
+      "fixed_versions": [
+        "4.17.23"
+      ],
+      "asset": {
+        "name": "lodash",
+        "version": "4.17.20",
+        "ecosystem": "npm",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/package.json",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "dependencies:lodash@4.17.20",
+        "product": "lodash",
+        "key": "npm:lodash@4.17.20"
+      }
+    },
+    {
+      "id": "npm-lodash-4-17-20-cve-2026-2950",
+      "vuln_id": "CVE-2026-2950",
+      "aliases": [
+        "GHSA-f23m-r3pf-42rh",
+        "CVE-2026-2950"
+      ],
+      "summary": "lodash vulnerable to Prototype Pollution via array path bypass in `_.unset` and `_.omit`",
+      "details": "### Impact\n\nLodash versions 4.17.23 and earlier are vulnerable to prototype pollution in the `_.unset` and `_.omit` functions. The fix for [CVE-2025-13465](https://github.com/lodash/lodash/security/advisories/GHSA-xxjr-mmjv-4gpg) only guards against string key members, so an attacker can bypass the check by passing array-wrapped path segments. This allows deletion of properties from built-in prototypes such as `Object.prototype`, `Number.prototype`, and `String.prototype`.\n\nThe issue permits deletion of prototype properties but does not allow overwriting their original behavior.\n\n### Patches\n\nThis issue is patched in 4.18.0.\n\n### Workarounds\n\nNone. Upgrade to the patched version.",
+      "cvss": 6.5,
+      "cvss_estimated": false,
+      "severity": "MEDIUM",
+      "condition": "",
+      "kind": "vulnerability",
+      "source": "osv",
+      "references": [
+        "https://github.com/lodash/lodash/security/advisories/GHSA-f23m-r3pf-42rh",
+        "https://github.com/lodash/lodash/security/advisories/GHSA-xxjr-mmjv-4gpg",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-2950",
+        "https://github.com/lodash/lodash"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": 0.00337,
+      "epss_percentile": 0.2716,
+      "score": 0.6505,
+      "band": "high",
+      "rationale": "CVSS 6.5，归一化 0.65；不在 CISA KEV；EPSS 0.0034，贡献 0.0005；暴露面为互联网，系数 1.00；综合分 0.6505，等级为高危。",
+      "fixed_versions": [
+        "4.18.0"
+      ],
+      "asset": {
+        "name": "lodash",
+        "version": "4.17.20",
+        "ecosystem": "npm",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/package.json",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "dependencies:lodash@4.17.20",
+        "product": "lodash",
+        "key": "npm:lodash@4.17.20"
+      }
+    },
+    {
+      "id": "go-gopkg-in-yaml-v3-v3-0-0-20210107192922-496545a6307b-cve-2022-28948",
+      "vuln_id": "CVE-2022-28948",
+      "aliases": [
+        "GHSA-hp87-p4gw-j4gq",
+        "CVE-2022-28948",
+        "GO-2022-0603"
+      ],
+      "summary": "gopkg.in/yaml.v3 Denial of Service",
+      "details": "An issue in the Unmarshal function in Go-Yaml v3 can cause a program to panic when attempting to deserialize invalid input.",
+      "cvss": 7.5,
+      "cvss_estimated": false,
+      "severity": "HIGH",
+      "condition": "",
+      "kind": "vulnerability",
+      "source": "osv",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-28948",
+        "https://github.com/go-yaml/yaml/issues/665",
+        "https://github.com/go-yaml/yaml/issues/666",
+        "https://github.com/go-yaml/yaml/commit/8f96da9f5d5eff988554c1aae1784627c4bf6754",
+        "https://github.com/go-yaml/yaml/commit/f6f7691b1fdeb513f56608cd2c32c51f8194bf51",
+        "https://github.com/go-yaml/yaml"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": 0.03965,
+      "epss_percentile": 0.90454,
+      "score": 0.6426,
+      "band": "high",
+      "rationale": "CVSS 7.5，归一化 0.75；不在 CISA KEV；EPSS 0.0396，贡献 0.0059；暴露面为内网，系数 0.85；综合分 0.6426，等级为高危。",
+      "fixed_versions": [
+        "3.0.1",
+        "3.0.0-20220521103104-8f96da9f5d5e"
+      ],
+      "asset": {
+        "name": "gopkg.in/yaml.v3",
+        "version": "v3.0.0-20210107192922-496545a6307b",
+        "ecosystem": "Go",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/go.mod",
+        "exposure": "internal",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b",
+        "product": "gopkg.in/yaml.v3",
+        "key": "Go:gopkg.in/yaml.v3@v3.0.0-20210107192922-496545a6307b"
+      }
+    },
+    {
+      "id": "generic-mysql-5-7-41-eol-mysql-5-7",
+      "vuln_id": "EOL-MYSQL-5.7",
+      "aliases": [
+        "EOL-MYSQL-5.7"
+      ],
+      "summary": "MySQL 5.7 已于 2023-10-25 结束扩展支持，不再提供新的安全修复",
+      "details": "Oracle 生命周期公告：自 2023-10-25 起 MySQL 5.7 进入 Sustaining Support。建议迁移到 MySQL 8.4 LTS。仅升级到 5.7 的最后一个小版本不能恢复安全更新。",
+      "cvss": 7.5,
+      "cvss_estimated": false,
+      "severity": "MEDIUM",
+      "condition": "规划迁移到 MySQL 8.4 LTS，并先在预发完成应用兼容性验证。",
+      "kind": "eol",
+      "source": "eol",
+      "references": [
+        "https://www.mysql.com/support/eol-notice.html"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": null,
+      "epss_percentile": null,
+      "score": 0.6375,
+      "band": "high",
+      "rationale": "生命周期项，使用维护风险分代替 CVSS。CVSS 7.5，归一化 0.75；不在 CISA KEV；EPSS 未取得，这项暂不加减分；暴露面为内网，系数 0.85；综合分 0.6375，等级为高危。",
+      "fixed_versions": [],
+      "asset": {
+        "name": "mysql",
+        "version": "5.7.41",
+        "ecosystem": "generic",
+        "kind": "middleware",
+        "location": "Distrib 5.7.41",
+        "exposure": "internal",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "Distrib 5.7.41",
+        "product": "mysql",
+        "key": "generic:mysql@5.7.41"
+      }
+    },
+    {
+      "id": "npm-express-4-17-1-cve-2024-29041",
+      "vuln_id": "CVE-2024-29041",
+      "aliases": [
+        "GHSA-rv95-896h-c2vc",
+        "CVE-2024-29041"
+      ],
+      "summary": "Express.js Open Redirect in malformed URLs",
+      "details": "### Impact\n\nVersions of Express.js prior to 4.19.2 and pre-release alpha and beta versions before 5.0.0-beta.3 are affected by an open redirect vulnerability using malformed URLs.\n\nWhen a user of Express performs a redirect using a user-provided URL Express performs an encode [using `encodeurl`](https://github.com/pillarjs/encodeurl) on the contents before passing it to the `location` header. This can cause malformed URLs to be evaluated in unexpected ways by common redirect allow list implementations in Express applications, leading to an Open Redirect via bypass of a properly implemented allow list.\n\nThe main method impacted is `res.location()` but this is also called from within `res.redirect()`.\n\n### Patches\n\nhttps://github.com/expressjs/express/commit/0867302ddbde0e9463d0564fea5861feb708c2dd\nhttps://github.com/expressjs/express/commit/0b746953c4bd8e377123527db11f9cd866e39f94\n\nAn initial fix went out with `express@4.19.0`, we then patched a feature regression in `4.19.1` and added improved handling for the bypass in `4.19.2`.\n\n### Workarounds\n\nThe fix for this involves pre-parsing the url string with either `require('node:url').parse` or `new URL`. These are steps you can take ",
+      "cvss": 6.1,
+      "cvss_estimated": false,
+      "severity": "MEDIUM",
+      "condition": "",
+      "kind": "vulnerability",
+      "source": "osv",
+      "references": [
+        "https://github.com/expressjs/express/security/advisories/GHSA-rv95-896h-c2vc",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-29041",
+        "https://github.com/koajs/koa/issues/1800",
+        "https://github.com/expressjs/express/pull/5539",
+        "https://github.com/expressjs/express/commit/0867302ddbde0e9463d0564fea5861feb708c2dd",
+        "https://github.com/expressjs/express/commit/0b746953c4bd8e377123527db11f9cd866e39f94"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": 0.00786,
+      "epss_percentile": 0.5612,
+      "score": 0.6112,
+      "band": "high",
+      "rationale": "CVSS 6.1，归一化 0.61；不在 CISA KEV；EPSS 0.0079，贡献 0.0012；暴露面为互联网，系数 1.00；综合分 0.6112，等级为高危。",
+      "fixed_versions": [
+        "4.19.2",
+        "5.0.0-beta.3"
+      ],
+      "asset": {
+        "name": "express",
+        "version": "4.17.1",
+        "ecosystem": "npm",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/package.json",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "dependencies:express@4.17.1",
+        "product": "express",
+        "key": "npm:express@4.17.1"
+      }
+    },
+    {
+      "id": "generic-mysql-5-7-41-cve-2023-21980",
+      "vuln_id": "CVE-2023-21980",
+      "aliases": [
+        "CVE-2023-21980",
+        "GHSA-3x7j-9p25-v8r6"
+      ],
+      "summary": "MySQL Server 客户端组件漏洞，成功利用可能导致服务器被接管",
+      "details": "Oracle 公告：受影响的受支持版本为 5.7.41 及更早的 5.7，以及 8.0.32 及更早的 8.0。攻击复杂度高，需要用户交互和低权限网络访问。CVSS 3.1 为 7.1（AV:N/AC:H/PR:L/UI:R/S:U/C:H/I:H/A:H）。5.7.42 修复了 5.7 分支上的这一条，但 5.7 已于 2023-10-25 结束扩展支持。",
+      "cvss": 7.1,
+      "cvss_estimated": false,
+      "severity": "HIGH",
+      "condition": "利用条件较高。5.7 分支即使打到 5.7.42，也不再获得新的安全修复。",
+      "kind": "vulnerability",
+      "source": "curated",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-21980",
+        "https://github.com/advisories/GHSA-3x7j-9p25-v8r6"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": 0.00826,
+      "epss_percentile": 0.57441,
+      "score": 0.6046,
+      "band": "high",
+      "rationale": "CVSS 7.1，归一化 0.71；不在 CISA KEV；EPSS 0.0083，贡献 0.0012；暴露面为内网，系数 0.85；综合分 0.6046，等级为高危。",
+      "fixed_versions": [
+        "5.7.42",
+        "8.0.33"
+      ],
+      "asset": {
+        "name": "mysql",
+        "version": "5.7.41",
+        "ecosystem": "generic",
+        "kind": "middleware",
+        "location": "Distrib 5.7.41",
+        "exposure": "internal",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "Distrib 5.7.41",
+        "product": "mysql",
+        "key": "generic:mysql@5.7.41"
+      }
+    },
+    {
+      "id": "debian-redis-5-5-0-7-2deb10u1-eol-redis-5-0",
+      "vuln_id": "EOL-REDIS-5.0",
+      "aliases": [
+        "EOL-REDIS-5.0"
+      ],
+      "summary": "Redis 5.0 已退出上游维护，5.0.14 之后没有新的安全发布",
+      "details": "演示环境中的 5.0.7 低于最后一次 5.0 安全发布 5.0.14。即便升到 5.0.14，这条分支也不再接收后续修复。建议选当前仍在维护的上游版本，并单独做持久化与复制回归。",
+      "cvss": 6.5,
+      "cvss_estimated": false,
+      "severity": "MEDIUM",
+      "condition": "短期至少升到 5.0.14；变更窗口内规划迁到仍在维护的主版本。",
+      "kind": "eol",
+      "source": "eol",
+      "references": [
+        "https://github.com/redis/redis/releases/tag/5.0.14"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": null,
+      "epss_percentile": null,
+      "score": 0.5525,
+      "band": "medium",
+      "rationale": "生命周期项，使用维护风险分代替 CVSS。CVSS 6.5，归一化 0.65；不在 CISA KEV；EPSS 未取得，这项暂不加减分；暴露面为内网，系数 0.85；综合分 0.5525，等级为中危。",
+      "fixed_versions": [],
+      "asset": {
+        "name": "redis",
+        "version": "5:5.0.7-2+deb10u1",
+        "ecosystem": "Debian",
+        "kind": "middleware",
+        "location": "demo/lab/dpkg.tsv",
+        "exposure": "internal",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "redis-server 5:5.0.7-2+deb10u1；v=5.0.7",
+        "product": "redis",
+        "key": "Debian:redis@5:5.0.7-2+deb10u1"
+      }
+    },
+    {
+      "id": "maven-org-apache-logging-log4j-log4j-core-2-14-1-cve-2026-34480",
+      "vuln_id": "CVE-2026-34480",
+      "aliases": [
+        "GHSA-3pxv-7cmr-fjr4",
+        "CVE-2026-34480"
+      ],
+      "summary": "Apache Log4j Core: Silent log event loss in XmlLayout due to unescaped XML 1.0 forbidden characters",
+      "details": "Apache Log4j Core's [`XmlLayout`](https://logging.apache.org/log4j/2.x/manual/layouts.html#XmlLayout), in versions up to and including 2.25.3, fails to sanitize characters forbidden by the [XML 1.0 specification](https://www.w3.org/TR/xml/#charsets), producing invalid XML output whenever a log message or MDC value contains such characters.\n\nThe impact depends on the StAX implementation in use:\n\n  *  **JRE built-in StAX**: Forbidden characters are silently written to the output, producing malformed XML. Conforming parsers must reject such documents with a fatal error, which may cause downstream log-processing systems to drop the affected records.\n  *  **Alternative StAX implementations** (e.g., [Woodstox](https://github.com/FasterXML/woodstox), a transitive dependency of the Jackson XML Dataformat module): An exception is thrown during the logging call, and the log event is never delivered to its intended appender, only to Log4j's internal status logger.\n\nUsers are advised to upgrade to Apache Log4j Core 2.25.4, which corrects this issue by sanitizing forbidden characters before XML output.",
+      "cvss": 5.5,
+      "cvss_estimated": true,
+      "severity": "MEDIUM",
+      "condition": "",
+      "kind": "vulnerability",
+      "source": "osv",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-34480",
+        "https://github.com/apache/logging-log4j2/pull/4077",
+        "https://github.com/apache/logging-log4j2",
+        "https://lists.apache.org/thread/5x0hcnng0chhghp6jgjdp3qmbbhfjzhb",
+        "https://logging.apache.org/cyclonedx/vdr.xml",
+        "https://logging.apache.org/log4j/2.x/manual/layouts.html#XmlLayout"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": 0.01046,
+      "epss_percentile": 0.64178,
+      "score": 0.5516,
+      "band": "medium",
+      "rationale": "CVSS 5.5，归一化 0.55；不在 CISA KEV；EPSS 0.0105，贡献 0.0016；暴露面为互联网，系数 1.00；综合分 0.5516，等级为中危。",
+      "fixed_versions": [
+        "2.25.4"
+      ],
+      "asset": {
+        "name": "org.apache.logging.log4j:log4j-core",
+        "version": "2.14.1",
+        "ecosystem": "Maven",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/pom.xml",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "org.apache.logging.log4j:log4j-core",
+        "product": "org.apache.logging.log4j:log4j-core",
+        "key": "Maven:org.apache.logging.log4j:log4j-core@2.14.1"
+      }
+    },
+    {
+      "id": "maven-org-apache-logging-log4j-log4j-core-2-14-1-cve-2025-68161",
+      "vuln_id": "CVE-2025-68161",
+      "aliases": [
+        "GHSA-vc5p-v9hr-52mj",
+        "CVE-2025-68161"
+      ],
+      "summary": "Apache Log4j does not verify the TLS hostname in its Socket Appender",
+      "details": "The Socket Appender in Apache Log4j Core versions 2.0-beta9 through 2.25.2 does not perform TLS hostname verification of the peer certificate, even when the  [verifyHostName](https://logging.apache.org/log4j/2.x/manual/appenders/network.html#SslConfiguration-attr-verifyHostName)  configuration attribute or the  [log4j2.sslVerifyHostName](https://logging.apache.org/log4j/2.x/manual/systemproperties.html#log4j2.sslVerifyHostName) system property is set to true.\n\nThis issue may allow a man-in-the-middle attacker to intercept or redirect log traffic under the following conditions:\n\n  *  The attacker is able to intercept or redirect network traffic between the client and the log receiver.\n  *  The attacker can present a server certificate issued by a certification authority trusted by the Socket Appender’s configured trust store (or by the default Java trust store if no custom trust store is configured).\n\n\nUsers are advised to upgrade to Apache Log4j Core version 2.25.3, which addresses this issue.\n\nAs an alternative mitigation, the Socket Appender may be configured to use a private or restricted trust root to limit the set of trusted certificates.",
+      "cvss": 5.5,
+      "cvss_estimated": true,
+      "severity": "MEDIUM",
+      "condition": "",
+      "kind": "vulnerability",
+      "source": "osv",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-68161",
+        "https://github.com/apache/logging-log4j2/pull/4002",
+        "https://github.com/apache/logging-log4j2/commit/3b93748497e1adbbd027fda8a5e7268ec5d0d578",
+        "https://github.com/apache/logging-log4j2",
+        "https://lists.apache.org/thread/xr33kyxq3sl67lwb61ggvm1fzc8k7dvx",
+        "https://logging.apache.org/cyclonedx/vdr.xml"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": 0.00767,
+      "epss_percentile": 0.55523,
+      "score": 0.5512,
+      "band": "medium",
+      "rationale": "CVSS 5.5，归一化 0.55；不在 CISA KEV；EPSS 0.0077，贡献 0.0012；暴露面为互联网，系数 1.00；综合分 0.5512，等级为中危。",
+      "fixed_versions": [
+        "2.25.3"
+      ],
+      "asset": {
+        "name": "org.apache.logging.log4j:log4j-core",
+        "version": "2.14.1",
+        "ecosystem": "Maven",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/pom.xml",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "org.apache.logging.log4j:log4j-core",
+        "product": "org.apache.logging.log4j:log4j-core",
+        "key": "Maven:org.apache.logging.log4j:log4j-core@2.14.1"
+      }
+    },
+    {
+      "id": "pypi-jinja2-2-11-2-cve-2025-27516",
+      "vuln_id": "CVE-2025-27516",
+      "aliases": [
+        "GHSA-cpwx-vrp4-4pq7",
+        "CVE-2025-27516",
+        "PYSEC-2026-1471"
+      ],
+      "summary": "Jinja2 vulnerable to sandbox breakout through attr filter selecting format method",
+      "details": "An oversight in how the Jinja sandboxed environment interacts with the `|attr` filter allows an attacker that controls the content of a template to execute arbitrary Python code.\n\nTo exploit the vulnerability, an attacker needs to control the content of a template. Whether that is the case depends on the type of application using Jinja. This vulnerability impacts users of applications which execute untrusted templates.\n\nJinja's sandbox does catch calls to `str.format` and ensures they don't escape the sandbox. However, it's possible to use the `|attr` filter to get a reference to a string's plain format method, bypassing the sandbox. After the fix, the `|attr` filter no longer bypasses the environment's attribute lookup.",
+      "cvss": 5.5,
+      "cvss_estimated": true,
+      "severity": "MEDIUM",
+      "condition": "",
+      "kind": "vulnerability",
+      "source": "osv",
+      "references": [
+        "https://github.com/pallets/jinja/security/advisories/GHSA-cpwx-vrp4-4pq7",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-27516",
+        "https://github.com/pallets/jinja/commit/90457bbf33b8662926ae65cdde4c4c32e756e403",
+        "https://github.com/pallets/jinja",
+        "https://lists.debian.org/debian-lts-announce/2025/04/msg00022.html",
+        "https://lists.debian.org/debian-lts-announce/2025/04/msg00045.html"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": 0.00507,
+      "epss_percentile": 0.43263,
+      "score": 0.5508,
+      "band": "medium",
+      "rationale": "CVSS 5.5，归一化 0.55；不在 CISA KEV；EPSS 0.0051，贡献 0.0008；暴露面为互联网，系数 1.00；综合分 0.5508，等级为中危。",
+      "fixed_versions": [
+        "3.1.6"
+      ],
+      "asset": {
+        "name": "jinja2",
+        "version": "2.11.2",
+        "ecosystem": "PyPI",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/requirements.txt",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "Jinja2==2.11.2",
+        "product": "jinja2",
+        "key": "PyPI:jinja2@2.11.2"
+      }
+    },
+    {
+      "id": "maven-org-apache-logging-log4j-log4j-core-2-14-1-cve-2026-34477",
+      "vuln_id": "CVE-2026-34477",
+      "aliases": [
+        "GHSA-6hg6-v5c8-fphq",
+        "CVE-2026-34477"
+      ],
+      "summary": "Apache Log4j Core: `verifyHostName` attribute silently ignored in TLS configuration",
+      "details": "The fix for  CVE-2025-68161 was incomplete: it addressed hostname verification only when enabled via the  [`log4j2.sslVerifyHostName`](https://logging.apache.org/log4j/2.x/manual/systemproperties.html#log4j2.sslVerifyHostName) system property, but not when configured through the [`verifyHostName`](https://logging.apache.org/log4j/2.x/manual/appenders/network.html#SslConfiguration-attr-verifyHostName) attribute of the `<Ssl>` element.\n\nAlthough the `verifyHostName` configuration attribute was introduced in Log4j Core 2.12.0, it was silently ignored in all versions through 2.25.3, leaving TLS connections vulnerable to interception regardless of the configured value.\n\nA network-based attacker may be able to perform a man-in-the-middle attack when all of the following conditions are met:\n\n  *  An SMTP, Socket, or Syslog appender is in use.\n  *  TLS is configured via a nested <Ssl> element.\n  *  The attacker can present a certificate issued by a CA trusted by the appender's configured trust store, or by the default Java trust store if none is configured.\n\nThis issue does not affect users of the HTTP appender, which uses a separate [`verifyHostname`](https://logging.apache.org/log4j/2.x/",
+      "cvss": 5.5,
+      "cvss_estimated": true,
+      "severity": "MEDIUM",
+      "condition": "",
+      "kind": "vulnerability",
+      "source": "osv",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-34477",
+        "https://github.com/apache/logging-log4j2/pull/4075",
+        "https://github.com/apache/logging-log4j2",
+        "https://lists.apache.org/thread/lkx8cl46t2bvkcwfcb2pd43ygc097lq4",
+        "https://logging.apache.org/cyclonedx/vdr.xml",
+        "https://logging.apache.org/log4j/2.x/manual/appenders/network.html#SslConfiguration-attr-verifyHostName"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": 0.0056,
+      "epss_percentile": 0.46584,
+      "score": 0.5508,
+      "band": "medium",
+      "rationale": "CVSS 5.5，归一化 0.55；不在 CISA KEV；EPSS 0.0056，贡献 0.0008；暴露面为互联网，系数 1.00；综合分 0.5508，等级为中危。",
+      "fixed_versions": [
+        "2.25.4"
+      ],
+      "asset": {
+        "name": "org.apache.logging.log4j:log4j-core",
+        "version": "2.14.1",
+        "ecosystem": "Maven",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/pom.xml",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "org.apache.logging.log4j:log4j-core",
+        "product": "org.apache.logging.log4j:log4j-core",
+        "key": "Maven:org.apache.logging.log4j:log4j-core@2.14.1"
+      }
+    },
+    {
+      "id": "maven-org-apache-logging-log4j-log4j-core-2-14-1-cve-2026-34479",
+      "vuln_id": "CVE-2026-34479",
+      "aliases": [
+        "GHSA-h383-gmxw-35v2",
+        "CVE-2026-34479"
+      ],
+      "summary": "Apache Log4j 1 to Log4j 2 bridge: silent log event loss in Log4j1XmlLayout due to unescaped XML 1.0 forbidden characters",
+      "details": "The `Log4j1XmlLayout` from the Apache Log4j 1-to-Log4j 2 bridge fails to escape characters forbidden by the XML 1.0 standard, producing malformed XML output. Conforming XML parsers are required to reject documents containing such characters with a fatal error, which may cause downstream log processing systems to drop or fail to index affected records.\n\nTwo groups of users are affected:\n\n* Those using `Log4j1XmlLayout` directly in a Log4j Core 2 configuration file.\n* Those using the Log4j 1 configuration compatibility layer with `org.apache.log4j.xml.XMLLayout` specified as the layout class.\n\nUsers are advised to upgrade to Apache Log4j 1-to-Log4j 2 bridge version `2.25.4`, which corrects this issue.\n\n> [!NOTE]\n> The Apache Log4j 1-to-Log4j 2 bridge is deprecated and will not be present in Log4j 3. Users are encouraged to consult the\n> [Log4j 1 to Log4j 2 migration guide](https://logging.apache.org/log4j/2.x/migrate-from-log4j1.html), and specifically the section on eliminating reliance on the bridge.",
+      "cvss": 5.5,
+      "cvss_estimated": true,
+      "severity": "MEDIUM",
+      "condition": "",
+      "kind": "vulnerability",
+      "source": "osv",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-34479",
+        "https://github.com/apache/logging-log4j2/pull/4078",
+        "https://github.com/apache/logging-log4j2",
+        "https://lists.apache.org/thread/gd0hp6mj17rn3kj279vgy4p7kd4zz5on",
+        "https://logging.apache.org/cyclonedx/vdr.xml",
+        "https://logging.apache.org/log4j/2.x/migrate-from-log4j1.html"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": 0.00535,
+      "epss_percentile": 0.45132,
+      "score": 0.5508,
+      "band": "medium",
+      "rationale": "CVSS 5.5，归一化 0.55；不在 CISA KEV；EPSS 0.0053，贡献 0.0008；暴露面为互联网，系数 1.00；综合分 0.5508，等级为中危。",
+      "fixed_versions": [
+        "2.25.4"
+      ],
+      "asset": {
+        "name": "org.apache.logging.log4j:log4j-core",
+        "version": "2.14.1",
+        "ecosystem": "Maven",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/pom.xml",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "org.apache.logging.log4j:log4j-core",
+        "product": "org.apache.logging.log4j:log4j-core",
+        "key": "Maven:org.apache.logging.log4j:log4j-core@2.14.1"
+      }
+    },
+    {
+      "id": "generic-nginx-1-18-0-eol-nginx-1-18",
+      "vuln_id": "EOL-NGINX-1.18",
+      "aliases": [
+        "EOL-NGINX-1.18"
+      ],
+      "summary": "nginx 1.18 已不在官方当前稳定分支",
+      "details": "1.18.0 发布于 2020 年。针对 CVE-2021-23017 的稳定分支修复在 1.20.1。建议升到仍接收安全修复的 stable 版本，且不低于 1.20.1。",
+      "cvss": 5.5,
+      "cvss_estimated": false,
+      "severity": "MEDIUM",
+      "condition": "升级到现行 stable，版本不低于 1.20.1，并回归站点配置与 TLS。",
+      "kind": "eol",
+      "source": "eol",
+      "references": [
+        "https://nginx.org/en/download.html"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": null,
+      "epss_percentile": null,
+      "score": 0.55,
+      "band": "medium",
+      "rationale": "生命周期项，使用维护风险分代替 CVSS。CVSS 5.5，归一化 0.55；不在 CISA KEV；EPSS 未取得，这项暂不加减分；暴露面为互联网，系数 1.00；综合分 0.5500，等级为中危。",
+      "fixed_versions": [],
+      "asset": {
+        "name": "nginx",
+        "version": "1.18.0",
+        "ecosystem": "generic",
+        "kind": "middleware",
+        "location": "nginx/1.18.0",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "nginx/1.18.0",
+        "product": "nginx",
+        "key": "generic:nginx@1.18.0"
+      }
+    },
+    {
+      "id": "pypi-jinja2-2-11-2-cve-2024-34064",
+      "vuln_id": "CVE-2024-34064",
+      "aliases": [
+        "GHSA-h75v-3vvj-5mfj",
+        "CVE-2024-34064",
+        "PYSEC-2026-1474"
+      ],
+      "summary": "Jinja vulnerable to HTML attribute injection when passing user input as keys to xmlattr filter",
+      "details": "The `xmlattr` filter in affected versions of Jinja accepts keys containing non-attribute characters. XML/HTML attributes cannot contain spaces, `/`, `>`, or `=`, as each would then be interpreted as starting a separate attribute. If an application accepts keys (as opposed to only values) as user input, and renders these in pages that other users see as well, an attacker could use this to inject other attributes and perform XSS. The fix for the previous GHSA-h5c8-rqwp-cp95 CVE-2024-22195 only addressed spaces but not other characters.\n\nAccepting keys as user input is now explicitly considered an unintended use case of the `xmlattr` filter, and code that does so without otherwise validating the input should be flagged as insecure, regardless of Jinja version. Accepting _values_ as user input continues to be safe.",
+      "cvss": 5.4,
+      "cvss_estimated": false,
+      "severity": "MEDIUM",
+      "condition": "",
+      "kind": "vulnerability",
+      "source": "osv",
+      "references": [
+        "https://github.com/pallets/jinja/security/advisories/GHSA-h75v-3vvj-5mfj",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-34064",
+        "https://github.com/pallets/jinja/commit/0668239dc6b44ef38e7a6c9f91f312fd4ca581cb",
+        "https://github.com/pallets/jinja",
+        "https://lists.debian.org/debian-lts-announce/2024/12/msg00009.html",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/567XIGSZMABG6TSMYWD7MIYNJSUQQRUC"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": 0.00979,
+      "epss_percentile": 0.62189,
+      "score": 0.5415,
+      "band": "medium",
+      "rationale": "CVSS 5.4，归一化 0.54；不在 CISA KEV；EPSS 0.0098，贡献 0.0015；暴露面为互联网，系数 1.00；综合分 0.5415，等级为中危。",
+      "fixed_versions": [
+        "3.1.4"
+      ],
+      "asset": {
+        "name": "jinja2",
+        "version": "2.11.2",
+        "ecosystem": "PyPI",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/requirements.txt",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "Jinja2==2.11.2",
+        "product": "jinja2",
+        "key": "PyPI:jinja2@2.11.2"
+      }
+    },
+    {
+      "id": "pypi-jinja2-2-11-2-cve-2024-22195",
+      "vuln_id": "CVE-2024-22195",
+      "aliases": [
+        "GHSA-h5c8-rqwp-cp95",
+        "CVE-2024-22195",
+        "PYSEC-2026-1473"
+      ],
+      "summary": "Jinja vulnerable to HTML attribute injection when passing user input as keys to xmlattr filter",
+      "details": "The `xmlattr` filter in affected versions of Jinja accepts keys containing spaces. XML/HTML attributes cannot contain spaces, as each would then be interpreted as a separate attribute. If an application accepts keys (as opposed to only values) as user input, and renders these in pages that other users see as well, an attacker could use this to inject other attributes and perform XSS. Note that accepting keys as user input is not common or a particularly intended use case of the `xmlattr` filter, and an application doing so should already be verifying what keys are provided regardless of this fix.",
+      "cvss": 5.4,
+      "cvss_estimated": false,
+      "severity": "MEDIUM",
+      "condition": "",
+      "kind": "vulnerability",
+      "source": "osv",
+      "references": [
+        "https://github.com/pallets/jinja/security/advisories/GHSA-h5c8-rqwp-cp95",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-22195",
+        "https://github.com/pallets/jinja/commit/716795349a41d4983a9a4771f7d883c96ea17be7",
+        "https://github.com/pallets/jinja",
+        "https://github.com/pallets/jinja/releases/tag/3.1.3",
+        "https://lists.debian.org/debian-lts-announce/2024/01/msg00010.html"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": 0.00892,
+      "epss_percentile": 0.59425,
+      "score": 0.5413,
+      "band": "medium",
+      "rationale": "CVSS 5.4，归一化 0.54；不在 CISA KEV；EPSS 0.0089，贡献 0.0013；暴露面为互联网，系数 1.00；综合分 0.5413，等级为中危。",
+      "fixed_versions": [
+        "3.1.3"
+      ],
+      "asset": {
+        "name": "jinja2",
+        "version": "2.11.2",
+        "ecosystem": "PyPI",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/requirements.txt",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "Jinja2==2.11.2",
+        "product": "jinja2",
+        "key": "PyPI:jinja2@2.11.2"
+      }
+    },
+    {
+      "id": "npm-lodash-4-17-20-cve-2020-28500",
+      "vuln_id": "CVE-2020-28500",
+      "aliases": [
+        "GHSA-29mw-wpgm-hmr9",
+        "CVE-2020-28500"
+      ],
+      "summary": "Regular Expression Denial of Service (ReDoS) in lodash",
+      "details": "All versions of package lodash prior to 4.17.21 are vulnerable to Regular Expression Denial of Service (ReDoS) via the `toNumber`, `trim` and `trimEnd` functions. \n\nSteps to reproduce (provided by reporter Liyuan Chen):\n```js\nvar lo = require('lodash');\n\nfunction build_blank(n) {\n    var ret = \"1\"\n    for (var i = 0; i < n; i++) {\n        ret += \" \"\n    }\n    return ret + \"1\";\n}\nvar s = build_blank(50000) var time0 = Date.now();\nlo.trim(s) \nvar time_cost0 = Date.now() - time0;\nconsole.log(\"time_cost0: \" + time_cost0);\nvar time1 = Date.now();\nlo.toNumber(s) var time_cost1 = Date.now() - time1;\nconsole.log(\"time_cost1: \" + time_cost1);\nvar time2 = Date.now();\nlo.trimEnd(s);\nvar time_cost2 = Date.now() - time2;\nconsole.log(\"time_cost2: \" + time_cost2);\n```",
+      "cvss": 5.3,
+      "cvss_estimated": false,
+      "severity": "MEDIUM",
+      "condition": "",
+      "kind": "vulnerability",
+      "source": "osv",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2020-28500",
+        "https://github.com/github/advisory-database/pull/6139",
+        "https://github.com/lodash/lodash/pull/5065",
+        "https://github.com/lodash/lodash/pull/5065/commits/02906b8191d3c100c193fe6f7b27d1c40f200bb7",
+        "https://github.com/lodash/lodash/commit/c4847ebe7d14540bb28a8b932a9ce1b9ecbfee1a",
+        "https://www.oracle.com/security-alerts/cpuoct2021.html"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": 0.07336,
+      "epss_percentile": 0.94394,
+      "score": 0.541,
+      "band": "medium",
+      "rationale": "CVSS 5.3，归一化 0.53；不在 CISA KEV；EPSS 0.0734，贡献 0.0110；暴露面为互联网，系数 1.00；综合分 0.5410，等级为中危。",
+      "fixed_versions": [
+        "4.17.21"
+      ],
+      "asset": {
+        "name": "lodash",
+        "version": "4.17.20",
+        "ecosystem": "npm",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/package.json",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "dependencies:lodash@4.17.20",
+        "product": "lodash",
+        "key": "npm:lodash@4.17.20"
+      }
+    },
+    {
+      "id": "pypi-jinja2-2-11-2-cve-2020-28493",
+      "vuln_id": "CVE-2020-28493",
+      "aliases": [
+        "GHSA-g3rq-g295-4j3m",
+        "CVE-2020-28493",
+        "PYSEC-2021-66",
+        "SNYK-PYTHON-JINJA2-1012994"
+      ],
+      "summary": "Regular Expression Denial of Service (ReDoS) in Jinja2",
+      "details": "This affects the package jinja2 from 0.0.0 and before 2.11.3. The ReDOS vulnerability of the regex is mainly due to the sub-pattern [a-zA-Z0-9._-]+.[a-zA-Z0-9._-]+ This issue can be mitigated by Markdown to format user content instead of the urlize filter, or by implementing request timeouts and limiting process memory.",
+      "cvss": 5.3,
+      "cvss_estimated": false,
+      "severity": "MEDIUM",
+      "condition": "",
+      "kind": "vulnerability",
+      "source": "osv",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2020-28493",
+        "https://github.com/pallets/jinja/pull/1343",
+        "https://github.com/pallets/jinja/commit/15ef8f09b659f9100610583938005a7a10472d4d",
+        "https://github.com/advisories/GHSA-g3rq-g295-4j3m",
+        "https://github.com/pallets/jinja",
+        "https://github.com/pallets/jinja/blob/ab81fd9c277900c85da0c322a2ff9d68a235b2e6/src/jinja2/utils.py%23L20",
+        "https://snyk.io/vuln/SNYK-PYTHON-JINJA2-1012994",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/PVAKCOO7VBVUBM3Q6CBBTPBFNP5NDXF4/"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": 0.03589,
+      "epss_percentile": 0.8943,
+      "score": 0.5354,
+      "band": "medium",
+      "rationale": "CVSS 5.3，归一化 0.53；不在 CISA KEV；EPSS 0.0359，贡献 0.0054；暴露面为互联网，系数 1.00；综合分 0.5354，等级为中危。",
+      "fixed_versions": [
+        "2.11.3"
+      ],
+      "asset": {
+        "name": "jinja2",
+        "version": "2.11.2",
+        "ecosystem": "PyPI",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/requirements.txt",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "Jinja2==2.11.2",
+        "product": "jinja2",
+        "key": "PyPI:jinja2@2.11.2"
+      }
+    },
+    {
+      "id": "npm-express-4-17-1-cve-2024-43796",
+      "vuln_id": "CVE-2024-43796",
+      "aliases": [
+        "GHSA-qw6h-vgh9-j6wx",
+        "CVE-2024-43796"
+      ],
+      "summary": "express vulnerable to XSS via response.redirect()",
+      "details": "### Impact\n\nIn express <4.20.0, passing untrusted user input - even after sanitizing it - to `response.redirect()` may execute untrusted code\n\n### Patches\n\nthis issue is patched in express 4.20.0\n\n### Workarounds\n\nusers are encouraged to upgrade to the patched version of express, but otherwise can workaround this issue by making sure any untrusted inputs are safe, ideally by validating them against an explicit allowlist\n\n### Details\n\nsuccessful exploitation of this vector requires the following:\n\n1. The attacker MUST control the input to response.redirect()\n1. express MUST NOT redirect before the template appears\n1. the browser MUST NOT complete redirection before:\n1. the user MUST click on the link in the template\n",
+      "cvss": 5.0,
+      "cvss_estimated": false,
+      "severity": "MEDIUM",
+      "condition": "",
+      "kind": "vulnerability",
+      "source": "osv",
+      "references": [
+        "https://github.com/expressjs/express/security/advisories/GHSA-qw6h-vgh9-j6wx",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-43796",
+        "https://github.com/expressjs/express/commit/54271f69b511fea198471e6ff3400ab805d6b553",
+        "https://github.com/expressjs/express"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": 0.00486,
+      "epss_percentile": 0.41861,
+      "score": 0.5007,
+      "band": "medium",
+      "rationale": "CVSS 5.0，归一化 0.50；不在 CISA KEV；EPSS 0.0049，贡献 0.0007；暴露面为互联网，系数 1.00；综合分 0.5007，等级为中危。",
+      "fixed_versions": [
+        "4.20.0",
+        "5.0.0"
+      ],
+      "asset": {
+        "name": "express",
+        "version": "4.17.1",
+        "ecosystem": "npm",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/package.json",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "dependencies:express@4.17.1",
+        "product": "express",
+        "key": "npm:express@4.17.1"
+      }
+    }
+  ],
+  "plans": [
+    {
+      "id": "plan-generic-nginx-1-18-0",
+      "asset": {
+        "name": "nginx",
+        "version": "1.18.0",
+        "ecosystem": "generic",
+        "kind": "middleware",
+        "location": "nginx/1.18.0",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "nginx/1.18.0",
+        "product": "nginx",
+        "key": "generic:nginx@1.18.0"
+      },
+      "title": "更新 nginx 1.18.0",
+      "band": "critical",
+      "target_version": "不低于 1.20.1 的现行 stable",
+      "mode": "manual",
+      "prechecks": [
+        "确认处于维护窗口，并通知依赖该服务的应用负责人。",
+        "记录当前版本、配置路径和最近一次备份位置。",
+        "在预发或快照上先走一遍同样的步骤。",
+        "阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。"
+      ],
+      "steps": [
+        {
+          "title": "升级到现行 stable",
+          "display": "将 nginx 升到仍在接收安全修复的 stable，且不低于 1.20.1。先备份 nginx.conf、证书和站点配置。",
+          "manual": true,
+          "argv": null
+        },
+        {
+          "title": "核对 resolver",
+          "display": "若配置里没有 resolver，CVE-2021-23017 的可利用性会低很多，但仍应离开 1.18。",
+          "manual": true,
+          "argv": null
+        }
+      ],
+      "rollback": [
+        "用备份的配置和原版本软件包重新拉起 nginx"
+      ],
+      "verify": [
+        "版本应变为 不低于 1.20.1 的现行 stable 或更新。",
+        "进程能够启动，健康检查和错误日志没有新增异常。",
+        "抽查核心业务读写，确认回滚材料仍可使用。"
+      ],
+      "window": "建议 24 小时内处理",
+      "finding_ids": [
+        "generic-nginx-1-18-0-cve-2021-23017",
+        "generic-nginx-1-18-0-eol-nginx-1-18"
+      ],
+      "command_hash": "d389485150808e55b5a6abf3afdc790518aa2ff54e1ed23cac9ff1b20668922e",
+      "narrative": "### 结论\nnginx 当前版本 1.18.0，所在位置 nginx/1.18.0，暴露面为互联网。本组最高等级为严重。建议 24 小时内处理。\n\n### 优先原因\nCVSS 7.7，归一化 0.77；不在 CISA KEV；EPSS 0.5346，贡献 0.0802；暴露面为互联网，系数 1.00；综合分 0.8502，等级为严重。\n仅在配置了 resolver 时受影响。修复前可先确认配置里是否出现 resolver 指令。\n\n### 涉及条目\n- CVE-2021-23017：nginx resolver 存在越界写，伪造 DNS 应答可能导致 worker 崩溃或其他影响（CVSS 7.7）\n- 生命周期：nginx 1.18 已不在官方当前稳定分支（CVSS 5.5）\n\n### 建议动作\n目标：不低于 1.20.1 的现行 stable。\n这组变更包含迁移或构建清单修改，工具只给出步骤，不代为执行。\n\n### 变更前\n- 确认处于维护窗口，并通知依赖该服务的应用负责人。\n- 记录当前版本、配置路径和最近一次备份位置。\n- 在预发或快照上先走一遍同样的步骤。\n- 阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。\n\n### 步骤\n1. （人工）升级到现行 stable：将 nginx 升到仍在接收安全修复的 stable，且不低于 1.20.1。先备份 nginx.conf、证书和站点配置。\n2. （人工）核对 resolver：若配置里没有 resolver，CVE-2021-23017 的可利用性会低很多，但仍应离开 1.18。\n\n### 回滚\n- 用备份的配置和原版本软件包重新拉起 nginx\n\n### 验证\n- 版本应变为 不低于 1.20.1 的现行 stable 或更新。\n- 进程能够启动，健康检查和错误日志没有新增异常。\n- 抽查核心业务读写，确认回滚材料仍可使用。\n\n说明由固定模板生成，命令不来自语言模型。",
+      "narrative_source": "template",
+      "status": "pending"
+    },
+    {
+      "id": "plan-maven-org-apache-logging-log4j-log4j-core-2-14-1",
+      "asset": {
+        "name": "org.apache.logging.log4j:log4j-core",
+        "version": "2.14.1",
+        "ecosystem": "Maven",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/pom.xml",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "org.apache.logging.log4j:log4j-core",
+        "product": "org.apache.logging.log4j:log4j-core",
+        "key": "Maven:org.apache.logging.log4j:log4j-core@2.14.1"
+      },
+      "title": "更新 org.apache.logging.log4j:log4j-core 2.14.1",
+      "band": "critical",
+      "target_version": "2.25.4",
+      "mode": "manual",
+      "prechecks": [
+        "确认处于维护窗口，并通知依赖该服务的应用负责人。",
+        "记录当前版本、配置路径和最近一次备份位置。",
+        "在预发或快照上先走一遍同样的步骤。",
+        "阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。"
+      ],
+      "steps": [
+        {
+          "title": "修改构建清单",
+          "display": "把 org.apache.logging.log4j:log4j-core 从 2.14.1 改到 2.25.4，然后重新构建并扫描依赖树。",
+          "manual": true,
+          "argv": null
+        },
+        {
+          "title": "回归日志与启动",
+          "display": "在预发启动应用，确认没有再加载旧的 log4j-core。",
+          "manual": true,
+          "argv": null
+        }
+      ],
+      "rollback": [
+        "用版本库还原 pom.xml / build 文件并重新部署上一构建产物"
+      ],
+      "verify": [
+        "版本应变为 2.25.4 或更新。",
+        "进程能够启动，健康检查和错误日志没有新增异常。",
+        "抽查核心业务读写，确认回滚材料仍可使用。"
+      ],
+      "window": "CISA KEV 截止日期 2021-12-24 已过，建议 24 小时内处理",
+      "finding_ids": [
+        "maven-org-apache-logging-log4j-log4j-core-2-14-1-cve-2021-44228",
+        "maven-org-apache-logging-log4j-log4j-core-2-14-1-cve-2021-45046",
+        "maven-org-apache-logging-log4j-log4j-core-2-14-1-cve-2021-45105",
+        "maven-org-apache-logging-log4j-log4j-core-2-14-1-cve-2021-44832",
+        "maven-org-apache-logging-log4j-log4j-core-2-14-1-cve-2026-34480",
+        "maven-org-apache-logging-log4j-log4j-core-2-14-1-cve-2025-68161",
+        "maven-org-apache-logging-log4j-log4j-core-2-14-1-cve-2026-34477",
+        "maven-org-apache-logging-log4j-log4j-core-2-14-1-cve-2026-34479"
+      ],
+      "command_hash": "be588142fc1761583317d3cf53d238a3b4918bb70325f21e0c9886f62c91a510",
+      "narrative": "### 结论\norg.apache.logging.log4j:log4j-core 当前版本 2.14.1，所在位置 demo/lab/app/pom.xml，暴露面为互联网。本组最高等级为严重。CISA KEV 截止日期 2021-12-24 已过，建议 24 小时内处理。\n\n### 优先原因\nCVSS 10.0，归一化 1.00；在 CISA KEV 中，贡献 0.25；EPSS 1.0000，贡献 0.1500；暴露面为互联网，系数 1.00；综合分 1.0000，等级为严重。 触发规则：KEV 且 CVSS 不低于 7，等级至少为严重。\nlog4j-api 单独存在时不受 Log4Shell 影响，需要确认依赖树里是 log4j-core。\n\n### 涉及条目\n- CVE-2021-44228：Apache Log4j2 JNDI 查找导致远程代码执行（Log4Shell）（CVSS 10.0，KEV）\n- CVE-2021-45046：Log4j2 在非默认布局下仍可通过 JNDI 造成远程代码执行或拒绝服务（CVSS 9.0，KEV）\n- CVE-2021-45105：Apache Log4j2 vulnerable to Improper Input Validation and Uncontrolled Recursion（CVSS 8.6）\n- CVE-2021-44832：Improper Input Validation and Injection in Apache Log4j2（CVSS 6.6）\n- CVE-2026-34480：Apache Log4j Core: Silent log event loss in XmlLayout due to unescaped XML 1.0 forbidden characters（CVSS 5.5）\n- CVE-2025-68161：Apache Log4j does not verify the TLS hostname in its Socket Appender（CVSS 5.5）\n- CVE-2026-34477：Apache Log4j Core: `verifyHostName` attribute silently ignored in TLS configuration（CVSS 5.5）\n- CVE-2026-34479：Apache Log4j 1 to Log4j 2 bridge: silent log event loss in Log4j1XmlLayout due to unescaped XML 1.0 forbidden characters（CVSS 5.5）\n\n### 建议动作\n目标：2.25.4。\n这组变更包含迁移或构建清单修改，工具只给出步骤，不代为执行。\n\n### 变更前\n- 确认处于维护窗口，并通知依赖该服务的应用负责人。\n- 记录当前版本、配置路径和最近一次备份位置。\n- 在预发或快照上先走一遍同样的步骤。\n- 阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。\n\n### 步骤\n1. （人工）修改构建清单：把 org.apache.logging.log4j:log4j-core 从 2.14.1 改到 2.25.4，然后重新构建并扫描依赖树。\n2. （人工）回归日志与启动：在预发启动应用，确认没有再加载旧的 log4j-core。\n\n### 回滚\n- 用版本库还原 pom.xml / build 文件并重新部署上一构建产物\n\n### 验证\n- 版本应变为 2.25.4 或更新。\n- 进程能够启动，健康检查和错误日志没有新增异常。\n- 抽查核心业务读写，确认回滚材料仍可使用。\n\n说明由固定模板生成，命令不来自语言模型。",
+      "narrative_source": "template",
+      "status": "pending"
+    },
+    {
+      "id": "plan-debian-redis-5-5-0-7-2-deb10u1",
+      "asset": {
+        "name": "redis",
+        "version": "5:5.0.7-2+deb10u1",
+        "ecosystem": "Debian",
+        "kind": "middleware",
+        "location": "demo/lab/dpkg.tsv",
+        "exposure": "internal",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "redis-server 5:5.0.7-2+deb10u1；v=5.0.7",
+        "product": "redis",
+        "key": "Debian:redis@5:5.0.7-2+deb10u1"
+      },
+      "title": "更新 redis 5:5.0.7-2+deb10u1",
+      "band": "critical",
+      "target_version": "5:5.0.14-1+deb10u2（buster 安全更新；随后规划离开 5.0）",
+      "mode": "auto_eligible",
+      "prechecks": [
+        "确认处于维护窗口，并通知依赖该服务的应用负责人。",
+        "记录当前版本、配置路径和最近一次备份位置。",
+        "在预发或快照上先走一遍同样的步骤。",
+        "阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。"
+      ],
+      "steps": [
+        {
+          "title": "备份 RDB/AOF 与 redis.conf",
+          "display": "cp /var/lib/redis 与 /etc/redis 到维护目录",
+          "manual": true,
+          "argv": null
+        },
+        {
+          "title": "安装 Debian 安全更新",
+          "display": "apt-get install --only-upgrade redis-server",
+          "manual": false,
+          "argv": [
+            "apt-get",
+            "install",
+            "--only-upgrade",
+            "redis-server"
+          ]
+        },
+        {
+          "title": "离开已经停止维护的 5.0 分支",
+          "display": "另排窗口迁移到仍在维护的主版本，本工具不自动做大版本迁移。",
+          "manual": true,
+          "argv": null
+        }
+      ],
+      "rollback": [
+        "apt-get install redis-server=5:5.0.7-2+deb10u1",
+        "用备份的 RDB/AOF 恢复数据"
+      ],
+      "verify": [
+        "版本应变为 5:5.0.14-1+deb10u2（buster 安全更新；随后规划离开 5.0） 或更新。",
+        "进程能够启动，健康检查和错误日志没有新增异常。",
+        "抽查核心业务读写，确认回滚材料仍可使用。"
+      ],
+      "window": "CISA KEV 截止日期 2022-04-18 已过，建议 24 小时内处理",
+      "finding_ids": [
+        "debian-redis-5-5-0-7-2deb10u1-cve-2022-0543",
+        "debian-redis-5-5-0-7-2deb10u1-eol-redis-5-0"
+      ],
+      "command_hash": "0e3d30ea1481fb0c64d23183d6910372b121ae4204d4170800df8ad5aaa4cdd5",
+      "narrative": "### 结论\nredis 当前版本 5:5.0.7-2+deb10u1，所在位置 demo/lab/dpkg.tsv，暴露面为内网。本组最高等级为严重。CISA KEV 截止日期 2022-04-18 已过，建议 24 小时内处理。\n\n### 优先原因\nCVSS 10.0，归一化 1.00；在 CISA KEV 中，贡献 0.25；EPSS 0.9935，贡献 0.1490；暴露面为内网，系数 0.85；综合分 0.8500，等级为严重。 触发规则：KEV 且 CVSS 不低于 7，等级至少为严重。\n只适用于 Debian 打包的 redis。请用 dpkg 版本确认，不要把官方二进制或官方镜像算进来。\n\n### 涉及条目\n- CVE-2022-0543：Debian 打包的 Redis 因 Lua 库包装问题可逃出沙箱，造成远程代码执行（CVSS 10.0，KEV）\n- 生命周期：Redis 5.0 已退出上游维护，5.0.14 之后没有新的安全发布（CVSS 6.5）\n\n### 建议动作\n目标：5:5.0.14-1+deb10u2（buster 安全更新；随后规划离开 5.0）。\n其中白名单内的安装命令可以在批准后执行；默认只做预演。\n\n### 变更前\n- 确认处于维护窗口，并通知依赖该服务的应用负责人。\n- 记录当前版本、配置路径和最近一次备份位置。\n- 在预发或快照上先走一遍同样的步骤。\n- 阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。\n\n### 步骤\n1. （人工）备份 RDB/AOF 与 redis.conf：cp /var/lib/redis 与 /etc/redis 到维护目录\n2. （白名单命令）安装 Debian 安全更新：apt-get install --only-upgrade redis-server\n3. （人工）离开已经停止维护的 5.0 分支：另排窗口迁移到仍在维护的主版本，本工具不自动做大版本迁移。\n\n### 回滚\n- apt-get install redis-server=5:5.0.7-2+deb10u1\n- 用备份的 RDB/AOF 恢复数据\n\n### 验证\n- 版本应变为 5:5.0.14-1+deb10u2（buster 安全更新；随后规划离开 5.0） 或更新。\n- 进程能够启动，健康检查和错误日志没有新增异常。\n- 抽查核心业务读写，确认回滚材料仍可使用。\n\n说明由固定模板生成，命令不来自语言模型。",
+      "narrative_source": "template",
+      "status": "pending"
+    },
+    {
+      "id": "plan-npm-express-4-17-1",
+      "asset": {
+        "name": "express",
+        "version": "4.17.1",
+        "ecosystem": "npm",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/package.json",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "dependencies:express@4.17.1",
+        "product": "express",
+        "key": "npm:express@4.17.1"
+      },
+      "title": "更新 express 4.17.1",
+      "band": "high",
+      "target_version": "4.20.0",
+      "mode": "auto_eligible",
+      "prechecks": [
+        "确认处于维护窗口，并通知依赖该服务的应用负责人。",
+        "记录当前版本、配置路径和最近一次备份位置。",
+        "在预发或快照上先走一遍同样的步骤。"
+      ],
+      "steps": [
+        {
+          "title": "确认锁文件已提交",
+          "display": "检查 package-lock.json 或 yarn.lock 已在版本库中",
+          "manual": true,
+          "argv": null
+        },
+        {
+          "title": "升级 npm 依赖",
+          "display": "npm install express@4.20.0",
+          "manual": false,
+          "argv": [
+            "npm",
+            "install",
+            "express@4.20.0"
+          ]
+        }
+      ],
+      "rollback": [
+        "npm install express@4.17.1"
+      ],
+      "verify": [
+        "版本应变为 4.20.0 或更新。",
+        "进程能够启动，健康检查和错误日志没有新增异常。",
+        "抽查核心业务读写，确认回滚材料仍可使用。"
+      ],
+      "window": "建议 7 天内处理",
+      "finding_ids": [
+        "npm-express-4-17-1-cve-2024-29041",
+        "npm-express-4-17-1-cve-2024-43796"
+      ],
+      "command_hash": "56e31652b96d58f9d0fcdc381f541dfd1711c0af861619def2725bab6d31a59d",
+      "narrative": "### 结论\nexpress 当前版本 4.17.1，所在位置 demo/lab/app/package.json，暴露面为互联网。本组最高等级为高危。建议 7 天内处理。\n\n### 优先原因\nCVSS 6.1，归一化 0.61；不在 CISA KEV；EPSS 0.0079，贡献 0.0012；暴露面为互联网，系数 1.00；综合分 0.6112，等级为高危。\n\n### 涉及条目\n- CVE-2024-29041：Express.js Open Redirect in malformed URLs（CVSS 6.1）\n- CVE-2024-43796：express vulnerable to XSS via response.redirect()（CVSS 5.0）\n\n### 建议动作\n目标：4.20.0。\n其中白名单内的安装命令可以在批准后执行；默认只做预演。\n\n### 变更前\n- 确认处于维护窗口，并通知依赖该服务的应用负责人。\n- 记录当前版本、配置路径和最近一次备份位置。\n- 在预发或快照上先走一遍同样的步骤。\n\n### 步骤\n1. （人工）确认锁文件已提交：检查 package-lock.json 或 yarn.lock 已在版本库中\n2. （白名单命令）升级 npm 依赖：npm install express@4.20.0\n\n### 回滚\n- npm install express@4.17.1\n\n### 验证\n- 版本应变为 4.20.0 或更新。\n- 进程能够启动，健康检查和错误日志没有新增异常。\n- 抽查核心业务读写，确认回滚材料仍可使用。\n\n说明由固定模板生成，命令不来自语言模型。",
+      "narrative_source": "template",
+      "status": "pending"
+    },
+    {
+      "id": "plan-go-gopkg-in-yaml-v3-v3-0-0-20210107192922-496545a6307b",
+      "asset": {
+        "name": "gopkg.in/yaml.v3",
+        "version": "v3.0.0-20210107192922-496545a6307b",
+        "ecosystem": "Go",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/go.mod",
+        "exposure": "internal",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b",
+        "product": "gopkg.in/yaml.v3",
+        "key": "Go:gopkg.in/yaml.v3@v3.0.0-20210107192922-496545a6307b"
+      },
+      "title": "更新 gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b",
+      "band": "high",
+      "target_version": "3.0.0-20220521103104-8f96da9f5d5e",
+      "mode": "manual",
+      "prechecks": [
+        "确认处于维护窗口，并通知依赖该服务的应用负责人。",
+        "记录当前版本、配置路径和最近一次备份位置。",
+        "在预发或快照上先走一遍同样的步骤。"
+      ],
+      "steps": [
+        {
+          "title": "按发行版或供应商流程升级",
+          "display": "将 gopkg.in/yaml.v3 从 v3.0.0-20210107192922-496545a6307b 升级到 3.0.0-20220521103104-8f96da9f5d5e。先备份配置和数据。",
+          "manual": true,
+          "argv": null
+        }
+      ],
+      "rollback": [
+        "保留升级前的软件包版本、配置和数据快照，确认可以按原版本拉起"
+      ],
+      "verify": [
+        "版本应变为 3.0.0-20220521103104-8f96da9f5d5e 或更新。",
+        "进程能够启动，健康检查和错误日志没有新增异常。",
+        "抽查核心业务读写，确认回滚材料仍可使用。"
+      ],
+      "window": "建议 7 天内处理",
+      "finding_ids": [
+        "go-gopkg-in-yaml-v3-v3-0-0-20210107192922-496545a6307b-cve-2022-28948"
+      ],
+      "command_hash": "5c18acc7db411047360da272103d6c3eb7a449fbdc9009cbf3119e4427a6d814",
+      "narrative": "### 结论\ngopkg.in/yaml.v3 当前版本 v3.0.0-20210107192922-496545a6307b，所在位置 demo/lab/app/go.mod，暴露面为内网。本组最高等级为高危。建议 7 天内处理。\n\n### 优先原因\nCVSS 7.5，归一化 0.75；不在 CISA KEV；EPSS 0.0396，贡献 0.0059；暴露面为内网，系数 0.85；综合分 0.6426，等级为高危。\n\n### 涉及条目\n- CVE-2022-28948：gopkg.in/yaml.v3 Denial of Service（CVSS 7.5）\n\n### 建议动作\n目标：3.0.0-20220521103104-8f96da9f5d5e。\n这组变更包含迁移或构建清单修改，工具只给出步骤，不代为执行。\n\n### 变更前\n- 确认处于维护窗口，并通知依赖该服务的应用负责人。\n- 记录当前版本、配置路径和最近一次备份位置。\n- 在预发或快照上先走一遍同样的步骤。\n\n### 步骤\n1. （人工）按发行版或供应商流程升级：将 gopkg.in/yaml.v3 从 v3.0.0-20210107192922-496545a6307b 升级到 3.0.0-20220521103104-8f96da9f5d5e。先备份配置和数据。\n\n### 回滚\n- 保留升级前的软件包版本、配置和数据快照，确认可以按原版本拉起\n\n### 验证\n- 版本应变为 3.0.0-20220521103104-8f96da9f5d5e 或更新。\n- 进程能够启动，健康检查和错误日志没有新增异常。\n- 抽查核心业务读写，确认回滚材料仍可使用。\n\n说明由固定模板生成，命令不来自语言模型。",
+      "narrative_source": "template",
+      "status": "pending"
+    },
+    {
+      "id": "plan-pypi-jinja2-2-11-2",
+      "asset": {
+        "name": "jinja2",
+        "version": "2.11.2",
+        "ecosystem": "PyPI",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/requirements.txt",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "Jinja2==2.11.2",
+        "product": "jinja2",
+        "key": "PyPI:jinja2@2.11.2"
+      },
+      "title": "更新 jinja2 2.11.2",
+      "band": "high",
+      "target_version": "3.1.6",
+      "mode": "manual",
+      "prechecks": [
+        "确认处于维护窗口，并通知依赖该服务的应用负责人。",
+        "记录当前版本、配置路径和最近一次备份位置。",
+        "在预发或快照上先走一遍同样的步骤。"
+      ],
+      "steps": [
+        {
+          "title": "按发行版或供应商流程升级",
+          "display": "将 jinja2 从 2.11.2 升级到 3.1.6。先备份配置和数据。",
+          "manual": true,
+          "argv": null
+        }
+      ],
+      "rollback": [
+        "保留升级前的软件包版本、配置和数据快照，确认可以按原版本拉起"
+      ],
+      "verify": [
+        "版本应变为 3.1.6 或更新。",
+        "进程能够启动，健康检查和错误日志没有新增异常。",
+        "抽查核心业务读写，确认回滚材料仍可使用。"
+      ],
+      "window": "建议 7 天内处理",
+      "finding_ids": [
+        "pypi-jinja2-2-11-2-cve-2024-56326",
+        "pypi-jinja2-2-11-2-cve-2025-27516",
+        "pypi-jinja2-2-11-2-cve-2024-34064",
+        "pypi-jinja2-2-11-2-cve-2024-22195",
+        "pypi-jinja2-2-11-2-cve-2020-28493"
+      ],
+      "command_hash": "773bb18e25f43fa8f6ad7b2877729dd4b48f79df732abc64b426167dfd209cba",
+      "narrative": "### 结论\njinja2 当前版本 2.11.2，所在位置 demo/lab/app/requirements.txt，暴露面为互联网。本组最高等级为高危。建议 7 天内处理。\n\n### 优先原因\nCVSS 7.8，归一化 0.78；不在 CISA KEV；EPSS 0.0052，贡献 0.0008；暴露面为互联网，系数 1.00；综合分 0.7808，等级为高危。\n\n### 涉及条目\n- CVE-2024-56326：Jinja has a sandbox breakout through indirect reference to format method（CVSS 7.8）\n- CVE-2025-27516：Jinja2 vulnerable to sandbox breakout through attr filter selecting format method（CVSS 5.5）\n- CVE-2024-34064：Jinja vulnerable to HTML attribute injection when passing user input as keys to xmlattr filter（CVSS 5.4）\n- CVE-2024-22195：Jinja vulnerable to HTML attribute injection when passing user input as keys to xmlattr filter（CVSS 5.4）\n- CVE-2020-28493：Regular Expression Denial of Service (ReDoS) in Jinja2（CVSS 5.3）\n\n### 建议动作\n目标：3.1.6。\n这组变更包含迁移或构建清单修改，工具只给出步骤，不代为执行。\n\n### 变更前\n- 确认处于维护窗口，并通知依赖该服务的应用负责人。\n- 记录当前版本、配置路径和最近一次备份位置。\n- 在预发或快照上先走一遍同样的步骤。\n\n### 步骤\n1. （人工）按发行版或供应商流程升级：将 jinja2 从 2.11.2 升级到 3.1.6。先备份配置和数据。\n\n### 回滚\n- 保留升级前的软件包版本、配置和数据快照，确认可以按原版本拉起\n\n### 验证\n- 版本应变为 3.1.6 或更新。\n- 进程能够启动，健康检查和错误日志没有新增异常。\n- 抽查核心业务读写，确认回滚材料仍可使用。\n\n说明由固定模板生成，命令不来自语言模型。",
+      "narrative_source": "template",
+      "status": "pending"
+    },
+    {
+      "id": "plan-npm-lodash-4-17-20",
+      "asset": {
+        "name": "lodash",
+        "version": "4.17.20",
+        "ecosystem": "npm",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/package.json",
+        "exposure": "internet",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "dependencies:lodash@4.17.20",
+        "product": "lodash",
+        "key": "npm:lodash@4.17.20"
+      },
+      "title": "更新 lodash 4.17.20",
+      "band": "high",
+      "target_version": "4.18.0",
+      "mode": "auto_eligible",
+      "prechecks": [
+        "确认处于维护窗口，并通知依赖该服务的应用负责人。",
+        "记录当前版本、配置路径和最近一次备份位置。",
+        "在预发或快照上先走一遍同样的步骤。"
+      ],
+      "steps": [
+        {
+          "title": "确认锁文件已提交",
+          "display": "检查 package-lock.json 或 yarn.lock 已在版本库中",
+          "manual": true,
+          "argv": null
+        },
+        {
+          "title": "升级 npm 依赖",
+          "display": "npm install lodash@4.18.0",
+          "manual": false,
+          "argv": [
+            "npm",
+            "install",
+            "lodash@4.18.0"
+          ]
+        }
+      ],
+      "rollback": [
+        "npm install lodash@4.17.20"
+      ],
+      "verify": [
+        "版本应变为 4.18.0 或更新。",
+        "进程能够启动，健康检查和错误日志没有新增异常。",
+        "抽查核心业务读写，确认回滚材料仍可使用。"
+      ],
+      "window": "建议 7 天内处理",
+      "finding_ids": [
+        "npm-lodash-4-17-20-cve-2026-4800",
+        "npm-lodash-4-17-20-cve-2021-23337",
+        "npm-lodash-4-17-20-cve-2025-13465",
+        "npm-lodash-4-17-20-cve-2026-2950",
+        "npm-lodash-4-17-20-cve-2020-28500"
+      ],
+      "command_hash": "0a1b3aab314f33e3726b502db0dda59d9a664cf4b1be5a362d985ce49282e7bb",
+      "narrative": "### 结论\nlodash 当前版本 4.17.20，所在位置 demo/lab/app/package.json，暴露面为互联网。本组最高等级为高危。建议 7 天内处理。\n\n### 优先原因\nCVSS 8.1，归一化 0.81；不在 CISA KEV；EPSS 0.0281，贡献 0.0042；暴露面为互联网，系数 1.00；综合分 0.8142，等级为高危。\n\n### 涉及条目\n- CVE-2026-4800：lodash vulnerable to Code Injection via `_.template` imports key names（CVSS 8.1）\n- CVE-2021-23337：Command Injection in lodash（CVSS 7.2）\n- CVE-2025-13465：Lodash has Prototype Pollution Vulnerability in `_.unset` and `_.omit` functions（CVSS 6.5）\n- CVE-2026-2950：lodash vulnerable to Prototype Pollution via array path bypass in `_.unset` and `_.omit`（CVSS 6.5）\n- CVE-2020-28500：Regular Expression Denial of Service (ReDoS) in lodash（CVSS 5.3）\n\n### 建议动作\n目标：4.18.0。\n其中白名单内的安装命令可以在批准后执行；默认只做预演。\n\n### 变更前\n- 确认处于维护窗口，并通知依赖该服务的应用负责人。\n- 记录当前版本、配置路径和最近一次备份位置。\n- 在预发或快照上先走一遍同样的步骤。\n\n### 步骤\n1. （人工）确认锁文件已提交：检查 package-lock.json 或 yarn.lock 已在版本库中\n2. （白名单命令）升级 npm 依赖：npm install lodash@4.18.0\n\n### 回滚\n- npm install lodash@4.17.20\n\n### 验证\n- 版本应变为 4.18.0 或更新。\n- 进程能够启动，健康检查和错误日志没有新增异常。\n- 抽查核心业务读写，确认回滚材料仍可使用。\n\n说明由固定模板生成，命令不来自语言模型。",
+      "narrative_source": "template",
+      "status": "pending"
+    },
+    {
+      "id": "plan-npm-minimist-1-2-5",
+      "asset": {
+        "name": "minimist",
+        "version": "1.2.5",
+        "ecosystem": "npm",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/package.json",
+        "exposure": "internal",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "dependencies:minimist@1.2.5",
+        "product": "minimist",
+        "key": "npm:minimist@1.2.5"
+      },
+      "title": "更新 minimist 1.2.5",
+      "band": "high",
+      "target_version": "1.2.6",
+      "mode": "auto_eligible",
+      "prechecks": [
+        "确认处于维护窗口，并通知依赖该服务的应用负责人。",
+        "记录当前版本、配置路径和最近一次备份位置。",
+        "在预发或快照上先走一遍同样的步骤。",
+        "阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。"
+      ],
+      "steps": [
+        {
+          "title": "确认锁文件已提交",
+          "display": "检查 package-lock.json 或 yarn.lock 已在版本库中",
+          "manual": true,
+          "argv": null
+        },
+        {
+          "title": "升级 npm 依赖",
+          "display": "npm install minimist@1.2.6",
+          "manual": false,
+          "argv": [
+            "npm",
+            "install",
+            "minimist@1.2.6"
+          ]
+        }
+      ],
+      "rollback": [
+        "npm install minimist@1.2.5"
+      ],
+      "verify": [
+        "版本应变为 1.2.6 或更新。",
+        "进程能够启动，健康检查和错误日志没有新增异常。",
+        "抽查核心业务读写，确认回滚材料仍可使用。"
+      ],
+      "window": "建议 7 天内处理",
+      "finding_ids": [
+        "npm-minimist-1-2-5-cve-2021-44906"
+      ],
+      "command_hash": "b4b22881414324277685bcf10d3a04abe6ed9ea39e54e0babe6dbe5e1036d34d",
+      "narrative": "### 结论\nminimist 当前版本 1.2.5，所在位置 demo/lab/app/package.json，暴露面为内网。本组最高等级为高危。建议 7 天内处理。\n\n### 优先原因\nCVSS 9.8，归一化 0.98；不在 CISA KEV；EPSS 0.0458，贡献 0.0069；暴露面为内网，系数 0.85；综合分 0.8388，等级为高危。\n需要确认业务代码或传递依赖是否调用 minimist 解析不可信参数。\n\n### 涉及条目\n- CVE-2021-44906：minimist 1.2.5 及更早版本存在原型污染（CVSS 9.8）\n\n### 建议动作\n目标：1.2.6。\n其中白名单内的安装命令可以在批准后执行；默认只做预演。\n\n### 变更前\n- 确认处于维护窗口，并通知依赖该服务的应用负责人。\n- 记录当前版本、配置路径和最近一次备份位置。\n- 在预发或快照上先走一遍同样的步骤。\n- 阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。\n\n### 步骤\n1. （人工）确认锁文件已提交：检查 package-lock.json 或 yarn.lock 已在版本库中\n2. （白名单命令）升级 npm 依赖：npm install minimist@1.2.6\n\n### 回滚\n- npm install minimist@1.2.5\n\n### 验证\n- 版本应变为 1.2.6 或更新。\n- 进程能够启动，健康检查和错误日志没有新增异常。\n- 抽查核心业务读写，确认回滚材料仍可使用。\n\n说明由固定模板生成，命令不来自语言模型。",
+      "narrative_source": "template",
+      "status": "pending"
+    },
+    {
+      "id": "plan-generic-mysql-5-7-41",
+      "asset": {
+        "name": "mysql",
+        "version": "5.7.41",
+        "ecosystem": "generic",
+        "kind": "middleware",
+        "location": "Distrib 5.7.41",
+        "exposure": "internal",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "Distrib 5.7.41",
+        "product": "mysql",
+        "key": "generic:mysql@5.7.41"
+      },
+      "title": "更新 mysql 5.7.41",
+      "band": "high",
+      "target_version": "8.4 LTS",
+      "mode": "manual",
+      "prechecks": [
+        "确认处于维护窗口，并通知依赖该服务的应用负责人。",
+        "记录当前版本、配置路径和最近一次备份位置。",
+        "在预发或快照上先走一遍同样的步骤。",
+        "阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。"
+      ],
+      "steps": [
+        {
+          "title": "按发行版或供应商流程升级",
+          "display": "将 mysql 从 5.7.41 升级到 8.4 LTS。先备份配置和数据。",
+          "manual": true,
+          "argv": null
+        },
+        {
+          "title": "核对适用条件",
+          "display": "规划迁移到 MySQL 8.4 LTS，并先在预发完成应用兼容性验证。",
+          "manual": true,
+          "argv": null
+        }
+      ],
+      "rollback": [
+        "保留升级前的软件包版本、配置和数据快照，确认可以按原版本拉起"
+      ],
+      "verify": [
+        "版本应变为 8.4 LTS 或更新。",
+        "进程能够启动，健康检查和错误日志没有新增异常。",
+        "抽查核心业务读写，确认回滚材料仍可使用。"
+      ],
+      "window": "建议 7 天内处理",
+      "finding_ids": [
+        "generic-mysql-5-7-41-eol-mysql-5-7",
+        "generic-mysql-5-7-41-cve-2023-21980"
+      ],
+      "command_hash": "51aabb2ab2241f5b490c723492c6dc215d112d79f8936fd7a7c46f4dc3143ad9",
+      "narrative": "### 结论\nmysql 当前版本 5.7.41，所在位置 Distrib 5.7.41，暴露面为内网。本组最高等级为高危。建议 7 天内处理。\n\n### 优先原因\n生命周期项，使用维护风险分代替 CVSS。CVSS 7.5，归一化 0.75；不在 CISA KEV；EPSS 未取得，这项暂不加减分；暴露面为内网，系数 0.85；综合分 0.6375，等级为高危。\n规划迁移到 MySQL 8.4 LTS，并先在预发完成应用兼容性验证。\n\n### 涉及条目\n- 生命周期：MySQL 5.7 已于 2023-10-25 结束扩展支持，不再提供新的安全修复（CVSS 7.5）\n- CVE-2023-21980：MySQL Server 客户端组件漏洞，成功利用可能导致服务器被接管（CVSS 7.1）\n\n### 建议动作\n目标：8.4 LTS。\n这组变更包含迁移或构建清单修改，工具只给出步骤，不代为执行。\n\n### 变更前\n- 确认处于维护窗口，并通知依赖该服务的应用负责人。\n- 记录当前版本、配置路径和最近一次备份位置。\n- 在预发或快照上先走一遍同样的步骤。\n- 阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。\n\n### 步骤\n1. （人工）按发行版或供应商流程升级：将 mysql 从 5.7.41 升级到 8.4 LTS。先备份配置和数据。\n2. （人工）核对适用条件：规划迁移到 MySQL 8.4 LTS，并先在预发完成应用兼容性验证。\n\n### 回滚\n- 保留升级前的软件包版本、配置和数据快照，确认可以按原版本拉起\n\n### 验证\n- 版本应变为 8.4 LTS 或更新。\n- 进程能够启动，健康检查和错误日志没有新增异常。\n- 抽查核心业务读写，确认回滚材料仍可使用。\n\n说明由固定模板生成，命令不来自语言模型。",
+      "narrative_source": "template",
+      "status": "pending"
+    },
+    {
+      "id": "plan-pypi-pyyaml-5-3-1",
+      "asset": {
+        "name": "pyyaml",
+        "version": "5.3.1",
+        "ecosystem": "PyPI",
+        "kind": "app_dependency",
+        "location": "demo/lab/app/requirements.txt",
+        "exposure": "internal",
+        "host": "moshi-lab-01",
+        "source": "fixture:moshi-lab-01",
+        "evidence": "PyYAML==5.3.1",
+        "product": "pyyaml",
+        "key": "PyPI:pyyaml@5.3.1"
+      },
+      "title": "更新 pyyaml 5.3.1",
+      "band": "high",
+      "target_version": "5.4",
+      "mode": "auto_eligible",
+      "prechecks": [
+        "确认处于维护窗口，并通知依赖该服务的应用负责人。",
+        "记录当前版本、配置路径和最近一次备份位置。",
+        "在预发或快照上先走一遍同样的步骤。",
+        "阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。"
+      ],
+      "steps": [
+        {
+          "title": "冻结当前环境",
+          "display": "pip freeze > requirements.freeze.bak",
+          "manual": true,
+          "argv": null
+        },
+        {
+          "title": "升级锁定版本",
+          "display": "pip install pyyaml==5.4",
+          "manual": false,
+          "argv": [
+            "pip",
+            "install",
+            "pyyaml==5.4"
+          ]
+        }
+      ],
+      "rollback": [
+        "pip install pyyaml==5.3.1"
+      ],
+      "verify": [
+        "版本应变为 5.4 或更新。",
+        "进程能够启动，健康检查和错误日志没有新增异常。",
+        "抽查核心业务读写，确认回滚材料仍可使用。"
+      ],
+      "window": "建议 7 天内处理",
+      "finding_ids": [
+        "pypi-pyyaml-5-3-1-cve-2020-14343"
+      ],
+      "command_hash": "dd3b888aafc99fa819afe7073c7939ab40c1a977e3eb4cce399e2bdc04ebc0bb",
+      "narrative": "### 结论\npyyaml 当前版本 5.3.1，所在位置 demo/lab/app/requirements.txt，暴露面为内网。本组最高等级为高危。建议 7 天内处理。\n\n### 优先原因\nCVSS 9.8，归一化 0.98；不在 CISA KEV；EPSS 0.0598，贡献 0.0090；暴露面为内网，系数 0.85；综合分 0.8406，等级为高危。\n需要应用使用 full_load 或 FullLoader 处理不可信输入。\n\n### 涉及条目\n- CVE-2020-14343：PyYAML 在 5.4 之前通过 FullLoader 解析不可信 YAML 时可执行任意代码（CVSS 9.8）\n\n### 建议动作\n目标：5.4。\n其中白名单内的安装命令可以在批准后执行；默认只做预演。\n\n### 变更前\n- 确认处于维护窗口，并通知依赖该服务的应用负责人。\n- 记录当前版本、配置路径和最近一次备份位置。\n- 在预发或快照上先走一遍同样的步骤。\n- 阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。\n\n### 步骤\n1. （人工）冻结当前环境：pip freeze > requirements.freeze.bak\n2. （白名单命令）升级锁定版本：pip install pyyaml==5.4\n\n### 回滚\n- pip install pyyaml==5.3.1\n\n### 验证\n- 版本应变为 5.4 或更新。\n- 进程能够启动，健康检查和错误日志没有新增异常。\n- 抽查核心业务读写，确认回滚材料仍可使用。\n\n说明由固定模板生成，命令不来自语言模型。",
+      "narrative_source": "template",
+      "status": "pending"
+    }
+  ]
+}

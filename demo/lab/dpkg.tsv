@@ -1,0 +1,4 @@
+# dpkg-query -W 的节选。redis-server 使用 Debian 10 的打包版本，才能对照 CVE-2022-0543。
+redis-server	5:5.0.7-2+deb10u1
+bash	5.0-4
+coreutils	8.30-3

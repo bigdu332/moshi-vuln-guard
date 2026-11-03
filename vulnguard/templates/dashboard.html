@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="banner">
+  命令来自白名单模板。批准之前不会执行；即便批准，也要另外设置 <b>VULNGUARD_ALLOW_APPLY=1</b> 才会真正运行。未配置语言模型密钥时，说明由固定模板生成。
+</div>
+{% if not scan %}
+<section class="panel">
+  <h2>还没有巡检记录</h2>
+  <p>先对演示环境 <code>demo/lab</code> 做一次采集。</p>
+  <form method="post" action="/scans" class="inline">
+    <input type="hidden" name="source" value="fixture">
+    <input type="hidden" name="path" value="demo/lab">
+    <button class="primary" type="submit">巡检演示环境</button>
+  </form>
+</section>
+{% else %}
+<section class="cards">
+  <div class="card"><b>{{ counts.assets }}</b><span>资产</span></div>
+  <div class="card"><b>{{ counts.findings }}</b><span>发现</span></div>
+  <div class="card critical"><b>{{ counts.critical }}</b><span>严重</span></div>
+  <div class="card high"><b>{{ counts.high }}</b><span>高危</span></div>
+  <div class="card"><b>{{ counts.kev }}</b><span>KEV</span></div>
+  <div class="card"><b>{{ counts.plans }}</b><span>更新方案</span></div>
+</section>
+<section class="panel">
+  <h2>{{ scan.host }}</h2>
+  <p class="muted">{{ scan.created_at }} · 来源 {{ scan.source }} · OSV {{ scan.feeds.osv }} · KEV {{ scan.feeds.kev }} · EPSS {{ scan.feeds.epss }}</p>
+  <form method="post" action="/scans" class="inline">
+    <label>来源
+      <select name="source">
+        <option value="fixture">演示环境</option>
+        <option value="local">本机</option>
+        <option value="docker">Docker</option>
+        <option value="auto">自动</option>
+      </select>
+    </label>
+    <label>路径或主机
+      <input type="text" name="path" value="demo/lab">
+    </label>
+    <label class="check"><input type="checkbox" name="online" value="1"> 在线刷新漏洞源</label>
+    <button class="primary" type="submit">重新巡检</button>
+  </form>
+  {% if scan.warnings %}
+  <ul>{% for item in scan.warnings %}<li>{{ item }}</li>{% endfor %}</ul>
+  {% endif %}
+</section>
+<section class="panel">
+  <h2>发现</h2>
+  <div class="filters">
+    <a href="/" class="{{ 'on' if not band and kev != '1' else '' }}">全部</a>
+    <a href="/?band=critical" class="{{ 'on' if band == 'critical' else '' }}">严重</a>
+    <a href="/?band=high" class="{{ 'on' if band == 'high' else '' }}">高危</a>
+    <a href="/?band=medium" class="{{ 'on' if band == 'medium' else '' }}">中危</a>
+    <a href="/?kev=1" class="{{ 'on' if kev == '1' else '' }}">只看 KEV</a>
+  </div>
+  <table>
+    <thead>
+      <tr><th>等级</th><th>资产</th><th>条目</th><th>CVSS</th><th>KEV</th><th>EPSS</th><th>暴露面</th><th>综合分</th><th></th></tr>
+    </thead>
+    <tbody>
+    {% for item in findings %}
+      <tr>
+        <td><span class="tag {{ item.band }}">{{ item.band | band_label }}</span></td>
+        <td>{{ item.asset.name }}<br><span class="muted">{{ item.asset.version }}</span></td>
+        <td><a href="/findings/{{ item.id }}">{{ item.vuln_id }}</a><br><span class="muted">{{ item.summary }}</span></td>
+        <td>{{ item.cvss | cvss }}</td>
+        <td>{% if item.kev %}<span class="kev">KEV</span>{% endif %}</td>
+        <td>{{ item.epss | epss }}</td>
+        <td>{{ item.asset.exposure | exposure_label }}</td>
+        <td>{{ '%.4f'|format(item.score) }}</td>
+        <td>
+          {% for plan in scan.plans if item.id in plan.finding_ids %}
+          <a href="/plans/{{ plan.id }}">方案</a>
+          {% endfor %}
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="9">这个筛选条件下没有发现。</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endif %}
+{% endblock %}

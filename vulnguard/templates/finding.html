@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}{{ finding.vuln_id }} · VulnGuard{% endblock %}
+{% block body %}
+<p><a href="/">返回发现列表</a></p>
+<section class="split">
+  <article class="panel">
+    <p><span class="tag {{ finding.band }}">{{ finding.band | band_label }}</span>
+      {% if finding.kev %}<span class="kev"> CISA KEV</span>{% endif %}</p>
+    <h2>{{ finding.vuln_id }}</h2>
+    <p>{{ finding.summary }}</p>
+    <p>{{ finding.details }}</p>
+    {% if finding.condition %}<p><b>适用条件。</b>{{ finding.condition }}</p>{% endif %}
+    <p class="muted">{{ finding.rationale }}</p>
+    <table>
+      <tr><th>资产</th><td>{{ finding.asset.name }} {{ finding.asset.version }}（{{ finding.asset.ecosystem }}）</td></tr>
+      <tr><th>暴露面</th><td>{{ finding.asset.exposure | exposure_label }}</td></tr>
+      <tr><th>CVSS</th><td>{{ finding.cvss | cvss }}{% if finding.cvss_estimated %}（按严重级别估算）{% endif %}</td></tr>
+      <tr><th>EPSS</th><td>{{ finding.epss | epss }}{% if finding.epss_percentile %} · 分位 {{ '%.2f'|format(finding.epss_percentile) }}{% endif %}</td></tr>
+      <tr><th>综合分</th><td>{{ '%.4f'|format(finding.score) }}</td></tr>
+      <tr><th>来源</th><td>{{ finding.source }}</td></tr>
+      {% if finding.kev_due %}<tr><th>KEV 截止日期</th><td>{{ finding.kev_due }}</td></tr>{% endif %}
+    </table>
+    <ul>
+      {% for ref in finding.references %}<li><a href="{{ ref }}">{{ ref }}</a></li>{% endfor %}
+    </ul>
+  </article>
+  <article class="panel">
+    <h2>对应方案</h2>
+    {% if plan %}
+      <p><a href="/plans/{{ plan.id }}">{{ plan.title }}</a></p>
+      <p>目标 {{ plan.target_version or "人工确定" }}。{{ plan.window }}</p>
+      <div class="narrative">{{ plan.narrative }}</div>
+    {% else %}
+      <p>这条发现还没有单独方案。</p>
+    {% endif %}
+  </article>
+</section>
+{% endblock %}

@@ -1,0 +1,41 @@
+{
+  "items": [
+    {
+      "id": "EOL-MYSQL-5.7",
+      "name": "mysql",
+      "summary": "MySQL 5.7 已于 2023-10-25 结束扩展支持，不再提供新的安全修复",
+      "details": "Oracle 生命周期公告：自 2023-10-25 起 MySQL 5.7 进入 Sustaining Support。建议迁移到 MySQL 8.4 LTS。仅升级到 5.7 的最后一个小版本不能恢复安全更新。",
+      "cvss_equivalent": 7.5,
+      "references": ["https://www.mysql.com/support/eol-notice.html"],
+      "recommendation": "规划迁移到 MySQL 8.4 LTS，并先在预发完成应用兼容性验证。",
+      "ranges": [
+        {"introduced": "5.7.0", "fixed": "5.8.0"}
+      ]
+    },
+    {
+      "id": "EOL-REDIS-5.0",
+      "name": "redis",
+      "summary": "Redis 5.0 已退出上游维护，5.0.14 之后没有新的安全发布",
+      "details": "演示环境中的 5.0.7 低于最后一次 5.0 安全发布 5.0.14。即便升到 5.0.14，这条分支也不再接收后续修复。建议选当前仍在维护的上游版本，并单独做持久化与复制回归。",
+      "cvss_equivalent": 6.5,
+      "references": ["https://github.com/redis/redis/releases/tag/5.0.14"],
+      "recommendation": "短期至少升到 5.0.14；变更窗口内规划迁到仍在维护的主版本。",
+      "ranges": [
+        {"introduced": "5.0.0", "fixed": "6.0.0"},
+        {"introduced": "5:5.0.0", "fixed": "5:6.0.0"}
+      ]
+    },
+    {
+      "id": "EOL-NGINX-1.18",
+      "name": "nginx",
+      "summary": "nginx 1.18 已不在官方当前稳定分支",
+      "details": "1.18.0 发布于 2020 年。针对 CVE-2021-23017 的稳定分支修复在 1.20.1。建议升到仍接收安全修复的 stable 版本，且不低于 1.20.1。",
+      "cvss_equivalent": 5.5,
+      "references": ["https://nginx.org/en/download.html"],
+      "recommendation": "升级到现行 stable，版本不低于 1.20.1，并回归站点配置与 TLS。",
+      "ranges": [
+        {"introduced": "1.18.0", "fixed": "1.19.0"}
+      ]
+    }
+  ]
+}

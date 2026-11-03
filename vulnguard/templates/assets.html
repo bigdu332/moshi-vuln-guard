@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}资产 · VulnGuard{% endblock %}
+{% block body %}
+<section class="panel">
+  <h2>资产清单{% if scan %} · {{ scan.host }}{% endif %}</h2>
+  <table>
+    <thead><tr><th>名称</th><th>版本</th><th>生态</th><th>类型</th><th>暴露面</th><th>位置</th><th>证据</th></tr></thead>
+    <tbody>
+    {% for asset in assets %}
+      <tr>
+        <td>{{ asset.name }}</td>
+        <td>{{ asset.version }}</td>
+        <td>{{ asset.ecosystem }}</td>
+        <td>{{ asset.kind }}</td>
+        <td>{{ asset.exposure | exposure_label }}</td>
+        <td>{{ asset.location }}</td>
+        <td class="muted">{{ asset.evidence }}</td>
+      </tr>
+    {% else %}
+      <tr><td colspan="7">还没有资产。回到首页先做一次巡检。</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

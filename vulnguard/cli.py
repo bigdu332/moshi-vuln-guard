@@ -12,6 +12,9 @@ from vulnguard.pipeline import scan_and_write
 from vulnguard.remediate import preview
 from vulnguard.store import Store, plan_from_dict
 
+# 日常演示写到被 git 忽略的目录。已提交的样例在 artifacts/，要用 --out 显式覆盖。
+DEFAULT_OUT = "runtime/reports/latest"
+
 
 def main() -> None:
     parser = argparse.ArgumentParser(prog="vulnguard", description="对照公开漏洞清单，生成可复核的更新建议")
@@ -22,7 +25,7 @@ def main() -> None:
 
     demo = sub.add_parser("demo", help="用演示环境跑一遍并写出样例报告")
     demo.add_argument("--online", action="store_true", help="访问 OSV、KEV 和 EPSS")
-    demo.add_argument("--out", default="artifacts/demo-run")
+    demo.add_argument("--out", default=DEFAULT_OUT)
     demo.add_argument("--db", default="runtime/vulnguard.db")
 
     serve = sub.add_parser("serve", help="启动 Web 界面")
@@ -118,6 +121,6 @@ def _add_scan_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--source", choices=["auto", "fixture", "local", "docker", "ssh"], default="fixture")
     parser.add_argument("--path", default="demo/lab", help="fixture/local 目录，或 SSH 主机")
     parser.add_argument("--ssh-user", default=None)
-    parser.add_argument("--out", default="artifacts/demo-run")
+    parser.add_argument("--out", default=DEFAULT_OUT)
     parser.add_argument("--db", default="runtime/vulnguard.db")
     parser.add_argument("--online", action="store_true")

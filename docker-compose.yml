@@ -1,16 +1,24 @@
+# vulnguard 服务带有 Docker 客户端，并通过套接字读取下面这些带标签的旧容器。
+# 启动日志里会有一行「巡检来源=docker」。官方 Redis 镜像不是 Debian 包，不会命中 CVE-2022-0543。
 services:
   nginx:
     image: nginx:1.18.0
+    labels:
+      vulnguard.scan: "true"
     ports:
       - "127.0.0.1:8080:80"
 
   redis:
     image: redis:5.0.7
+    labels:
+      vulnguard.scan: "true"
     ports:
       - "127.0.0.1:6379:6379"
 
   mysql:
     image: mysql:5.7.44
+    labels:
+      vulnguard.scan: "true"
     environment:
       MYSQL_ROOT_PASSWORD: demo-only
       MYSQL_DATABASE: demo
@@ -19,6 +27,8 @@ services:
 
   legacy-app:
     build: ./demo/target
+    labels:
+      vulnguard.scan: "true"
     ports:
       - "127.0.0.1:8081:8081"
 
@@ -36,10 +46,25 @@ services:
       - ./demo/lab:/scan/lab:ro
       - vulnguard-runtime:/app/runtime
     environment:
+      VULNGUARD_DOCKER_PS_FILTER: label=vulnguard.scan=true
       VULNGUARD_LLM_BASE_URL: ${VULNGUARD_LLM_BASE_URL:-}
       VULNGUARD_LLM_API_KEY: ${VULNGUARD_LLM_API_KEY:-}
       VULNGUARD_LLM_MODEL: ${VULNGUARD_LLM_MODEL:-gpt-4o-mini}
       VULNGUARD_ALLOW_APPLY: ${VULNGUARD_ALLOW_APPLY:-0}
+    command:
+      - python
+      - -m
+      - vulnguard
+      - serve
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8000"
+      - --source
+      - docker
+      - --path
+      - /scan/lab
+      - --scan-on-start
 
 volumes:
   vulnguard-runtime:

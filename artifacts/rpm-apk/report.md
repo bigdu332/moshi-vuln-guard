@@ -1,6 +1,6 @@
-# VulnGuard 巡检报告 scan-20261103T095713Z
+# VulnGuard 巡检报告 scan-20261103T130827Z
 
-- 时间：2026-11-03 09:57 UTC
+- 时间：2026-11-03 13:08 UTC
 - 目标：rpm-apk-lab（来源 fixture，路径 demo/samples/rpm-apk）
 - 资产 6，发现 4，严重 2，高危 0，中危 2，低危 0
 - 数据源：OSV snapshot，KEV snapshot，EPSS snapshot，Trivy off

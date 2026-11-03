@@ -1,18 +1,50 @@
 {
-  "id": "scan-20261103T092758Z",
-  "created_at": "2026-11-03 09:27 UTC",
+  "id": "scan-20261103T130827Z",
+  "created_at": "2026-11-03 13:08 UTC",
   "source": "fixture",
   "target": "demo/lab",
   "host": "moshi-lab-01",
   "warnings": [
-    "未检测到 trivy、grype、syft、osv-scanner。本次使用内置匹配。这些项目的仓库链接写在 docs/设计文档.md。"
+    "未检测到 grype、syft、osv-scanner。这些工具的仓库链接写在 docs/设计文档.md，当前不解析它们的输出。",
+    "PATH 中没有 trivy。已读入目标目录的 trivy.json 作为第二意见，OSV 主路径保持不变。"
   ],
   "feeds": {
     "osv": "live",
     "kev": "live",
     "epss": "live",
-    "curated": "snapshot"
+    "curated": "snapshot",
+    "trivy": "fixture"
   },
+  "trivy": [
+    {
+      "vuln_id": "CVE-2020-14343",
+      "pkg_name": "pyyaml",
+      "installed": "5.3.1",
+      "fixed": "5.4",
+      "severity": "CRITICAL",
+      "title": "PyYAML before 5.4 can execute code via FullLoader",
+      "url": "https://avd.aquasec.com/nvd/cve-2020-14343",
+      "target": "app/requirements.txt",
+      "cvss": 9.8,
+      "origin": "fixture",
+      "in_osv": true,
+      "same_package": true
+    },
+    {
+      "vuln_id": "TRIVY-SAMPLE-ONLY",
+      "pkg_name": "demo-only-package",
+      "installed": "1.0.0",
+      "fixed": "1.0.1",
+      "severity": "LOW",
+      "title": "夹具条目，只用于展示「仅第二意见」。不是真实 CVE。",
+      "url": "https://github.com/aquasecurity/trivy",
+      "target": "app/requirements.txt",
+      "cvss": null,
+      "origin": "fixture",
+      "in_osv": false,
+      "same_package": false
+    }
+  ],
   "assets": [
     {
       "name": "redis",

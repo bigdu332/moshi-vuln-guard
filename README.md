@@ -31,7 +31,11 @@ python3 -m vulnguard serve
 
 `--online` 会访问 OSV、CISA KEV 和 FIRST EPSS。访问失败时自动改用 `vulnguard/data/` 里的快照，命令仍然成功。只想离线复现时去掉 `--online`。
 
-样例报告已经放在 `artifacts/demo-run/`，界面截图在 `artifacts/screenshots/`。
+`vulnguard demo` 和 `vulnguard scan` 默认把报告写到 `runtime/reports/latest/`。这个目录在 `.gitignore` 里，重复演示不会改动已提交文件。仓库里给阅卷看的样例仍在 `artifacts/demo-run/`，界面截图在 `artifacts/screenshots/`。要刷新样例时显式指定输出目录：
+
+```bash
+python3 -m vulnguard demo --online --out artifacts/demo-run
+```
 
 看 rpm/apk 夹具和 Trivy 第二意见：
 
@@ -53,20 +57,22 @@ python3 -m pytest -q
 
 ## 用 Docker 扫一套旧服务
 
-本仓库的开发环境没有 Docker 守护进程，所以提交的样例报告来自 `demo/lab` 这套固定资产。有 Docker 的机器可以：
+有 Docker 的机器可以：
 
 ```bash
 docker compose up --build
 ```
 
-Compose 会拉起 `nginx:1.18.0`、`redis:5.0.7`、`mysql:5.7.44` 和一个只携带清单、不安装旧依赖的应用容器，然后启动 VulnGuard。服务都绑在 `127.0.0.1`。界面在 http://127.0.0.1:8000 。
+Compose 拉起 `nginx:1.18.0`、`redis:5.0.7`、`mysql:5.7.44` 和一个只携带清单、不安装旧依赖的应用容器。VulnGuard 镜像里带有 Docker 客户端，并挂载宿主机的 `/var/run/docker.sock`。启动命令是 `--source docker`，只采集带 `vulnguard.scan=true` 标签的容器。容器日志里有一行 `巡检来源=docker`。界面在 http://127.0.0.1:8000 。
 
-Docker 扫到的 Redis 是官方镜像里的上游版本。CVE-2022-0543 是 Debian 打包问题，不会套到官方镜像上。要看这条 KEV，用默认的 `demo/lab`（Debian 10 的 `redis-server`）。
+`/scan/lab` 仍挂在容器里，供 Trivy 夹具使用；资产清单本身来自正在运行的旧容器，而不是 `demo/lab` 的 dpkg 节选。`nginx:1.18.0` 镜像里有 Debian 包，扫描会读到那个包版本（本环境是 `1.18.0-2~buster`）并保留 `nginx/1.18.0` 横幅。Redis 官方镜像报告上游版本 `5.0.7`，不是 Debian 包，不会命中 CVE-2022-0543。要看这条 KEV，用 `demo/lab`。MySQL 镜像是 `5.7.44`，会命中 5.7 生命周期，而不会命中只影响 5.7.41 及更早版本的 CVE-2023-21980。
+
+没有 Docker 守护进程时，不要用这条路径。`python3 -m vulnguard demo` 扫的是 `demo/lab`。
 
 ## 其他入口
 
 ```bash
-python3 -m vulnguard scan --source local --path . --online --out artifacts/local
+python3 -m vulnguard scan --source local --path . --online
 python3 -m vulnguard scan --source ssh --path 10.0.0.8 --ssh-user ubuntu
 python3 -m vulnguard serve --interval-hours 24 --scan-on-start --online
 python3 -m vulnguard approve plan-debian-redis-5-5-0-7-2-deb10u1 --approver 值班人甲 --comment "已核对回滚"
@@ -77,7 +83,7 @@ python3 -m vulnguard refresh-feeds
 定时也可以交给系统 cron，例如每天 02:00：
 
 ```bash
-0 2 * * * cd /opt/vulnguard && python3 -m vulnguard scan --source fixture --path demo/lab --online --out artifacts/nightly
+0 2 * * * cd /opt/vulnguard && python3 -m vulnguard scan --source fixture --path demo/lab --online --out runtime/reports/nightly
 ```
 
 ## 语言模型

@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import shlex
+import time
 from pathlib import Path
 from typing import Callable
 
@@ -85,11 +87,51 @@ def collect_local(manifest_root: Path, runner: Runner | None = None) -> tuple[li
     return merged, warnings, "localhost"
 
 
-def collect_docker(runner: Runner | None = None) -> tuple[list[Asset], list[str], str]:
+def collect_docker(
+    runner: Runner | None = None,
+    *,
+    attempts: int = 1,
+    pause: float = 2.0,
+) -> tuple[list[Asset], list[str], str]:
+    """读取正在运行的容器。attempts>1 时在守护进程或容器尚未就绪时重试。"""
+    last_error = "docker ps 没有返回正在运行的容器。"
+    failed = False
+    assets: list[Asset] = []
+    warnings: list[str] = []
+    host = "docker"
+    for attempt in range(1, max(attempts, 1) + 1):
+        try:
+            assets, warnings, host = _collect_docker_once(runner)
+            failed = False
+        except RuntimeError as exc:
+            failed = True
+            last_error = str(exc)
+            assets, warnings, host = [], [last_error], "docker"
+        if assets:
+            if attempt > 1:
+                warnings.append(f"第 {attempt} 次连接 Docker 后采集到容器。")
+            return assets, warnings, host
+        if attempt < attempts:
+            time.sleep(pause)
+    if failed or attempts > 1:
+        raise RuntimeError(last_error if failed else "docker ps 没有返回正在运行的容器。")
+    return assets, warnings, host
+
+
+def _docker_ps_argv() -> list[str]:
+    argv = ["docker", "ps"]
+    docker_filter = os.environ.get("VULNGUARD_DOCKER_PS_FILTER", "").strip()
+    if docker_filter:
+        argv.extend(["--filter", docker_filter])
+    argv.extend(["--format", "{{.ID}}\t{{.Names}}\t{{.Image}}"])
+    return argv
+
+
+def _collect_docker_once(runner: Runner | None) -> tuple[list[Asset], list[str], str]:
     run = runner or _subprocess_runner
-    code, out, err = run(["docker", "ps", "--format", "{{.ID}}\t{{.Names}}\t{{.Image}}"])
+    code, out, err = run(_docker_ps_argv())
     if code != 0:
-        raise RuntimeError(err.strip() or "docker ps 失败。当前环境可能没有 Docker 守护进程。")
+        raise RuntimeError(err.strip() or "docker ps 失败。当前环境可能没有 Docker 守护进程或客户端。")
     warnings: list[str] = []
     assets: list[Asset] = []
     rows = [line for line in out.splitlines() if line.strip()]

@@ -44,6 +44,26 @@
   <ul>{% for item in scan.warnings %}<li>{{ item }}</li>{% endfor %}</ul>
   {% endif %}
 </section>
+{% if scan.trivy %}
+<section class="panel">
+  <h2>Trivy 第二意见</h2>
+  <p class="muted">来自 trivy.json 或本机 trivy。这一节不改写 OSV 发现，也不生成可执行命令。</p>
+  <table>
+    <thead><tr><th>编号</th><th>包</th><th>已安装</th><th>修复版本</th><th>对照</th></tr></thead>
+    <tbody>
+    {% for hit in scan.trivy %}
+      <tr>
+        <td>{{ hit.vuln_id }}</td>
+        <td>{{ hit.pkg_name }}</td>
+        <td>{{ hit.installed }}</td>
+        <td>{{ hit.fixed }}</td>
+        <td>{% if hit.same_package %}与 OSV 主路径重合{% elif hit.in_osv %}编号已在主路径出现{% else %}仅第二意见{% endif %}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endif %}
 <section class="panel">
   <h2>发现</h2>
   <div class="filters">

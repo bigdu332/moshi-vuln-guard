@@ -1,0 +1,8 @@
+{
+  "hostname": "rpm-apk-lab",
+  "description": "只用于演示 rpm 与 apk 解析，不是默认巡检目标。",
+  "exposure": {
+    "nginx": "internet",
+    "redis": "internal"
+  }
+}

@@ -1,0 +1,4 @@
+# rpm -qa --queryformat '%{NAME}\t%{VERSION}-%{RELEASE}\n' 的节选
+nginx	1.18.0-1.el7
+redis	5.0.7-1.el7
+bash	4.2.46-34.el7

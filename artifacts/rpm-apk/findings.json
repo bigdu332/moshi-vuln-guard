@@ -1,0 +1,497 @@
+{
+  "id": "scan-20261103T095713Z",
+  "created_at": "2026-11-03 09:57 UTC",
+  "source": "fixture",
+  "target": "demo/samples/rpm-apk",
+  "host": "rpm-apk-lab",
+  "warnings": [
+    "未检测到 grype、syft、osv-scanner。这些工具的仓库链接写在 docs/设计文档.md，当前不解析它们的输出。",
+    "PATH 中没有 trivy，目标目录也没有 trivy.json。第二意见未附上。示例见 demo/trivy/sample.json。"
+  ],
+  "feeds": {
+    "osv": "snapshot",
+    "kev": "snapshot",
+    "epss": "snapshot",
+    "curated": "snapshot",
+    "trivy": "off"
+  },
+  "trivy": [],
+  "assets": [
+    {
+      "name": "nginx",
+      "version": "1.18.0-1.el7",
+      "ecosystem": "rpm",
+      "kind": "middleware",
+      "location": "demo/samples/rpm-apk/rpm.tsv",
+      "exposure": "internet",
+      "host": "rpm-apk-lab",
+      "source": "fixture:rpm-apk-lab",
+      "evidence": "nginx 1.18.0-1.el7",
+      "product": "nginx",
+      "key": "rpm:nginx@1.18.0-1.el7"
+    },
+    {
+      "name": "redis",
+      "version": "5.0.7-1.el7",
+      "ecosystem": "rpm",
+      "kind": "middleware",
+      "location": "demo/samples/rpm-apk/rpm.tsv",
+      "exposure": "internal",
+      "host": "rpm-apk-lab",
+      "source": "fixture:rpm-apk-lab",
+      "evidence": "redis 5.0.7-1.el7",
+      "product": "redis",
+      "key": "rpm:redis@5.0.7-1.el7"
+    },
+    {
+      "name": "bash",
+      "version": "4.2.46-34.el7",
+      "ecosystem": "rpm",
+      "kind": "os_package",
+      "location": "demo/samples/rpm-apk/rpm.tsv",
+      "exposure": "internal",
+      "host": "rpm-apk-lab",
+      "source": "fixture:rpm-apk-lab",
+      "evidence": "bash 4.2.46-34.el7",
+      "product": "bash",
+      "key": "rpm:bash@4.2.46-34.el7"
+    },
+    {
+      "name": "nginx",
+      "version": "1.18.0-r1",
+      "ecosystem": "Alpine",
+      "kind": "middleware",
+      "location": "demo/samples/rpm-apk/apk.txt",
+      "exposure": "internet",
+      "host": "rpm-apk-lab",
+      "source": "fixture:rpm-apk-lab",
+      "evidence": "nginx-1.18.0-r1",
+      "product": "nginx",
+      "key": "Alpine:nginx@1.18.0-r1"
+    },
+    {
+      "name": "redis",
+      "version": "5.0.7-r0",
+      "ecosystem": "Alpine",
+      "kind": "middleware",
+      "location": "demo/samples/rpm-apk/apk.txt",
+      "exposure": "internal",
+      "host": "rpm-apk-lab",
+      "source": "fixture:rpm-apk-lab",
+      "evidence": "redis-5.0.7-r0",
+      "product": "redis",
+      "key": "Alpine:redis@5.0.7-r0"
+    },
+    {
+      "name": "busybox",
+      "version": "1.36.1-r15",
+      "ecosystem": "Alpine",
+      "kind": "os_package",
+      "location": "demo/samples/rpm-apk/apk.txt",
+      "exposure": "internal",
+      "host": "rpm-apk-lab",
+      "source": "fixture:rpm-apk-lab",
+      "evidence": "busybox-1.36.1-r15",
+      "product": "busybox",
+      "key": "Alpine:busybox@1.36.1-r15"
+    }
+  ],
+  "findings": [
+    {
+      "id": "rpm-nginx-1-18-0-1-el7-cve-2021-23017",
+      "vuln_id": "CVE-2021-23017",
+      "aliases": [
+        "CVE-2021-23017",
+        "GHSA-83p9-mcpm-374v"
+      ],
+      "summary": "nginx resolver 存在越界写，伪造 DNS 应答可能导致 worker 崩溃或其他影响",
+      "details": "影响 nginx 0.6.18 至 1.20.0。修复版本为稳定分支 1.20.1 与主线 1.21.0。NVD 给出 CVSS 7.7（AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:L）。F5 公告给出的分数是 3.7。只有配置了 resolver 指令时才会走到这段代码，默认配置没有 resolver。",
+      "cvss": 7.7,
+      "cvss_estimated": false,
+      "severity": "HIGH",
+      "condition": "仅在配置了 resolver 时受影响。修复前可先确认配置里是否出现 resolver 指令。",
+      "kind": "vulnerability",
+      "source": "curated",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-23017",
+        "https://blog.nginx.org/blog/updating-nginx-dns-resolver-vulnerability-cve-2021-23017"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": 0.53461,
+      "epss_percentile": 0.98991,
+      "score": 0.8502,
+      "band": "critical",
+      "rationale": "CVSS 7.7，归一化 0.77；不在 CISA KEV；EPSS 0.5346，贡献 0.0802；暴露面为互联网，系数 1.00；综合分 0.8502，等级为严重。",
+      "fixed_versions": [
+        "1.20.1",
+        "1.21.0"
+      ],
+      "asset": {
+        "name": "nginx",
+        "version": "1.18.0-1.el7",
+        "ecosystem": "rpm",
+        "kind": "middleware",
+        "location": "demo/samples/rpm-apk/rpm.tsv",
+        "exposure": "internet",
+        "host": "rpm-apk-lab",
+        "source": "fixture:rpm-apk-lab",
+        "evidence": "nginx 1.18.0-1.el7",
+        "product": "nginx",
+        "key": "rpm:nginx@1.18.0-1.el7"
+      }
+    },
+    {
+      "id": "alpine-nginx-1-18-0-r1-cve-2021-23017",
+      "vuln_id": "CVE-2021-23017",
+      "aliases": [
+        "CVE-2021-23017",
+        "GHSA-83p9-mcpm-374v"
+      ],
+      "summary": "nginx resolver 存在越界写，伪造 DNS 应答可能导致 worker 崩溃或其他影响",
+      "details": "影响 nginx 0.6.18 至 1.20.0。修复版本为稳定分支 1.20.1 与主线 1.21.0。NVD 给出 CVSS 7.7（AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:L）。F5 公告给出的分数是 3.7。只有配置了 resolver 指令时才会走到这段代码，默认配置没有 resolver。",
+      "cvss": 7.7,
+      "cvss_estimated": false,
+      "severity": "HIGH",
+      "condition": "仅在配置了 resolver 时受影响。修复前可先确认配置里是否出现 resolver 指令。",
+      "kind": "vulnerability",
+      "source": "curated",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-23017",
+        "https://blog.nginx.org/blog/updating-nginx-dns-resolver-vulnerability-cve-2021-23017"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": 0.53461,
+      "epss_percentile": 0.98991,
+      "score": 0.8502,
+      "band": "critical",
+      "rationale": "CVSS 7.7，归一化 0.77；不在 CISA KEV；EPSS 0.5346，贡献 0.0802；暴露面为互联网，系数 1.00；综合分 0.8502，等级为严重。",
+      "fixed_versions": [
+        "1.20.1",
+        "1.21.0"
+      ],
+      "asset": {
+        "name": "nginx",
+        "version": "1.18.0-r1",
+        "ecosystem": "Alpine",
+        "kind": "middleware",
+        "location": "demo/samples/rpm-apk/apk.txt",
+        "exposure": "internet",
+        "host": "rpm-apk-lab",
+        "source": "fixture:rpm-apk-lab",
+        "evidence": "nginx-1.18.0-r1",
+        "product": "nginx",
+        "key": "Alpine:nginx@1.18.0-r1"
+      }
+    },
+    {
+      "id": "rpm-redis-5-0-7-1-el7-eol-redis-5-0",
+      "vuln_id": "EOL-REDIS-5.0",
+      "aliases": [
+        "EOL-REDIS-5.0"
+      ],
+      "summary": "Redis 5.0 已退出上游维护，5.0.14 之后没有新的安全发布",
+      "details": "演示环境中的 5.0.7 低于最后一次 5.0 安全发布 5.0.14。即便升到 5.0.14，这条分支也不再接收后续修复。建议选当前仍在维护的上游版本，并单独做持久化与复制回归。",
+      "cvss": 6.5,
+      "cvss_estimated": false,
+      "severity": "MEDIUM",
+      "condition": "短期至少升到 5.0.14；变更窗口内规划迁到仍在维护的主版本。",
+      "kind": "eol",
+      "source": "eol",
+      "references": [
+        "https://github.com/redis/redis/releases/tag/5.0.14"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": null,
+      "epss_percentile": null,
+      "score": 0.5525,
+      "band": "medium",
+      "rationale": "生命周期项，使用维护风险分代替 CVSS。CVSS 6.5，归一化 0.65；不在 CISA KEV；EPSS 未取得，这项暂不加减分；暴露面为内网，系数 0.85；综合分 0.5525，等级为中危。",
+      "fixed_versions": [],
+      "asset": {
+        "name": "redis",
+        "version": "5.0.7-1.el7",
+        "ecosystem": "rpm",
+        "kind": "middleware",
+        "location": "demo/samples/rpm-apk/rpm.tsv",
+        "exposure": "internal",
+        "host": "rpm-apk-lab",
+        "source": "fixture:rpm-apk-lab",
+        "evidence": "redis 5.0.7-1.el7",
+        "product": "redis",
+        "key": "rpm:redis@5.0.7-1.el7"
+      }
+    },
+    {
+      "id": "alpine-redis-5-0-7-r0-eol-redis-5-0",
+      "vuln_id": "EOL-REDIS-5.0",
+      "aliases": [
+        "EOL-REDIS-5.0"
+      ],
+      "summary": "Redis 5.0 已退出上游维护，5.0.14 之后没有新的安全发布",
+      "details": "演示环境中的 5.0.7 低于最后一次 5.0 安全发布 5.0.14。即便升到 5.0.14，这条分支也不再接收后续修复。建议选当前仍在维护的上游版本，并单独做持久化与复制回归。",
+      "cvss": 6.5,
+      "cvss_estimated": false,
+      "severity": "MEDIUM",
+      "condition": "短期至少升到 5.0.14；变更窗口内规划迁到仍在维护的主版本。",
+      "kind": "eol",
+      "source": "eol",
+      "references": [
+        "https://github.com/redis/redis/releases/tag/5.0.14"
+      ],
+      "kev": false,
+      "kev_due": null,
+      "kev_name": "",
+      "epss": null,
+      "epss_percentile": null,
+      "score": 0.5525,
+      "band": "medium",
+      "rationale": "生命周期项，使用维护风险分代替 CVSS。CVSS 6.5，归一化 0.65；不在 CISA KEV；EPSS 未取得，这项暂不加减分；暴露面为内网，系数 0.85；综合分 0.5525，等级为中危。",
+      "fixed_versions": [],
+      "asset": {
+        "name": "redis",
+        "version": "5.0.7-r0",
+        "ecosystem": "Alpine",
+        "kind": "middleware",
+        "location": "demo/samples/rpm-apk/apk.txt",
+        "exposure": "internal",
+        "host": "rpm-apk-lab",
+        "source": "fixture:rpm-apk-lab",
+        "evidence": "redis-5.0.7-r0",
+        "product": "redis",
+        "key": "Alpine:redis@5.0.7-r0"
+      }
+    }
+  ],
+  "plans": [
+    {
+      "id": "plan-rpm-nginx-1-18-0-1-el7",
+      "asset": {
+        "name": "nginx",
+        "version": "1.18.0-1.el7",
+        "ecosystem": "rpm",
+        "kind": "middleware",
+        "location": "demo/samples/rpm-apk/rpm.tsv",
+        "exposure": "internet",
+        "host": "rpm-apk-lab",
+        "source": "fixture:rpm-apk-lab",
+        "evidence": "nginx 1.18.0-1.el7",
+        "product": "nginx",
+        "key": "rpm:nginx@1.18.0-1.el7"
+      },
+      "title": "更新 nginx 1.18.0-1.el7",
+      "band": "critical",
+      "target_version": "不低于 1.20.1 的现行 stable",
+      "mode": "manual",
+      "prechecks": [
+        "确认处于维护窗口，并通知依赖该服务的应用负责人。",
+        "记录当前版本、配置路径和最近一次备份位置。",
+        "在预发或快照上先走一遍同样的步骤。",
+        "阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。"
+      ],
+      "steps": [
+        {
+          "title": "升级到现行 stable",
+          "display": "将 nginx 升到仍在接收安全修复的 stable，且不低于 1.20.1。先备份 nginx.conf、证书和站点配置。",
+          "manual": true,
+          "argv": null
+        },
+        {
+          "title": "核对 resolver",
+          "display": "若配置里没有 resolver，CVE-2021-23017 的可利用性会低很多，但仍应离开 1.18。",
+          "manual": true,
+          "argv": null
+        }
+      ],
+      "rollback": [
+        "用备份的配置和原版本软件包重新拉起 nginx"
+      ],
+      "verify": [
+        "版本应变为 不低于 1.20.1 的现行 stable 或更新。",
+        "进程能够启动，健康检查和错误日志没有新增异常。",
+        "抽查核心业务读写，确认回滚材料仍可使用。"
+      ],
+      "window": "建议 24 小时内处理",
+      "finding_ids": [
+        "rpm-nginx-1-18-0-1-el7-cve-2021-23017"
+      ],
+      "command_hash": "d389485150808e55b5a6abf3afdc790518aa2ff54e1ed23cac9ff1b20668922e",
+      "narrative": "### 结论\nnginx 当前版本 1.18.0-1.el7，所在位置 demo/samples/rpm-apk/rpm.tsv，暴露面为互联网。本组最高等级为严重。建议 24 小时内处理。\n\n### 优先原因\nCVSS 7.7，归一化 0.77；不在 CISA KEV；EPSS 0.5346，贡献 0.0802；暴露面为互联网，系数 1.00；综合分 0.8502，等级为严重。\n仅在配置了 resolver 时受影响。修复前可先确认配置里是否出现 resolver 指令。\n\n### 涉及条目\n- CVE-2021-23017：nginx resolver 存在越界写，伪造 DNS 应答可能导致 worker 崩溃或其他影响（CVSS 7.7）\n\n### 建议动作\n目标：不低于 1.20.1 的现行 stable。\n这组变更包含迁移或构建清单修改，工具只给出步骤，不代为执行。\n\n### 变更前\n- 确认处于维护窗口，并通知依赖该服务的应用负责人。\n- 记录当前版本、配置路径和最近一次备份位置。\n- 在预发或快照上先走一遍同样的步骤。\n- 阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。\n\n### 步骤\n1. （人工）升级到现行 stable：将 nginx 升到仍在接收安全修复的 stable，且不低于 1.20.1。先备份 nginx.conf、证书和站点配置。\n2. （人工）核对 resolver：若配置里没有 resolver，CVE-2021-23017 的可利用性会低很多，但仍应离开 1.18。\n\n### 回滚\n- 用备份的配置和原版本软件包重新拉起 nginx\n\n### 验证\n- 版本应变为 不低于 1.20.1 的现行 stable 或更新。\n- 进程能够启动，健康检查和错误日志没有新增异常。\n- 抽查核心业务读写，确认回滚材料仍可使用。\n\n说明由固定模板生成，命令不来自语言模型。",
+      "narrative_source": "template",
+      "status": "pending"
+    },
+    {
+      "id": "plan-alpine-nginx-1-18-0-r1",
+      "asset": {
+        "name": "nginx",
+        "version": "1.18.0-r1",
+        "ecosystem": "Alpine",
+        "kind": "middleware",
+        "location": "demo/samples/rpm-apk/apk.txt",
+        "exposure": "internet",
+        "host": "rpm-apk-lab",
+        "source": "fixture:rpm-apk-lab",
+        "evidence": "nginx-1.18.0-r1",
+        "product": "nginx",
+        "key": "Alpine:nginx@1.18.0-r1"
+      },
+      "title": "更新 nginx 1.18.0-r1",
+      "band": "critical",
+      "target_version": "不低于 1.20.1 的现行 stable",
+      "mode": "manual",
+      "prechecks": [
+        "确认处于维护窗口，并通知依赖该服务的应用负责人。",
+        "记录当前版本、配置路径和最近一次备份位置。",
+        "在预发或快照上先走一遍同样的步骤。",
+        "阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。"
+      ],
+      "steps": [
+        {
+          "title": "升级到现行 stable",
+          "display": "将 nginx 升到仍在接收安全修复的 stable，且不低于 1.20.1。先备份 nginx.conf、证书和站点配置。",
+          "manual": true,
+          "argv": null
+        },
+        {
+          "title": "核对 resolver",
+          "display": "若配置里没有 resolver，CVE-2021-23017 的可利用性会低很多，但仍应离开 1.18。",
+          "manual": true,
+          "argv": null
+        }
+      ],
+      "rollback": [
+        "用备份的配置和原版本软件包重新拉起 nginx"
+      ],
+      "verify": [
+        "版本应变为 不低于 1.20.1 的现行 stable 或更新。",
+        "进程能够启动，健康检查和错误日志没有新增异常。",
+        "抽查核心业务读写，确认回滚材料仍可使用。"
+      ],
+      "window": "建议 24 小时内处理",
+      "finding_ids": [
+        "alpine-nginx-1-18-0-r1-cve-2021-23017"
+      ],
+      "command_hash": "d389485150808e55b5a6abf3afdc790518aa2ff54e1ed23cac9ff1b20668922e",
+      "narrative": "### 结论\nnginx 当前版本 1.18.0-r1，所在位置 demo/samples/rpm-apk/apk.txt，暴露面为互联网。本组最高等级为严重。建议 24 小时内处理。\n\n### 优先原因\nCVSS 7.7，归一化 0.77；不在 CISA KEV；EPSS 0.5346，贡献 0.0802；暴露面为互联网，系数 1.00；综合分 0.8502，等级为严重。\n仅在配置了 resolver 时受影响。修复前可先确认配置里是否出现 resolver 指令。\n\n### 涉及条目\n- CVE-2021-23017：nginx resolver 存在越界写，伪造 DNS 应答可能导致 worker 崩溃或其他影响（CVSS 7.7）\n\n### 建议动作\n目标：不低于 1.20.1 的现行 stable。\n这组变更包含迁移或构建清单修改，工具只给出步骤，不代为执行。\n\n### 变更前\n- 确认处于维护窗口，并通知依赖该服务的应用负责人。\n- 记录当前版本、配置路径和最近一次备份位置。\n- 在预发或快照上先走一遍同样的步骤。\n- 阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。\n\n### 步骤\n1. （人工）升级到现行 stable：将 nginx 升到仍在接收安全修复的 stable，且不低于 1.20.1。先备份 nginx.conf、证书和站点配置。\n2. （人工）核对 resolver：若配置里没有 resolver，CVE-2021-23017 的可利用性会低很多，但仍应离开 1.18。\n\n### 回滚\n- 用备份的配置和原版本软件包重新拉起 nginx\n\n### 验证\n- 版本应变为 不低于 1.20.1 的现行 stable 或更新。\n- 进程能够启动，健康检查和错误日志没有新增异常。\n- 抽查核心业务读写，确认回滚材料仍可使用。\n\n说明由固定模板生成，命令不来自语言模型。",
+      "narrative_source": "template",
+      "status": "pending"
+    },
+    {
+      "id": "plan-rpm-redis-5-0-7-1-el7",
+      "asset": {
+        "name": "redis",
+        "version": "5.0.7-1.el7",
+        "ecosystem": "rpm",
+        "kind": "middleware",
+        "location": "demo/samples/rpm-apk/rpm.tsv",
+        "exposure": "internal",
+        "host": "rpm-apk-lab",
+        "source": "fixture:rpm-apk-lab",
+        "evidence": "redis 5.0.7-1.el7",
+        "product": "redis",
+        "key": "rpm:redis@5.0.7-1.el7"
+      },
+      "title": "更新 redis 5.0.7-1.el7",
+      "band": "medium",
+      "target_version": "仍在维护的上游版本（短期不低于 5.0.14）",
+      "mode": "manual",
+      "prechecks": [
+        "确认处于维护窗口，并通知依赖该服务的应用负责人。",
+        "记录当前版本、配置路径和最近一次备份位置。",
+        "在预发或快照上先走一遍同样的步骤。",
+        "阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。"
+      ],
+      "steps": [
+        {
+          "title": "按发行版或供应商流程升级",
+          "display": "将 redis 从 5.0.7-1.el7 升级到 仍在维护的上游版本（短期不低于 5.0.14）。先备份配置和数据。",
+          "manual": true,
+          "argv": null
+        },
+        {
+          "title": "核对适用条件",
+          "display": "短期至少升到 5.0.14；变更窗口内规划迁到仍在维护的主版本。",
+          "manual": true,
+          "argv": null
+        }
+      ],
+      "rollback": [
+        "保留升级前的软件包版本、配置和数据快照，确认可以按原版本拉起"
+      ],
+      "verify": [
+        "版本应变为 仍在维护的上游版本（短期不低于 5.0.14） 或更新。",
+        "进程能够启动，健康检查和错误日志没有新增异常。",
+        "抽查核心业务读写，确认回滚材料仍可使用。"
+      ],
+      "window": "建议 30 天内处理",
+      "finding_ids": [
+        "rpm-redis-5-0-7-1-el7-eol-redis-5-0"
+      ],
+      "command_hash": "3d48ff473c78165074afb0da73b8c2306ea0f47b04a39f9fe6a0622fcb65f7d9",
+      "narrative": "### 结论\nredis 当前版本 5.0.7-1.el7，所在位置 demo/samples/rpm-apk/rpm.tsv，暴露面为内网。本组最高等级为中危。建议 30 天内处理。\n\n### 优先原因\n生命周期项，使用维护风险分代替 CVSS。CVSS 6.5，归一化 0.65；不在 CISA KEV；EPSS 未取得，这项暂不加减分；暴露面为内网，系数 0.85；综合分 0.5525，等级为中危。\n短期至少升到 5.0.14；变更窗口内规划迁到仍在维护的主版本。\n\n### 涉及条目\n- 生命周期：Redis 5.0 已退出上游维护，5.0.14 之后没有新的安全发布（CVSS 6.5）\n\n### 建议动作\n目标：仍在维护的上游版本（短期不低于 5.0.14）。\n这组变更包含迁移或构建清单修改，工具只给出步骤，不代为执行。\n\n### 变更前\n- 确认处于维护窗口，并通知依赖该服务的应用负责人。\n- 记录当前版本、配置路径和最近一次备份位置。\n- 在预发或快照上先走一遍同样的步骤。\n- 阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。\n\n### 步骤\n1. （人工）按发行版或供应商流程升级：将 redis 从 5.0.7-1.el7 升级到 仍在维护的上游版本（短期不低于 5.0.14）。先备份配置和数据。\n2. （人工）核对适用条件：短期至少升到 5.0.14；变更窗口内规划迁到仍在维护的主版本。\n\n### 回滚\n- 保留升级前的软件包版本、配置和数据快照，确认可以按原版本拉起\n\n### 验证\n- 版本应变为 仍在维护的上游版本（短期不低于 5.0.14） 或更新。\n- 进程能够启动，健康检查和错误日志没有新增异常。\n- 抽查核心业务读写，确认回滚材料仍可使用。\n\n说明由固定模板生成，命令不来自语言模型。",
+      "narrative_source": "template",
+      "status": "pending"
+    },
+    {
+      "id": "plan-alpine-redis-5-0-7-r0",
+      "asset": {
+        "name": "redis",
+        "version": "5.0.7-r0",
+        "ecosystem": "Alpine",
+        "kind": "middleware",
+        "location": "demo/samples/rpm-apk/apk.txt",
+        "exposure": "internal",
+        "host": "rpm-apk-lab",
+        "source": "fixture:rpm-apk-lab",
+        "evidence": "redis-5.0.7-r0",
+        "product": "redis",
+        "key": "Alpine:redis@5.0.7-r0"
+      },
+      "title": "更新 redis 5.0.7-r0",
+      "band": "medium",
+      "target_version": "仍在维护的上游版本（短期不低于 5.0.14）",
+      "mode": "manual",
+      "prechecks": [
+        "确认处于维护窗口，并通知依赖该服务的应用负责人。",
+        "记录当前版本、配置路径和最近一次备份位置。",
+        "在预发或快照上先走一遍同样的步骤。",
+        "阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。"
+      ],
+      "steps": [
+        {
+          "title": "按发行版或供应商流程升级",
+          "display": "将 redis 从 5.0.7-r0 升级到 仍在维护的上游版本（短期不低于 5.0.14）。先备份配置和数据。",
+          "manual": true,
+          "argv": null
+        },
+        {
+          "title": "核对适用条件",
+          "display": "短期至少升到 5.0.14；变更窗口内规划迁到仍在维护的主版本。",
+          "manual": true,
+          "argv": null
+        }
+      ],
+      "rollback": [
+        "保留升级前的软件包版本、配置和数据快照，确认可以按原版本拉起"
+      ],
+      "verify": [
+        "版本应变为 仍在维护的上游版本（短期不低于 5.0.14） 或更新。",
+        "进程能够启动，健康检查和错误日志没有新增异常。",
+        "抽查核心业务读写，确认回滚材料仍可使用。"
+      ],
+      "window": "建议 30 天内处理",
+      "finding_ids": [
+        "alpine-redis-5-0-7-r0-eol-redis-5-0"
+      ],
+      "command_hash": "aec5e3be3c2d40046e39287ee333973f378103a54847b54f91511eb5ed7e4a37",
+      "narrative": "### 结论\nredis 当前版本 5.0.7-r0，所在位置 demo/samples/rpm-apk/apk.txt，暴露面为内网。本组最高等级为中危。建议 30 天内处理。\n\n### 优先原因\n生命周期项，使用维护风险分代替 CVSS。CVSS 6.5，归一化 0.65；不在 CISA KEV；EPSS 未取得，这项暂不加减分；暴露面为内网，系数 0.85；综合分 0.5525，等级为中危。\n短期至少升到 5.0.14；变更窗口内规划迁到仍在维护的主版本。\n\n### 涉及条目\n- 生命周期：Redis 5.0 已退出上游维护，5.0.14 之后没有新的安全发布（CVSS 6.5）\n\n### 建议动作\n目标：仍在维护的上游版本（短期不低于 5.0.14）。\n这组变更包含迁移或构建清单修改，工具只给出步骤，不代为执行。\n\n### 变更前\n- 确认处于维护窗口，并通知依赖该服务的应用负责人。\n- 记录当前版本、配置路径和最近一次备份位置。\n- 在预发或快照上先走一遍同样的步骤。\n- 阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。\n\n### 步骤\n1. （人工）按发行版或供应商流程升级：将 redis 从 5.0.7-r0 升级到 仍在维护的上游版本（短期不低于 5.0.14）。先备份配置和数据。\n2. （人工）核对适用条件：短期至少升到 5.0.14；变更窗口内规划迁到仍在维护的主版本。\n\n### 回滚\n- 保留升级前的软件包版本、配置和数据快照，确认可以按原版本拉起\n\n### 验证\n- 版本应变为 仍在维护的上游版本（短期不低于 5.0.14） 或更新。\n- 进程能够启动，健康检查和错误日志没有新增异常。\n- 抽查核心业务读写，确认回滚材料仍可使用。\n\n说明由固定模板生成，命令不来自语言模型。",
+      "narrative_source": "template",
+      "status": "pending"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "SchemaVersion": 2,
+  "ArtifactName": "demo/lab",
+  "Results": [
+    {
+      "Target": "app/requirements.txt",
+      "Class": "lang-pkgs",
+      "Type": "pip",
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2020-14343",
+          "PkgName": "pyyaml",
+          "InstalledVersion": "5.3.1",
+          "FixedVersion": "5.4",
+          "Severity": "CRITICAL",
+          "Title": "PyYAML before 5.4 can execute code via FullLoader",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2020-14343",
+          "CVSS": {
+            "nvd": {
+              "V3Score": 9.8
+            }
+          }
+        },
+        {
+          "VulnerabilityID": "TRIVY-SAMPLE-ONLY",
+          "PkgName": "demo-only-package",
+          "InstalledVersion": "1.0.0",
+          "FixedVersion": "1.0.1",
+          "Severity": "LOW",
+          "Title": "夹具条目，只用于展示「仅第二意见」。不是真实 CVE。",
+          "PrimaryURL": "https://github.com/aquasecurity/trivy"
+        }
+      ]
+    }
+  ]
+}

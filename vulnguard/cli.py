@@ -23,7 +23,7 @@ def main() -> None:
     scan = sub.add_parser("scan", help="巡检并写出报告")
     _add_scan_args(scan)
 
-    demo = sub.add_parser("demo", help="用演示环境跑一遍并写出样例报告")
+    demo = sub.add_parser("demo", help="用演示环境跑一遍并写出报告")
     demo.add_argument("--online", action="store_true", help="访问 OSV、KEV 和 EPSS")
     demo.add_argument("--out", default=DEFAULT_OUT)
     demo.add_argument("--db", default="runtime/vulnguard.db")
@@ -73,7 +73,7 @@ def main() -> None:
         )
         print(f"主机 {result.host}，资产 {len(result.assets)}，发现 {len(result.findings)}，方案 {len(result.plans)}")
         print(f"报告：{args.out}/report.md")
-        print("下一步：python -m vulnguard serve")
+        print("下一步：python3 -m vulnguard serve")
     elif args.command == "serve":
         from vulnguard.web import serve
 

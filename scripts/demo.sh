@@ -4,5 +4,5 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 python3 -m vulnguard demo --online
 echo
-echo "查看报告： runtime/reports/latest/report.md"
+echo "查看报告：runtime/reports/latest/report.md"
 echo "打开界面： python3 -m vulnguard serve"

@@ -19,7 +19,7 @@
       "details": "演示环境中的 5.0.7 低于最后一次 5.0 安全发布 5.0.14。即便升到 5.0.14，这条分支也不再接收后续修复。建议选当前仍在维护的上游版本，并单独做持久化与复制回归。",
       "cvss_equivalent": 6.5,
       "references": ["https://github.com/redis/redis/releases/tag/5.0.14"],
-      "recommendation": "短期至少升到 5.0.14；变更窗口内规划迁到仍在维护的主版本。",
+      "recommendation": "短期至少升到 5.0.14；变更窗口内规划迁移到仍在维护的主版本。",
       "ranges": [
         {"introduced": "5.0.0", "fixed": "6.0.0"},
         {"introduced": "5:5.0.0", "fixed": "5:6.0.0"}

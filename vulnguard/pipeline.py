@@ -55,7 +55,7 @@ def run_scan(
         warnings.append(
             "未检测到 "
             + "、".join(missing)
-            + "。这些工具的仓库链接写在 docs/设计文档.md，当前不解析它们的输出。"
+            + "。仓库链接见 ai-process/第三方开源仓库.md，当前不解析它们的输出。"
         )
     feedset = feeds if feeds is not None else load_feeds(online=online)
     findings = match_assets(assets, feedset)

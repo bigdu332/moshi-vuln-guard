@@ -5,7 +5,7 @@
   "target": "demo/lab",
   "host": "moshi-lab-01",
   "warnings": [
-    "未检测到 grype、syft、osv-scanner。这些工具的仓库链接写在 docs/设计文档.md，当前不解析它们的输出。",
+    "未检测到 grype、syft、osv-scanner。仓库链接见 ai-process/第三方开源仓库.md，当前不解析它们的输出。",
     "PATH 中没有 trivy。已读入目标目录的 trivy.json 作为第二意见，OSV 主路径保持不变。"
   ],
   "feeds": {
@@ -248,7 +248,7 @@
       "epss_percentile": 1.0,
       "score": 1.0,
       "band": "critical",
-      "rationale": "CVSS 10.0，归一化 1.00；在 CISA KEV 中，贡献 0.25；EPSS 1.0000，贡献 0.1500；暴露面为互联网，系数 1.00；综合分 1.0000，等级为严重。 触发规则：KEV 且 CVSS 不低于 7，等级至少为严重。",
+      "rationale": "CVSS 10.0，归一化 1.00；在 CISA KEV 中，贡献 0.25；EPSS 1.0000，贡献 0.1500；暴露面为互联网，系数 1.00；综合分 1.0000，等级为严重。触发规则：KEV 且 CVSS 不低于 7，等级至少为严重。",
       "fixed_versions": [
         "2.15.0",
         "2.3.1",
@@ -299,7 +299,7 @@
       "epss_percentile": 0.9998,
       "score": 1.0,
       "band": "critical",
-      "rationale": "CVSS 9.0，归一化 0.90；在 CISA KEV 中，贡献 0.25；EPSS 0.9998，贡献 0.1500；暴露面为互联网，系数 1.00；综合分 1.0000，等级为严重。 触发规则：KEV 且 CVSS 不低于 7，等级至少为严重。",
+      "rationale": "CVSS 9.0，归一化 0.90；在 CISA KEV 中，贡献 0.25；EPSS 0.9998，贡献 0.1500；暴露面为互联网，系数 1.00；综合分 1.0000，等级为严重。触发规则：KEV 且 CVSS 不低于 7，等级至少为严重。",
       "fixed_versions": [
         "2.16.0",
         "2.12.2",
@@ -441,7 +441,7 @@
       "epss_percentile": 0.99939,
       "score": 0.85,
       "band": "critical",
-      "rationale": "CVSS 10.0，归一化 1.00；在 CISA KEV 中，贡献 0.25；EPSS 0.9935，贡献 0.1490；暴露面为内网，系数 0.85；综合分 0.8500，等级为严重。 触发规则：KEV 且 CVSS 不低于 7，等级至少为严重。",
+      "rationale": "CVSS 10.0，归一化 1.00；在 CISA KEV 中，贡献 0.25；EPSS 0.9935，贡献 0.1490；暴露面为内网，系数 0.85；综合分 0.8500，等级为严重。触发规则：KEV 且 CVSS 不低于 7，等级至少为严重。",
       "fixed_versions": [
         "5:5.0.14-1+deb10u2",
         "5:6.0.16-1+deb11u2"
@@ -473,7 +473,7 @@
       "cvss": 9.8,
       "cvss_estimated": false,
       "severity": "CRITICAL",
-      "condition": "需要应用使用 full_load 或 FullLoader 处理不可信输入。",
+      "condition": "需要确认应用是否使用 full_load 或 FullLoader 处理不可信输入。",
       "kind": "vulnerability",
       "source": "curated",
       "references": [
@@ -1043,7 +1043,7 @@
       "cvss": 6.5,
       "cvss_estimated": false,
       "severity": "MEDIUM",
-      "condition": "短期至少升到 5.0.14；变更窗口内规划迁到仍在维护的主版本。",
+      "condition": "短期至少升到 5.0.14；变更窗口内规划迁移到仍在维护的主版本。",
       "kind": "eol",
       "source": "eol",
       "references": [
@@ -1716,7 +1716,7 @@
         "maven-org-apache-logging-log4j-log4j-core-2-14-1-cve-2026-34479"
       ],
       "command_hash": "be588142fc1761583317d3cf53d238a3b4918bb70325f21e0c9886f62c91a510",
-      "narrative": "### 结论\norg.apache.logging.log4j:log4j-core 当前版本 2.14.1，所在位置 demo/lab/app/pom.xml，暴露面为互联网。本组最高等级为严重。CISA KEV 截止日期 2021-12-24 已过，建议 24 小时内处理。\n\n### 优先原因\nCVSS 10.0，归一化 1.00；在 CISA KEV 中，贡献 0.25；EPSS 1.0000，贡献 0.1500；暴露面为互联网，系数 1.00；综合分 1.0000，等级为严重。 触发规则：KEV 且 CVSS 不低于 7，等级至少为严重。\nlog4j-api 单独存在时不受 Log4Shell 影响，需要确认依赖树里是 log4j-core。\n\n### 涉及条目\n- CVE-2021-44228：Apache Log4j2 JNDI 查找导致远程代码执行（Log4Shell）（CVSS 10.0，KEV）\n- CVE-2021-45046：Log4j2 在非默认布局下仍可通过 JNDI 造成远程代码执行或拒绝服务（CVSS 9.0，KEV）\n- CVE-2021-45105：Apache Log4j2 vulnerable to Improper Input Validation and Uncontrolled Recursion（CVSS 8.6）\n- CVE-2021-44832：Improper Input Validation and Injection in Apache Log4j2（CVSS 6.6）\n- CVE-2026-34480：Apache Log4j Core: Silent log event loss in XmlLayout due to unescaped XML 1.0 forbidden characters（CVSS 5.5）\n- CVE-2025-68161：Apache Log4j does not verify the TLS hostname in its Socket Appender（CVSS 5.5）\n- CVE-2026-34477：Apache Log4j Core: `verifyHostName` attribute silently ignored in TLS configuration（CVSS 5.5）\n- CVE-2026-34479：Apache Log4j 1 to Log4j 2 bridge: silent log event loss in Log4j1XmlLayout due to unescaped XML 1.0 forbidden characters（CVSS 5.5）\n\n### 建议动作\n目标：2.25.4。\n这组变更包含迁移或构建清单修改，工具只给出步骤，不代为执行。\n\n### 变更前\n- 确认处于维护窗口，并通知依赖该服务的应用负责人。\n- 记录当前版本、配置路径和最近一次备份位置。\n- 在预发或快照上先走一遍同样的步骤。\n- 阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。\n\n### 步骤\n1. （人工）修改构建清单：把 org.apache.logging.log4j:log4j-core 从 2.14.1 改到 2.25.4，然后重新构建并扫描依赖树。\n2. （人工）回归日志与启动：在预发启动应用，确认没有再加载旧的 log4j-core。\n\n### 回滚\n- 用版本库还原 pom.xml / build 文件并重新部署上一构建产物\n\n### 验证\n- 版本应变为 2.25.4 或更新。\n- 进程能够启动，健康检查和错误日志没有新增异常。\n- 抽查核心业务读写，确认回滚材料仍可使用。\n\n说明由固定模板生成，命令不来自语言模型。",
+      "narrative": "### 结论\norg.apache.logging.log4j:log4j-core 当前版本 2.14.1，所在位置 demo/lab/app/pom.xml，暴露面为互联网。本组最高等级为严重。CISA KEV 截止日期 2021-12-24 已过，建议 24 小时内处理。\n\n### 优先原因\nCVSS 10.0，归一化 1.00；在 CISA KEV 中，贡献 0.25；EPSS 1.0000，贡献 0.1500；暴露面为互联网，系数 1.00；综合分 1.0000，等级为严重。触发规则：KEV 且 CVSS 不低于 7，等级至少为严重。\nlog4j-api 单独存在时不受 Log4Shell 影响，需要确认依赖树里是 log4j-core。\n\n### 涉及条目\n- CVE-2021-44228：Apache Log4j2 JNDI 查找导致远程代码执行（Log4Shell）（CVSS 10.0，KEV）\n- CVE-2021-45046：Log4j2 在非默认布局下仍可通过 JNDI 造成远程代码执行或拒绝服务（CVSS 9.0，KEV）\n- CVE-2021-45105：Apache Log4j2 vulnerable to Improper Input Validation and Uncontrolled Recursion（CVSS 8.6）\n- CVE-2021-44832：Improper Input Validation and Injection in Apache Log4j2（CVSS 6.6）\n- CVE-2026-34480：Apache Log4j Core: Silent log event loss in XmlLayout due to unescaped XML 1.0 forbidden characters（CVSS 5.5）\n- CVE-2025-68161：Apache Log4j does not verify the TLS hostname in its Socket Appender（CVSS 5.5）\n- CVE-2026-34477：Apache Log4j Core: `verifyHostName` attribute silently ignored in TLS configuration（CVSS 5.5）\n- CVE-2026-34479：Apache Log4j 1 to Log4j 2 bridge: silent log event loss in Log4j1XmlLayout due to unescaped XML 1.0 forbidden characters（CVSS 5.5）\n\n### 建议动作\n目标：2.25.4。\n这组变更包含迁移或构建清单修改，工具只给出步骤，不代为执行。\n\n### 变更前\n- 确认处于维护窗口，并通知依赖该服务的应用负责人。\n- 记录当前版本、配置路径和最近一次备份位置。\n- 在预发或快照上先走一遍同样的步骤。\n- 阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。\n\n### 步骤\n1. （人工）修改构建清单：把 org.apache.logging.log4j:log4j-core 从 2.14.1 改到 2.25.4，然后重新构建并扫描依赖树。\n2. （人工）回归日志与启动：在预发启动应用，确认没有再加载旧的 log4j-core。\n\n### 回滚\n- 用版本库还原 pom.xml / build 文件并重新部署上一构建产物\n\n### 验证\n- 版本应变为 2.25.4 或更新。\n- 进程能够启动，健康检查和错误日志没有新增异常。\n- 抽查核心业务读写，确认回滚材料仍可使用。\n\n说明由固定模板生成，命令不来自语言模型。",
       "narrative_source": "template",
       "status": "pending"
     },
@@ -1785,7 +1785,7 @@
         "debian-redis-5-5-0-7-2deb10u1-eol-redis-5-0"
       ],
       "command_hash": "0e3d30ea1481fb0c64d23183d6910372b121ae4204d4170800df8ad5aaa4cdd5",
-      "narrative": "### 结论\nredis 当前版本 5:5.0.7-2+deb10u1，所在位置 demo/lab/dpkg.tsv，暴露面为内网。本组最高等级为严重。CISA KEV 截止日期 2022-04-18 已过，建议 24 小时内处理。\n\n### 优先原因\nCVSS 10.0，归一化 1.00；在 CISA KEV 中，贡献 0.25；EPSS 0.9935，贡献 0.1490；暴露面为内网，系数 0.85；综合分 0.8500，等级为严重。 触发规则：KEV 且 CVSS 不低于 7，等级至少为严重。\n只适用于 Debian 打包的 redis。请用 dpkg 版本确认，不要把官方二进制或官方镜像算进来。\n\n### 涉及条目\n- CVE-2022-0543：Debian 打包的 Redis 因 Lua 库包装问题可逃出沙箱，造成远程代码执行（CVSS 10.0，KEV）\n- 生命周期：Redis 5.0 已退出上游维护，5.0.14 之后没有新的安全发布（CVSS 6.5）\n\n### 建议动作\n目标：5:5.0.14-1+deb10u2（buster 安全更新；随后规划离开 5.0）。\n其中白名单内的安装命令可以在批准后执行；默认只做预演。\n\n### 变更前\n- 确认处于维护窗口，并通知依赖该服务的应用负责人。\n- 记录当前版本、配置路径和最近一次备份位置。\n- 在预发或快照上先走一遍同样的步骤。\n- 阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。\n\n### 步骤\n1. （人工）备份 RDB/AOF 与 redis.conf：cp /var/lib/redis 与 /etc/redis 到维护目录\n2. （白名单命令）安装 Debian 安全更新：apt-get install --only-upgrade redis-server\n3. （人工）离开已经停止维护的 5.0 分支：另排窗口迁移到仍在维护的主版本，本工具不自动做大版本迁移。\n\n### 回滚\n- apt-get install redis-server=5:5.0.7-2+deb10u1\n- 用备份的 RDB/AOF 恢复数据\n\n### 验证\n- 版本应变为 5:5.0.14-1+deb10u2（buster 安全更新；随后规划离开 5.0） 或更新。\n- 进程能够启动，健康检查和错误日志没有新增异常。\n- 抽查核心业务读写，确认回滚材料仍可使用。\n\n说明由固定模板生成，命令不来自语言模型。",
+      "narrative": "### 结论\nredis 当前版本 5:5.0.7-2+deb10u1，所在位置 demo/lab/dpkg.tsv，暴露面为内网。本组最高等级为严重。CISA KEV 截止日期 2022-04-18 已过，建议 24 小时内处理。\n\n### 优先原因\nCVSS 10.0，归一化 1.00；在 CISA KEV 中，贡献 0.25；EPSS 0.9935，贡献 0.1490；暴露面为内网，系数 0.85；综合分 0.8500，等级为严重。触发规则：KEV 且 CVSS 不低于 7，等级至少为严重。\n只适用于 Debian 打包的 redis。请用 dpkg 版本确认，不要把官方二进制或官方镜像算进来。\n\n### 涉及条目\n- CVE-2022-0543：Debian 打包的 Redis 因 Lua 库包装问题可逃出沙箱，造成远程代码执行（CVSS 10.0，KEV）\n- 生命周期：Redis 5.0 已退出上游维护，5.0.14 之后没有新的安全发布（CVSS 6.5）\n\n### 建议动作\n目标：5:5.0.14-1+deb10u2（buster 安全更新；随后规划离开 5.0）。\n其中白名单内的安装命令可以在批准后执行；默认只做预演。\n\n### 变更前\n- 确认处于维护窗口，并通知依赖该服务的应用负责人。\n- 记录当前版本、配置路径和最近一次备份位置。\n- 在预发或快照上先走一遍同样的步骤。\n- 阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。\n\n### 步骤\n1. （人工）备份 RDB/AOF 与 redis.conf：cp /var/lib/redis 与 /etc/redis 到维护目录\n2. （白名单命令）安装 Debian 安全更新：apt-get install --only-upgrade redis-server\n3. （人工）离开已经停止维护的 5.0 分支：另排窗口迁移到仍在维护的主版本，本工具不自动做大版本迁移。\n\n### 回滚\n- apt-get install redis-server=5:5.0.7-2+deb10u1\n- 用备份的 RDB/AOF 恢复数据\n\n### 验证\n- 版本应变为 5:5.0.14-1+deb10u2（buster 安全更新；随后规划离开 5.0） 或更新。\n- 进程能够启动，健康检查和错误日志没有新增异常。\n- 抽查核心业务读写，确认回滚材料仍可使用。\n\n说明由固定模板生成，命令不来自语言模型。",
       "narrative_source": "template",
       "status": "pending"
     },
@@ -2187,7 +2187,7 @@
         "pypi-pyyaml-5-3-1-cve-2020-14343"
       ],
       "command_hash": "dd3b888aafc99fa819afe7073c7939ab40c1a977e3eb4cce399e2bdc04ebc0bb",
-      "narrative": "### 结论\npyyaml 当前版本 5.3.1，所在位置 demo/lab/app/requirements.txt，暴露面为内网。本组最高等级为高危。建议 7 天内处理。\n\n### 优先原因\nCVSS 9.8，归一化 0.98；不在 CISA KEV；EPSS 0.0598，贡献 0.0090；暴露面为内网，系数 0.85；综合分 0.8406，等级为高危。\n需要应用使用 full_load 或 FullLoader 处理不可信输入。\n\n### 涉及条目\n- CVE-2020-14343：PyYAML 在 5.4 之前通过 FullLoader 解析不可信 YAML 时可执行任意代码（CVSS 9.8）\n\n### 建议动作\n目标：5.4。\n其中白名单内的安装命令可以在批准后执行；默认只做预演。\n\n### 变更前\n- 确认处于维护窗口，并通知依赖该服务的应用负责人。\n- 记录当前版本、配置路径和最近一次备份位置。\n- 在预发或快照上先走一遍同样的步骤。\n- 阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。\n\n### 步骤\n1. （人工）冻结当前环境：pip freeze > requirements.freeze.bak\n2. （白名单命令）升级锁定版本：pip install pyyaml==5.4\n\n### 回滚\n- pip install pyyaml==5.3.1\n\n### 验证\n- 版本应变为 5.4 或更新。\n- 进程能够启动，健康检查和错误日志没有新增异常。\n- 抽查核心业务读写，确认回滚材料仍可使用。\n\n说明由固定模板生成，命令不来自语言模型。",
+      "narrative": "### 结论\npyyaml 当前版本 5.3.1，所在位置 demo/lab/app/requirements.txt，暴露面为内网。本组最高等级为高危。建议 7 天内处理。\n\n### 优先原因\nCVSS 9.8，归一化 0.98；不在 CISA KEV；EPSS 0.0598，贡献 0.0090；暴露面为内网，系数 0.85；综合分 0.8406，等级为高危。\n需要确认应用是否使用 full_load 或 FullLoader 处理不可信输入。\n\n### 涉及条目\n- CVE-2020-14343：PyYAML 在 5.4 之前通过 FullLoader 解析不可信 YAML 时可执行任意代码（CVSS 9.8）\n\n### 建议动作\n目标：5.4。\n其中白名单内的安装命令可以在批准后执行；默认只做预演。\n\n### 变更前\n- 确认处于维护窗口，并通知依赖该服务的应用负责人。\n- 记录当前版本、配置路径和最近一次备份位置。\n- 在预发或快照上先走一遍同样的步骤。\n- 阅读每条漏洞的适用条件，确认这套部署确实走到了受影响配置。\n\n### 步骤\n1. （人工）冻结当前环境：pip freeze > requirements.freeze.bak\n2. （白名单命令）升级锁定版本：pip install pyyaml==5.4\n\n### 回滚\n- pip install pyyaml==5.3.1\n\n### 验证\n- 版本应变为 5.4 或更新。\n- 进程能够启动，健康检查和错误日志没有新增异常。\n- 抽查核心业务读写，确认回滚材料仍可使用。\n\n说明由固定模板生成，命令不来自语言模型。",
       "narrative_source": "template",
       "status": "pending"
     }

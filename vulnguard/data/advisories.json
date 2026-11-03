@@ -84,7 +84,7 @@
         "https://nvd.nist.gov/vuln/detail/CVE-2020-14343",
         "https://github.com/advisories/GHSA-8q59-q68h-6hv4"
       ],
-      "condition": "需要应用使用 full_load 或 FullLoader 处理不可信输入。",
+      "condition": "需要确认应用是否使用 full_load 或 FullLoader 处理不可信输入。",
       "packages": [
         {
           "ecosystem": "PyPI",
